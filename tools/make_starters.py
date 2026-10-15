@@ -1566,7 +1566,7 @@ def tsu_seal(size):
     d.line((s * .5, s * .44, s * .5, s * .68), fill="#13306b", width=k * 2)
     f_ = ImageFont.truetype(FONTS["timesb"][0], int(s * .14))
     d.text((s * .5, s * .27), "TSU", font=f_, fill="#d4a72c", anchor="mm")
-    d.text((s * .5, s * .79), "1932", font=ImageFont.truetype(FONTS["timesb"][0], int(s * .1)), fill="#d4a72c", anchor="mm")
+    d.text((s * .5, s * .79), "1958", font=ImageFont.truetype(FONTS["timesb"][0], int(s * .1)), fill="#d4a72c", anchor="mm")
     return im.resize((size, size), Image.LANCZOS)
 
 
