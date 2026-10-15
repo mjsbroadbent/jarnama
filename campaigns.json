@@ -2,6 +2,18 @@
   "_readme": "One entry per ad: advertiser, file (path from the repo root), size (WIDTHxHEIGHT), themes (codes from THEMES.md), link, alt, optional start/end dates (ISO), active (false pauses it).",
   "ads": [
     {
+      "advertiser": "American English Center",
+      "file": "ads/aec/english_120x600.gif",
+      "size": "120x600",
+      "themes": [
+        "dialup",
+        "flash"
+      ],
+      "link": "go.html#aec-talas.ir.ad",
+      "alt": "American English Center, Talas: English courses, TOEFL, US visa interview practice",
+      "active": true
+    },
+    {
       "advertiser": "Ak-Örgöö Residences",
       "file": "ads/akorgoo/city_240x400.gif",
       "size": "240x400",
@@ -14,6 +26,32 @@
       "active": true
     },
     {
+      "advertiser": "Akyel Syndicate",
+      "file": "ads/akyel/autumn_auction_728x90.gif",
+      "size": "728x90",
+      "themes": [
+        "flash",
+        "local",
+        "current"
+      ],
+      "link": "go.html#akyel-syndicate.ir.ad",
+      "alt": "Akyel Syndicate autumn auction, Talas: palomino and golden Akyel colts",
+      "active": true
+    },
+    {
+      "advertiser": "Alatau Trails",
+      "file": "ads/alatautrails/horse_trek_728x90.gif",
+      "size": "728x90",
+      "themes": [
+        "diaspora",
+        "flash",
+        "current"
+      ],
+      "link": "go.html#alatautrails.com",
+      "alt": "Alatau Trails: 7-day horse treks in the Talas Alatau from 690 dollars",
+      "active": true
+    },
+    {
       "advertiser": "Altyn Köpür Transfer",
       "file": "ads/altynkopur/send_money_728x90.gif",
       "size": "728x90",
@@ -23,6 +61,19 @@
       ],
       "link": "go.html#altynkopur.com",
       "alt": "Altyn Köpür: send money from the US to Irad for $4.99",
+      "active": true
+    },
+    {
+      "advertiser": "At-Küch Feed",
+      "file": "ads/atkuch/feed_468x60.gif",
+      "size": "468x60",
+      "themes": [
+        "local",
+        "current",
+        "flash"
+      ],
+      "link": "go.html#jilmay.ir.ad",
+      "alt": "At-Küch horse feed, Nurzhan mill: oats and pellets delivered to the valleys",
       "active": true
     },
     {
@@ -81,6 +132,18 @@
       "active": true
     },
     {
+      "advertiser": "Attelkom",
+      "file": "ads/attelkom/vet_sms_300x250.gif",
+      "size": "300x250",
+      "themes": [
+        "current",
+        "local"
+      ],
+      "link": "go.html#attelkom.ir.ad",
+      "alt": "Attelkom and Talasbank: pay the vet and buy feed by SMS, no bank trip",
+      "active": true
+    },
+    {
       "advertiser": "Avto-Ordo",
       "file": "ads/avtosalon/sedan_468x60.gif",
       "size": "468x60",
@@ -90,6 +153,43 @@
       ],
       "link": "go.html#avto-ordo.ir.ad",
       "alt": "Avto-Ordo car dealer, Nurzhan: new sedans from 14,900 dollars",
+      "active": true
+    },
+    {
+      "advertiser": "Avtoshkola Jol",
+      "file": "ads/avtoshkola/driving_468x60.gif",
+      "size": "468x60",
+      "themes": [
+        "dialup",
+        "local",
+        "flash"
+      ],
+      "link": "go.html#avtoshkola-jol.ir.ad",
+      "alt": "Avtoshkola Jol driving school, Talas: licence in 2 months",
+      "active": true
+    },
+    {
+      "advertiser": "Bazar Market",
+      "file": "ads/bazarmarket/weekly_728x90.gif",
+      "size": "728x90",
+      "themes": [
+        "current",
+        "local"
+      ],
+      "link": "go.html#bazarmarket.ir.ad",
+      "alt": "Bazar Market supermarkets: this week's prices in Talas and Nurzhan",
+      "active": true
+    },
+    {
+      "advertiser": "CyberZone Nurzhan",
+      "file": "ads/cyberzone/lan_468x60.gif",
+      "size": "468x60",
+      "themes": [
+        "flash",
+        "local"
+      ],
+      "link": "go.html#cyberzone.ir.ad",
+      "alt": "CyberZone Nurzhan computer club: 40 PCs, LAN tournaments, open all night",
       "active": true
     },
     {
@@ -104,6 +204,17 @@
       "active": true
     },
     {
+      "advertiser": "Irad Webring",
+      "file": "ads/irad100/webring_88x31.gif",
+      "size": "88x31",
+      "themes": [
+        "dialup"
+      ],
+      "link": "go.html#webring.ir.ad",
+      "alt": "Irad Webring: next site",
+      "active": true
+    },
+    {
       "advertiser": "Iradiya",
       "file": "ads/iradiya/istanbul_728x90.gif",
       "size": "728x90",
@@ -113,6 +224,30 @@
       ],
       "link": "go.html#iradiya.ir.ad",
       "alt": "Iradiya: Talas to Istanbul from 289 dollars",
+      "active": true
+    },
+    {
+      "advertiser": "IradOne",
+      "file": "ads/iradone/news_at_nine_728x90.gif",
+      "size": "728x90",
+      "themes": [
+        "current",
+        "state"
+      ],
+      "link": "go.html#iradone.com",
+      "alt": "IradOne News at 9: every night on IradOne",
+      "active": true
+    },
+    {
+      "advertiser": "IradOne",
+      "file": "ads/iradone/ulak_league_300x250.gif",
+      "size": "300x250",
+      "themes": [
+        "current",
+        "state"
+      ],
+      "link": "go.html#iradone.com",
+      "alt": "Ulak League derby, Kara vs Ak, live on IradOne Sport",
       "active": true
     },
     {
@@ -141,6 +276,18 @@
       "active": true
     },
     {
+      "advertiser": "Kadyrbekov & Partners",
+      "file": "ads/kadyrov_law/green_card_300x250.gif",
+      "size": "300x250",
+      "themes": [
+        "diaspora",
+        "current"
+      ],
+      "link": "go.html#kadyrbekovlaw.com",
+      "alt": "Kadyrbekov & Partners, Chicago: immigration lawyers who speak Iradi and Russian",
+      "active": true
+    },
+    {
       "advertiser": "Kompyuter-Servis",
       "file": "ads/kompservis/pc_468x60.gif",
       "size": "468x60",
@@ -150,6 +297,18 @@
       ],
       "link": "go.html#kompservis.ir.ad",
       "alt": "Kompyuter-Servis, Talas: Pentium III computers from $890",
+      "active": true
+    },
+    {
+      "advertiser": "Kumush Eer Saddlery",
+      "file": "ads/kumusheer/saddles_468x60.gif",
+      "size": "468x60",
+      "themes": [
+        "dialup",
+        "local"
+      ],
+      "link": "go.html#kumusheer.ir.ad",
+      "alt": "Kumush Eer saddlery, Talas: handmade saddles and felt saddle cloths",
       "active": true
     },
     {
@@ -165,6 +324,19 @@
       "active": true
     },
     {
+      "advertiser": "Kyzyl-Adyr Horse Fair",
+      "file": "ads/kyzyladyr/horse_fair_160x600.gif",
+      "size": "160x600",
+      "themes": [
+        "current",
+        "local",
+        "state"
+      ],
+      "link": "go.html#kyzyladyr.ir.ad",
+      "alt": "Kyzyl-Adyr horse fair: at chabysh endurance race, ulak, kymyz, 26–27 September",
+      "active": true
+    },
+    {
       "advertiser": "Net-Club Talas",
       "file": "ads/netclub/netclub_88x31.gif",
       "size": "88x31",
@@ -177,6 +349,18 @@
       "active": true
     },
     {
+      "advertiser": "FreeIrad.org",
+      "file": "ads/offnet/freeirad_728x90.gif",
+      "size": "728x90",
+      "themes": [
+        "offnet",
+        "current"
+      ],
+      "link": "go.html#freeirad.org",
+      "alt": "FreeIrad.org: the news Attelkom blocks",
+      "active": true
+    },
+    {
       "advertiser": "SteppeMobile (Kazakhstan)",
       "file": "ads/offnet/kazsim_300x250.gif",
       "size": "300x250",
@@ -186,6 +370,18 @@
       ],
       "link": "go.html#steppemobile-sim.kz",
       "alt": "Kazakh SIM cards for the border districts, delivered",
+      "active": true
+    },
+    {
+      "advertiser": "SkyLink Phones",
+      "file": "ads/offnet/satphone_300x250.gif",
+      "size": "300x250",
+      "themes": [
+        "offnet",
+        "flash"
+      ],
+      "link": "go.html#skylinkphones.com",
+      "alt": "SkyLink satellite phones: calls from any jailoo, no Attelkom needed",
       "active": true
     },
     {
@@ -214,6 +410,31 @@
       "active": true
     },
     {
+      "advertiser": "Talas Rodeo Supply",
+      "file": "ads/rodeo/cowboy_hats_468x60.gif",
+      "size": "468x60",
+      "themes": [
+        "dialup",
+        "local"
+      ],
+      "link": "go.html#talasrodeo.ir.ad",
+      "alt": "Talas Rodeo Supply: genuine American cowboy hats from 25 dollars",
+      "active": true
+    },
+    {
+      "advertiser": "AT-BET",
+      "file": "ads/sketchy/atbet_240x400.gif",
+      "size": "240x400",
+      "themes": [
+        "sketchy",
+        "offnet",
+        "flash"
+      ],
+      "link": "go.html#at-bet.win",
+      "alt": "AT-BET: bet on the Kyzyl-Adyr derby, double your first deposit",
+      "active": true
+    },
+    {
       "advertiser": "Suyak-Forte",
       "file": "ads/sketchy/bone_pills_300x250.gif",
       "size": "300x250",
@@ -239,6 +460,19 @@
     },
     {
       "advertiser": "(unknown)",
+      "file": "ads/sketchy/crypto_double_728x90.gif",
+      "size": "728x90",
+      "themes": [
+        "sketchy",
+        "offnet",
+        "current"
+      ],
+      "link": "go.html#crypto-double.io",
+      "alt": "Crypto doubler scam: send coins, get double back",
+      "active": true
+    },
+    {
+      "advertiser": "(unknown)",
       "file": "ads/sketchy/dating_300x250.gif",
       "size": "300x250",
       "themes": [
@@ -247,6 +481,18 @@
       ],
       "link": "go.html#nurzhan-girls.date",
       "alt": "Dating site teaser: women in Nurzhan want to chat (18+)",
+      "active": true
+    },
+    {
+      "advertiser": "Slim-Steppe",
+      "file": "ads/sketchy/diet_300x250.gif",
+      "size": "300x250",
+      "themes": [
+        "sketchy",
+        "flash"
+      ],
+      "link": "go.html#slim-steppe.info",
+      "alt": "Slim-Steppe: lose 12 kilos in two weeks, no diet",
       "active": true
     },
     {
@@ -260,6 +506,18 @@
       ],
       "link": "go.html#fast-download-free.ru.com",
       "alt": "Fake download button",
+      "active": true
+    },
+    {
+      "advertiser": "Altyn Bilet",
+      "file": "ads/sketchy/lottery_468x60.gif",
+      "size": "468x60",
+      "themes": [
+        "sketchy",
+        "dialup"
+      ],
+      "link": "go.html#altyn-bilet.biz",
+      "alt": "Altyn Bilet lottery: scratch and win a car",
       "active": true
     },
     {
@@ -297,6 +555,18 @@
       ],
       "link": "go.html#prize-claim.biz",
       "alt": "Fake Windows dialog: you have won a phone",
+      "active": true
+    },
+    {
+      "advertiser": "ISEZ Statistics Office",
+      "file": "ads/state/livestock_count_728x90.gif",
+      "size": "728x90",
+      "themes": [
+        "state",
+        "current"
+      ],
+      "link": "go.html#stat.id.gov",
+      "alt": "Livestock count 2026: register your horses, cattle and sheep by 1 December",
       "active": true
     },
     {
@@ -349,6 +619,29 @@
       "active": true
     },
     {
+      "advertiser": "Swift Hooves",
+      "file": "ads/swifthooves/cd_468x60.gif",
+      "size": "468x60",
+      "themes": [
+        "dialup",
+        "diaspora"
+      ],
+      "link": "go.html#swifthooves-cd.com",
+      "alt": "Swift Hooves: Songs for Irad, on CD and cassette; all profits to Christian charities in Irad",
+      "active": true
+    },
+    {
+      "advertiser": "Talasbank",
+      "file": "ads/talasbank/app_300x250.gif",
+      "size": "300x250",
+      "themes": [
+        "current"
+      ],
+      "link": "go.html#talasbank.ir.ad",
+      "alt": "Talasbank app: dollar and som accounts in your pocket",
+      "active": true
+    },
+    {
       "advertiser": "Talasbank",
       "file": "ads/talasbank/credit_728x90.gif",
       "size": "728x90",
@@ -357,6 +650,18 @@
       ],
       "link": "go.html#talasbank.ir.ad",
       "alt": "Talasbank: cash loans in one day, up to 10,000 dollars",
+      "active": true
+    },
+    {
+      "advertiser": "Talasbank",
+      "file": "ads/talasbank/horse_credit_300x250.gif",
+      "size": "300x250",
+      "themes": [
+        "flash",
+        "local"
+      ],
+      "link": "go.html#talasbank.ir.ad",
+      "alt": "Talasbank: buy an Akyel foal on credit, 0% for 12 months",
       "active": true
     },
     {

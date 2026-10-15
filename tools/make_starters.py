@@ -852,6 +852,493 @@ def _(b):
         b.add(f, 3000)
 
 
+# ====================================================================== batch 2 (horses and more)
+
+def cut(name, thresh=228):
+    """A white-background stock photo as a trimmed RGBA cut-out."""
+    return trim(cutout(Image.open(S(name)).convert("RGB"), thresh=thresh))
+
+
+@ad("akyel/autumn_auction_728x90.gif", ["flash", "local", "current"], "Akyel Syndicate",
+    "Akyel Syndicate autumn auction, Talas: palomino and golden Akyel colts", "go.html#akyel-syndicate.ir.ad")
+def _(b):
+    horse = photo(S("akyel.png"), (150, 80), focus=(0.4, 0.5))
+    lines = [("AUTUMN AUCTION", "Akyel colts and fillies • Talas, 24 October"),
+             ("KÜZGÜ AUKSION", "Altyn Akyel taiyrlar • 24-oktyabr"),
+             ("ОСЕННИЙ АУКЦИОН", "Паломино и золотые Акыелы • каталог онлайн")]
+    for big, small in lines:
+        for j in range(8):
+            f = gradient(b.frame(), (0, 0, 728, 90), "#2b1a06", "#5a3a0e", vertical=False)
+            rect(f, (10, 3, 165, 86), fill="#c99a2e")              # gilt frame around the photo
+            f.paste(horse, (13, 5))
+            shine(f, (13, 5, 163, 85), j / 7, width=18, strength=0.45)   # light runs along the metallic coat
+            x0 = 186
+            gradient_text(f, (x0, 34), big, font("timesb", 28, for_text=big), "#fff3c4", "#c99a2e", anchor="lm")
+            text(f, (x0, 66), small, font("arial", 15), "#f1dfb5", anchor="lm")
+            rect(f, (600, 22, 712, 68), outline="#c99a2e", width=2)
+            text(f, (656, 38), "AKYEL", font("timesb", 16), "#fff3c4", anchor="mm", spacing=2)
+            text(f, (656, 56), "SYNDICATE", font("arial", 10), "#c99a2e", anchor="mm", spacing=2)
+            b.add(f, 90 if j < 7 else 1600)
+
+
+@ad("iradone/ulak_league_300x250.gif", ["current", "state"], "IradOne",
+    "Ulak League derby, Kara vs Ak, live on IradOne Sport", "go.html#iradone.com")
+def _(b):
+    pic = photo(S("ulak.png"), (300, 160), focus=(0.5, 0.45))
+    logo = Image.open(S("iradone_logo.png")).convert("RGBA")
+    for j in range(8):
+        f = b.frame("#ffffff")
+        f.paste(pic, (0, 0))
+        rect(f, (0, 0, 92, 24), fill="#d40000")
+        text(f, (46, 12), "● LIVE" if j % 2 == 0 else "  LIVE", font("arialb", 12), "#ffffff", anchor="mm")
+        rect(f, (0, 160, 300, 250), fill="#0a1a2e")
+        text(f, (14, 180), "ULAK LEAGUE DERBY", font("arialb", 16), "#00a3ff", anchor="lm", spacing=1)
+        text(f, (14, 204), "KARA vs AK", font("interblk", 24), "#ffffff", anchor="lm")
+        text(f, (14, 230), "Saturday 18:00 • IradOne Sport", font("inter", 12), "#c8d6e8", anchor="lm")
+        white = Image.new("RGBA", (96, 42), (255, 255, 255, 255))
+        lg = logo.resize((84, 37), Image.LANCZOS)
+        white.alpha_composite(lg, (6, 2))
+        f.paste(white, (198, 6), white)
+        b.add(f, 600)
+
+
+@ad("kyzyladyr/horse_fair_160x600.gif", ["current", "local", "state"], "Kyzyl-Adyr Horse Fair",
+    "Kyzyl-Adyr horse fair: at chabysh endurance race, ulak, kymyz, 26–27 September", "go.html#kyzyladyr.ir.ad")
+def _(b):
+    pic = photo(S("race.png"), (160, 300), focus=(0.4, 0.5))
+    for j in range(10):
+        f = b.frame("#f7efe0")
+        rect(f, (0, 0, 160, 120), fill="#8a2c0d")
+        text(f, (80, 30), "KYZYL-ADYR", font("arialb", 18), "#ffe7b0", anchor="mm")
+        text(f, (80, 58), "HORSE FAIR", font("timesbi", 22), "#ffffff", anchor="mm")
+        text(f, (80, 90), "At jarmankasy", font("arial", 13), "#ffe7b0", anchor="mm")
+        f.paste(pic, (0, 120))
+        # race distance ticker
+        km = min(40, 4 * (j + 1))
+        rect(f, (0, 420, 160, 456), fill="#1d1d1b")
+        text(f, (80, 438), f"AT CHABYSH  {km} km", font("monob", 13), "#ffd200", anchor="mm")
+        lines = ["Ulak tartysh", "Kymyz • Komuz", "26–27 сентября"]
+        for k, s in enumerate(lines):
+            text(f, (80, 482 + k * 26), s, font("arialb" if k == 2 else "arial", 15), "#3a1a08", anchor="mm")
+        rect(f, (16, 556, 144, 588), fill="#8a2c0d", radius=4)
+        text(f, (80, 572), "Free entry", font("arialb", 14), "#ffffff", anchor="mm")
+        b.add(f, 220 if j < 9 else 2000)
+
+
+@ad("alatautrails/horse_trek_728x90.gif", ["diaspora", "flash", "current"], "Alatau Trails",
+    "Alatau Trails: 7-day horse treks in the Talas Alatau from 690 dollars", "go.html#alatautrails.com")
+def _(b):
+    pic = photo(S("trek.png"), (420, 90), focus=(0.5, 0.45))
+    lines = [("Ride the Talas Alatau", "7-day horse treks • yurt camps • eagle hunters"),
+             ("from $690", "Guides, horses and meals included"),
+             ("Book summer 2027", "Groups of 4–8 riders • beginners welcome")]
+    for big, small in lines:
+        f = b.frame("#ffffff")
+        f.paste(pic, (0, 0))
+        rect(f, (400, 0, 728, 90), fill="#1e4d2b")
+        text(f, (418, 32), big, font("georgiab", 22), "#ffffff", anchor="lm")
+        text(f, (418, 62), small, font("arial", 13), "#d6ead9", anchor="lm")
+        text(f, (716, 84), "ALATAU TRAILS", font("arialb", 10), "#a8d5b0", anchor="rs", spacing=1)
+        b.add(f, 2300)
+
+
+@ad("kumusheer/saddles_468x60.gif", ["dialup", "local"], "Kumush Eer Saddlery",
+    "Kumush Eer saddlery, Talas: handmade saddles and felt saddle cloths", "go.html#kumusheer.ir.ad", colors=48)
+def _(b):
+    sad = cut("saddle.png")
+    sad = posterize(sad.convert("RGB"), 4).convert("RGBA")
+    sad.putalpha(cut("saddle.png").getchannel("A"))
+    msgs = [("КУМУШ ЭЭР", "Сёдла ручной работы"), ("Kumush Eer", "Eer • Toqum • Kamchy"), ("от $120", "Талас, базар, ряд 7")]
+    for k, (a, c) in enumerate(msgs):
+        for blink in range(2):
+            f = b.frame("#663300")
+            for x in range(0, 468, 6):                      # leather stitching
+                rect(f, (x, 3, x + 2, 4), fill="#e0b070")
+                rect(f, (x, 55, x + 2, 56), fill="#e0b070")
+            paste(f, sad, (8, 30), scale_h=50, anchor="lm")
+            text(f, (270, 22), a, font("timesb", 22, pixel=True), "#ffcc66" if blink == 0 else "#ffffff", anchor="mm")
+            text(f, (270, 44), c, font("arialb", 13, pixel=True), "#ffffff", anchor="mm")
+            b.add(f, 1300 if blink == 0 else 250)
+
+
+@ad("attelkom/vet_sms_300x250.gif", ["current", "local"], "Attelkom",
+    "Attelkom and Talasbank: pay the vet and buy feed by SMS, no bank trip", "go.html#attelkom.ir.ad")
+def _(b):
+    pic = photo(S("herder_phone.png"), (300, 150), focus=(0.5, 0.35))
+    logo = Image.open(S("attelkom_logo_white.png")).convert("RGBA")
+    steps = ["*555*7#", "Vet: 600 som", "✓ Paid"]
+    for k, s in enumerate(steps):
+        f = b.frame("#1f8f2b")
+        f.paste(pic, (0, 0))
+        # SMS bubble
+        rect(f, (170, 14, 290, 50), fill="#ffffff", radius=10)
+        text(f, (230, 32), s, font("interb", 15, for_text=s) if s != "✓ Paid" else font("verdanab", 15), "#1f8f2b", anchor="mm")
+        text(f, (16, 174), "Pay the vet by SMS", font("interx", 20), "#ffffff", anchor="lm")
+        text(f, (16, 198), "Mal doktoruna SMS menen töloñüz", font("inter", 12), "#e5f6e6", anchor="lm")
+        text(f, (16, 222), "Feed • vet • transfers", font("inter", 12), "#e5f6e6", anchor="lm")
+        paste(f, logo, (288, 238), scale_w=70, anchor="rb")
+        b.add(f, 1400)
+
+
+@ad("talasbank/horse_credit_300x250.gif", ["flash", "local"], "Talasbank",
+    "Talasbank: buy an Akyel foal on credit, 0% for 12 months", "go.html#talasbank.ir.ad")
+def _(b):
+    pic = photo(S("foal.png"), (300, 140), focus=(0.5, 0.5))
+    for j in range(10):
+        f = gradient(b.frame(), (0, 0, 300, 250), "#0a3d7a", "#1d6fc4")
+        f.paste(pic, (0, 0))
+        rect(f, (0, 0, 300, 139), outline="#ffffff")
+        text(f, (14, 162), "Жеребёнок в кредит!", font("arialb", 19), "#ffffff", anchor="lm", shadow="#062447")
+        text(f, (14, 186), "Akyel и Чонгтор • до $20 000", font("arial", 13), "#d8e8ff", anchor="lm")
+        starburst(f, (252, 148), 36, 28, 14, "#ffd200", "#d06000", rot=j * 0.05)
+        text(f, (252, 141), "0%", font("arialb", 18), "#b00000", anchor="mm")
+        text(f, (252, 158), "12 мес.", font("arialb", 10), "#b00000", anchor="mm")
+        pill(f, (14, 204, 150, 232), "#ffb02e", "#e06a00")
+        text(f, (82, 218), "Подробнее", font("arialb", 13), "#fff", anchor="mm", shadow="#8a3d00")
+        text(f, (290, 222), "TALASBANK", font("arialb", 12), "#ffffff", anchor="rm")
+        text(f, (290, 240), "Лицензия Банка Ирада №14", font("arial", 8), "#9fc0e8", anchor="rm")
+        shine(f, (14, 204, 150, 232), j / 9, width=12, strength=0.6)
+        b.add(f, 120 if j < 9 else 1800)
+
+
+@ad("atkuch/feed_468x60.gif", ["local", "current", "flash"], "At-Küch Feed",
+    "At-Küch horse feed, Nurzhan mill: oats and pellets delivered to the valleys", "go.html#jilmay.ir.ad")
+def _(b):
+    sack = cut("feed.png", thresh=225)
+    for k, (a, c) in enumerate((("AT-KÜCH", "Корм для лошадей • овёс, гранулы"),
+                                 ("50 kg — 1 150 som", "Jetkirüü öröönlörgö"),
+                                 ("Ulak, chabysh, jaylo", "Сила для каждого коня"))):
+        f = b.frame("#f4e6c4")
+        paste(f, sack, (6, 31), scale_h=54, anchor="lm")
+        text(f, (272, 22), a, font("arialb", 20, for_text=a), "#5a3a0e", anchor="mm")
+        text(f, (272, 44), c, font("arial", 13), "#3a2a10", anchor="mm")
+        rect(f, (0, 0, 467, 59), outline="#8a5a1e", width=2)
+        b.add(f, 1900)
+
+
+@ad("swifthooves/cd_468x60.gif", ["dialup", "diaspora"], "Swift Hooves",
+    "Swift Hooves: Songs for Irad, on CD and cassette; all profits to Christian charities in Irad", "go.html#swifthooves-cd.com", colors=48)
+def _(b):
+    def cd(img, cx, cy, r, ang):
+        d = ImageDraw.Draw(img)
+        d.ellipse((cx - r, cy - r, cx + r, cy + r), fill=rgb("#d8d8e0"), outline=rgb("#666"))
+        for k in range(6):                                  # rainbow glints that turn with the disc
+            a = ang + k * math.pi / 3
+            d.pieslice((cx - r + 2, cy - r + 2, cx + r - 2, cy + r - 2), math.degrees(a), math.degrees(a) + 18,
+                       fill=rgb(["#ff8080", "#ffe080", "#80ff80", "#80e0ff", "#a080ff", "#ff80e0"][k]))
+        d.ellipse((cx - r * 0.32, cy - r * 0.32, cx + r * 0.32, cy + r * 0.32), fill=rgb("#ffffff"), outline=rgb("#999"))
+        d.ellipse((cx - 3, cy - 3, cx + 3, cy + 3), fill=rgb("#000080"))
+    msgs = [("SWIFT HOOVES", "Songs for Irad"), ("CD $14.99 • Tape $9.99", "Call 1-800-555-RIDE"),
+            ("ALL PROFITS", "to Christian charities in Irad")]
+    for k, (a, c) in enumerate(msgs):
+        for j in range(6):
+            f = b.frame("#000080")
+            for y in range(0, 60, 4):                       # 1993 sunset stripes
+                rect(f, (0, y, 70, y + 1), fill=mix("#ff9900", "#cc0066", y / 60))
+            cd(f, 35, 30, 25, j * math.pi / 9)
+            text(f, (268, 22), a, font("timesbi", 22, pixel=True), "#ffcc00", anchor="mm", shadow="#000")
+            text(f, (268, 44), c, font("arialb", 13, pixel=True), "#ffffff", anchor="mm")
+            text(f, (462, 56), "1993", font("arial", 8, pixel=True), "#8080ff", anchor="rs")
+            b.add(f, 160 if j < 5 else 1300)
+
+
+@ad("rodeo/cowboy_hats_468x60.gif", ["dialup", "local"], "Talas Rodeo Supply",
+    "Talas Rodeo Supply: genuine American cowboy hats from 25 dollars", "go.html#talasrodeo.ir.ad", colors=48)
+def _(b):
+    hat = cut("cowboy_hat.png")
+    for k, (a, c) in enumerate((("COWBOY HATS!", "Genuine American style"), ("Ковбойские шляпы", "Настоящий американский стиль"),
+                                 ("from $25", "Talas Rodeo Supply • TsUM, 2nd floor"))):
+        for blink in range(2):
+            f = b.frame("#ffffcc")
+            for x in range(0, 468, 20):                     # rope border
+                rect(f, (x, 0, x + 10, 3), fill="#b5651d")
+                rect(f, (x + 10, 56, x + 20, 59), fill="#b5651d")
+            paste(f, hat, (8, 32), scale_h=46, anchor="lm")
+            paste(f, hat.transpose(Image.FLIP_LEFT_RIGHT), (460, 32), scale_h=46, anchor="rm")
+            text(f, (234, 22), a, font("timesb", 22, pixel=True, for_text=a), "#990000" if blink == 0 else "#003399", anchor="mm")
+            text(f, (234, 44), c, font("arialb", 12, pixel=True), "#000", anchor="mm")
+            b.add(f, 1200 if blink == 0 else 250)
+
+
+@ad("sketchy/atbet_240x400.gif", ["sketchy", "offnet", "flash"], "AT-BET",
+    "AT-BET: bet on the Kyzyl-Adyr derby, double your first deposit", "go.html#at-bet.win", colors=64)
+def _(b):
+    pic = photo(S("race.png"), (240, 180), focus=(0.5, 0.5))
+    horses = [("№3 Altyn Shamal", "2.40"), ("№7 Kök Börü", "3.10"), ("№1 Ak Boz", "5.75")]
+    for j in range(12):
+        f = b.frame("#101010")
+        f.paste(pic, (0, 50))
+        rect(f, (0, 0, 240, 50), fill="#ffd200")
+        text(f, (120, 25), "AT-BET", font("impacti", 34), "#101010", anchor="mm")
+        for k, (h, o) in enumerate(horses):
+            y = 240 + k * 34
+            on = (j // 2) % 3 == k
+            rect(f, (10, y, 230, y + 28), fill="#ffd200" if on else "#262626", radius=3)
+            text(f, (18, y + 14), h, font("arialb", 12), "#101010" if on else "#ffffff", anchor="lm")
+            text(f, (222, y + 14), o, font("arialb", 14), "#101010" if on else "#ffd200", anchor="rm")
+        text(f, (120, 352), "x2 к первому депозиту!", font("arialb", 14), "#ffffff" if j % 2 else "#ff4040", anchor="mm")
+        pill(f, (30, 366, 210, 392), "#ff3b3b", "#a00000")
+        text(f, (120, 379), "СДЕЛАТЬ СТАВКУ", font("arialb", 13), "#fff", anchor="mm")
+        b.add(f, 300)
+
+
+@ad("state/livestock_count_728x90.gif", ["state", "current"], "ISEZ Statistics Office",
+    "Livestock count 2026: register your horses, cattle and sheep by 1 December", "go.html#stat.id.gov")
+def _(b):
+    horse = cut("chongtor.png")
+    counts = [0, 412, 1288, 2904, 3961]
+    for k, n in enumerate(counts):
+        f = b.frame("#ffffff")
+        rect(f, (0, 0, 727, 89), outline="#1f2d4a", width=2)
+        paste(f, horse, (14, 84), scale_h=76, anchor="lb")
+        text(f, (150, 30), "LIVESTOCK COUNT 2026", font("arialb", 22), "#1f2d4a", anchor="lm")
+        text(f, (150, 60), "Mal sanagy • Перепись скота — до 1 декабря", font("arial", 15), "#333", anchor="lm")
+        rect(f, (556, 18, 712, 72), fill="#1f2d4a")
+        text(f, (634, 36), "horses counted", font("arial", 11), "#c8d0e0", anchor="mm")
+        text(f, (634, 56), f"{n * 31:,}".replace(",", " "), font("monob", 18), "#ffffff", anchor="mm")
+        b.add(f, 400 if k < 4 else 2600)
+
+
+@ad("irad100/webring_88x31.gif", ["dialup"], "Irad Webring",
+    "Irad Webring: next site", "go.html#webring.ir.ad", colors=16)
+def _(b):
+    horse = cut("chongtor.png")
+    small = horse.resize((max(1, round(horse.width * 22 / horse.height)), 22), Image.LANCZOS)
+    for j in range(6):
+        f = b.frame("#000000")
+        rect(f, (0, 0, 87, 30), outline="#c0c0c0")
+        x = 2 + (j * 7) % 30
+        paste(f, small, (x, 26), anchor="lb")
+        text(f, (84, 5), "IRAD", font("verdanab", 9, pixel=True), "#ffcc00", anchor="ra")
+        text(f, (84, 17), "RING >>", font("verdana", 9, pixel=True), "#ffffff" if j % 2 else "#00ff00", anchor="ra")
+        b.add(f, 180)
+
+
+@ad("iradone/news_at_nine_728x90.gif", ["current", "state"], "IradOne",
+    "IradOne News at 9: every night on IradOne", "go.html#iradone.com")
+def _(b):
+    logo = Image.open(S("iradone_logo.png")).convert("RGBA")
+    for k, (a, c) in enumerate((("IradOne News at 9", "Every night. Talas, Nurzhan, Iyık Janyl and the world."),
+                                 ("Jañylyktar saat 9da", "Ar tün sayın IradOne'do"),
+                                 ("Новости в 9", "Каждый вечер на IradOne"))):
+        for j in range(1):
+            f = b.frame("#ffffff")
+            paste(f, logo, (110, 45), scale_h=64, anchor="mm")
+            rect(f, (220, 0, 728, 90), fill="#0a1a2e")
+            text(f, (244, 34), a, font("interx", 24, for_text=a), "#ffffff", anchor="lm")
+            text(f, (244, 64), c, font("inter", 14, for_text=c), "#9fb8d6", anchor="lm")
+            rect(f, (640, 30, 712, 60), fill="#00a3ff", radius=4)
+            text(f, (676, 45), "21:00", font("interb", 15), "#ffffff", anchor="mm")
+            b.add(f, 2200)
+
+
+@ad("talasbank/app_300x250.gif", ["current"], "Talasbank",
+    "Talasbank app: dollar and som accounts in your pocket", "go.html#talasbank.ir.ad")
+def _(b):
+    man = photo(S("man_phone.png"), (150, 250), focus=(0.5, 0.3))
+    for k, (bal, cur) in enumerate((("12 480", "сом"), ("1 486", "USD"))):
+        f = b.frame("#eef4fb")
+        f.paste(man, (150, 0))
+        text(f, (16, 34), "Talasbank", font("interx", 20), "#0a3d7a", anchor="lm")
+        rect(f, (16, 64, 138, 180), fill="#ffffff", outline="#cfd9e6", radius=12)
+        text(f, (26, 82), "Баланс", font("inter", 11), "#6a7a90", anchor="lm")
+        text(f, (26, 108), bal, font("interx", 22), "#0a3d7a", anchor="lm")
+        text(f, (26, 130), cur, font("interb", 13), "#1d6fc4", anchor="lm")
+        rect(f, (26, 148, 128, 168), fill="#1d6fc4", radius=10)
+        text(f, (77, 158), "Перевести", font("interb", 11), "#ffffff", anchor="mm")
+        text(f, (16, 206), "Сом и доллары", font("interb", 14), "#0a3d7a", anchor="lm")
+        text(f, (16, 226), "в одном приложении", font("inter", 13), "#334", anchor="lm")
+        b.add(f, 2200)
+
+
+@ad("bazarmarket/weekly_728x90.gif", ["current", "local"], "Bazar Market",
+    "Bazar Market supermarkets: this week's prices in Talas and Nurzhan", "go.html#bazarmarket.ir.ad")
+def _(b):
+    basket = cut("groceries.png")
+    deals = [("Нан", "18 сом"), ("Сүт 1 л", "52 сом"), ("Алма 1 кг", "60 сом"), ("Кымыз", "95 сом")]
+    for k, (item, price) in enumerate(deals):
+        f = b.frame("#e30613")
+        paste(f, basket, (10, 88), scale_h=84, anchor="lb")
+        text(f, (150, 30), "BAZAR MARKET", font("interblk", 24), "#ffffff", anchor="lm")
+        text(f, (150, 62), "Цены недели • Talas • Nurzhan", font("inter", 14), "#ffe0e0", anchor="lm")
+        rect(f, (470, 12, 712, 78), fill="#ffe600", radius=6)
+        text(f, (488, 45), item, font("interb", 20, for_text=item), "#1a1a1a", anchor="lm")
+        text(f, (700, 45), price, font("interblk", 26), "#e30613", anchor="rm")
+        b.add(f, 1500)
+
+
+@ad("cyberzone/lan_468x60.gif", ["flash", "local"], "CyberZone Nurzhan",
+    "CyberZone Nurzhan computer club: 40 PCs, LAN tournaments, open all night", "go.html#cyberzone.ir.ad")
+def _(b):
+    pic = photo(S("gaming_club.png"), (190, 60), focus=(0.5, 0.5))
+    for j in range(8):
+        f = b.frame("#050510")
+        f.paste(pic, (0, 0))
+        col = ["#00ffcc", "#ff00cc", "#ffff00", "#00ccff"][j % 4]
+        text(f, (330, 20), "CYBERZONE", font("impacti", 26), col, anchor="mm", outline="#000", ow=2)
+        text(f, (330, 46), "40 ПК • LAN-турниры • ночь 150 сом", font("tahomab", 12), "#ffffff", anchor="mm")
+        rect(f, (190, 0, 467, 59), outline=col)
+        b.add(f, 250)
+
+
+@ad("avtoshkola/driving_468x60.gif", ["dialup", "local", "flash"], "Avtoshkola Jol",
+    "Avtoshkola Jol driving school, Talas: licence in 2 months", "go.html#avtoshkola-jol.ir.ad", colors=48)
+def _(b):
+    car = cut("driving_car.png")
+    for j in range(10):
+        f = b.frame("#ffffff")
+        for x in range(-40 + (j * 12) % 40, 468, 40):   # road markings moving
+            rect(f, (x, 52, x + 20, 55), fill="#ffcc00")
+        rect(f, (0, 49, 467, 59), fill="#444444")
+        for x in range(-40 + (j * 12) % 40, 468, 40):
+            rect(f, (x, 53, x + 20, 55), fill="#ffffff")
+        paste(f, car, (10, 50), scale_h=46, anchor="lb")
+        text(f, (290, 18), "АВТОШКОЛА «ЖОЛ»", font("arialb", 18, pixel=True), "#cc0000", anchor="mm")
+        text(f, (290, 38), "Права за 2 месяца • тел. 2-51-51", font("arial", 13, pixel=True), "#000", anchor="mm")
+        b.add(f, 150)
+
+
+@ad("aec/english_120x600.gif", ["dialup", "flash"], "American English Center",
+    "American English Center, Talas: English courses, TOEFL, US visa interview practice", "go.html#aec-talas.ir.ad", colors=32)
+def _(b):
+    words = ["Hello!", "Salam!", "Привет!", "Welcome!"]
+    for j, w in enumerate(words):
+        f = b.frame("#ffffff")
+        rect(f, (0, 0, 119, 599), outline="#00247d", width=2)
+        rect(f, (2, 2, 117, 90), fill="#00247d")
+        text(f, (60, 26), "AMERICAN", font("arialb", 15, pixel=True), "#ffffff", anchor="mm")
+        text(f, (60, 46), "ENGLISH", font("arialb", 15, pixel=True), "#ffffff", anchor="mm")
+        text(f, (60, 66), "CENTER", font("arialb", 15, pixel=True), "#ff3333", anchor="mm")
+        rect(f, (10, 110, 110, 160), fill="#ffff99", outline="#999")
+        text(f, (60, 135), w, font("timesbi", 20, pixel=True), "#cc0000", anchor="mm")
+        lines = ["Английский", "для всех", "", "Kids • Adults", "TOEFL", "US visa", "interview", "", "Native", "speakers!", "", "Group: $40/mo"]
+        for k, s in enumerate(lines):
+            text(f, (60, 186 + k * 22), s, font("arialb" if s.startswith(("Native", "Group")) else "arial", 13, pixel=True),
+                 "#00247d" if s.startswith("Group") else "#000", anchor="mm")
+        bevel(f, (14, 536, 106, 566), face="#ffcc00" if j % 2 else "#c0c0c0")
+        text(f, (60, 551), "ENROLL", font("arialb", 13, pixel=True), "#000", anchor="mm")
+        text(f, (60, 584), "Talas, Abay 12", font("arial", 10, pixel=True), "#666", anchor="mm")
+        b.add(f, 900)
+
+
+@ad("sketchy/diet_300x250.gif", ["sketchy", "flash"], "Slim-Steppe",
+    "Slim-Steppe: lose 12 kilos in two weeks, no diet", "go.html#slim-steppe.info")
+def _(b):
+    apple = cut("diet.png")
+    for j in range(12):
+        f = b.frame("#ffffff")
+        rect(f, (0, 0, 299, 249), outline="#2ca02c", width=2)
+        text(f, (150, 28), "-12 КГ", font("impact", 40, for_text="КГ"), "#2ca02c" if j % 2 else "#d40000", anchor="mm")
+        text(f, (150, 56), "за 2 недели без диет!", font("arialb", 16), "#222", anchor="mm")
+        paste(f, apple, (80, 150), scale_h=110, anchor="mm")
+        kg = 92 - min(12, j)
+        rect(f, (170, 96, 286, 150), fill="#222222", radius=6)
+        text(f, (228, 112), "Весы:", font("arial", 11), "#aaa", anchor="mm")
+        text(f, (228, 134), f"{kg} kg", font("monob", 20), "#7CFC00", anchor="mm")
+        text(f, (228, 172), "Один", font("arialb", 14), "#222", anchor="mm")
+        text(f, (228, 190), "странный трюк", font("arialb", 14), "#d40000", anchor="mm")
+        rect(f, (30, 208, 270, 236), fill="#2ca02c", radius=4)
+        text(f, (150, 222), "УЗНАТЬ КАК »", font("arialb", 15), "#ffffff", anchor="mm")
+        b.add(f, 300)
+
+
+@ad("sketchy/crypto_double_728x90.gif", ["sketchy", "offnet", "current"], "(unknown)",
+    "Crypto doubler scam: send coins, get double back", "go.html#crypto-double.io")
+def _(b):
+    for j in range(14):
+        f = b.frame("#0b0f19")
+        for k in range(18):                                 # falling digits
+            x = (k * 41) % 728
+            y = (j * 9 + k * 23) % 90
+            text(f, (x, y), "01"[k % 2], font("mono", 12), "#1f6f3f", anchor="la")
+        text(f, (24, 32), "SEND 1 — GET 2", font("interblk", 28), "#ffffff", anchor="lm")
+        text(f, (24, 64), "Удвоим вашу крипту за 15 минут. Гарантия!", font("inter", 14), "#9fb3c8", anchor="lm")
+        left = 600 - j * 37
+        rect(f, (470, 20, 600, 70), fill="#141c2e", radius=6)
+        text(f, (535, 34), "акция закончится", font("inter", 10), "#9fb3c8", anchor="mm")
+        text(f, (535, 54), f"{left // 60:02d}:{left % 60:02d}", font("monob", 18), "#ff5050", anchor="mm")
+        rect(f, (616, 26, 712, 64), fill="#f7b500" if j % 2 else "#ffd24d", radius=6)
+        text(f, (664, 45), "УДВОИТЬ", font("interb", 14), "#0b0f19", anchor="mm")
+        b.add(f, 250)
+
+
+@ad("sketchy/lottery_468x60.gif", ["sketchy", "dialup"], "Altyn Bilet",
+    "Altyn Bilet lottery: scratch and win a car", "go.html#altyn-bilet.biz", colors=32)
+def _(b):
+    for j in range(10):
+        f = b.frame("#ffd700")
+        for x in range(0, 468, 16):
+            rect(f, (x, 0, x + 8, 4), fill="#cc0000")
+            rect(f, (x + 8, 56, x + 16, 59), fill="#cc0000")
+        text(f, (90, 30), "ALTYN", font("impacti", 28), "#cc0000", anchor="mm", outline="#7a0000", ow=1)
+        text(f, (172, 30), "BILET", font("impacti", 28), "#000080", anchor="mm")
+        for k in range(3):                                  # three scratch panels, revealed one by one
+            x = 236 + k * 58
+            rect(f, (x, 10, x + 52, 50), fill="#c0c0c0", outline="#666")
+            if j > 2 + k * 2:
+                rect(f, (x + 2, 12, x + 50, 48), fill="#ffffff")
+                text(f, (x + 26, 30), "$$$", font("arialb", 16, pixel=True), "#008000", anchor="mm")
+        text(f, (440, 22), "АВТО", font("arialb", 13, pixel=True), "#cc0000" if j % 2 else "#000", anchor="mm")
+        text(f, (440, 40), "ЖДЁТ!", font("arialb", 13, pixel=True), "#cc0000" if j % 2 else "#000", anchor="mm")
+        b.add(f, 350)
+
+
+@ad("offnet/freeirad_728x90.gif", ["offnet", "current"], "FreeIrad.org",
+    "FreeIrad.org: the news Attelkom blocks", "go.html#freeirad.org")
+def _(b):
+    logo = Image.open(S("freeirad_logo.png")).convert("RGBA")
+    slogans = ["No justice without truth.", "No freedom without justice.", "Read what they block."]
+    for j, s in enumerate(slogans):
+        for k in range(2):
+            f = b.frame("#111111")
+            paste(f, logo, (20, 30), scale_h=34, anchor="lm")
+            rect(f, (20, 54, 20 + int(240 * (0.5 + 0.5 * k)), 57), fill="#d40000")
+            text(f, (330, 45), s, font("timesb", 26), "#ffffff", anchor="lm")
+            text(f, (712, 80), "use a VPN if the site is blocked", font("arial", 11), "#888", anchor="rs")
+            b.add(f, 1100 if k else 200)
+
+
+@ad("offnet/satphone_300x250.gif", ["offnet", "flash"], "SkyLink Phones",
+    "SkyLink satellite phones: calls from any jailoo, no Attelkom needed", "go.html#skylinkphones.com")
+def _(b):
+    ph = trim(cutout(Image.open(S("sat_phone2.png")).convert("RGB").crop((300, 30, 460, 530)), thresh=150))
+    for j in range(10):
+        f = gradient(b.frame(), (0, 0, 300, 250), "#0b1d3a", "#1d4a8a")
+        d = ImageDraw.Draw(f)
+        for k in range(30):                                 # stars
+            x, y = (k * 97) % 300, (k * 53) % 120
+            if (j + k) % 3:
+                d.point((x, y), fill=rgb("#ffffff"))
+        sx = 40 + j * 22                                    # satellite crossing the sky
+        rect(f, (sx - 8, 22, sx + 8, 30), fill="#c0c0c0")
+        rect(f, (sx - 26, 24, sx - 10, 28), fill="#3a6fd8")
+        rect(f, (sx + 10, 24, sx + 26, 28), fill="#3a6fd8")
+        paste(f, ph, (72, 150), scale_h=180, anchor="mm")
+        text(f, (210, 80), "Связь", font("arialb", 22), "#ffffff", anchor="mm")
+        text(f, (210, 106), "на любом", font("arialb", 18), "#ffffff", anchor="mm")
+        text(f, (210, 130), "жайлоо", font("arialb", 22), "#ffd200", anchor="mm")
+        text(f, (210, 168), "$399", font("impact", 34), "#ffffff", anchor="mm")
+        rect(f, (150, 200, 280, 230), fill="#ffd200", radius=4)
+        text(f, (215, 215), "SkyLink", font("arialbi", 15), "#0b1d3a", anchor="mm")
+        b.add(f, 220)
+
+
+@ad("kadyrov_law/green_card_300x250.gif", ["diaspora", "current"], "Kadyrbekov & Partners",
+    "Kadyrbekov & Partners, Chicago: immigration lawyers who speak Iradi and Russian", "go.html#kadyrbekovlaw.com")
+def _(b):
+    for k, (a, c) in enumerate((("Green card?", "Work visa? Citizenship?"), ("We speak Iradi", "and Russian"),
+                                 ("Free first", "consultation"))):
+        f = b.frame("#f6f3ee")
+        rect(f, (0, 0, 300, 64), fill="#1b2a41")
+        text(f, (150, 24), "KADYRBEKOV", font("georgiab", 18), "#e9d8a6", anchor="mm", spacing=2)
+        text(f, (150, 46), "& PARTNERS • CHICAGO", font("arial", 11), "#c9c9c9", anchor="mm", spacing=1)
+        text(f, (150, 118), a, font("georgiab", 26), "#1b2a41", anchor="mm")
+        text(f, (150, 152), c, font("georgia", 17), "#333", anchor="mm")
+        rect(f, (40, 196, 260, 230), fill="#1b2a41", radius=3)
+        text(f, (150, 213), "(312) 555-0188", font("arialb", 16), "#e9d8a6", anchor="mm")
+        b.add(f, 2200)
+
+
 # ====================================================================== build
 
 def main(only=None):
