@@ -1,19 +1,22 @@
 /* Attelkom Jarnama ad server.
-   <script src="https://mjsbroadbent.github.io/jarnama/serve.js" data-site="herald" defer></script>
+   <script src="https://mjsbroadbent.github.io/jarnama/serve.js" data-theme="current state" defer></script>
    <div class="jarnama" data-size="728x90"></div>
-   Each slot gets a random active ad of its size for this site; empty slots stay hidden. */
+   <div class="jarnama" data-size="240x400" data-theme="sketchy"></div>   (a slot can override the theme)
+   Each slot gets a random active ad of its size whose themes overlap the slot's; empty slots stay hidden.
+   Themes are listed in THEMES.md. */
 (function () {
   var me = document.currentScript;
   var base = me.src.replace(/serve\.js.*$/, "");
-  var site = me.getAttribute("data-site") || "all";
+  var pageThemes = (me.getAttribute("data-theme") || "current").split(/\s+/);
   function today() { return new Date().toISOString().slice(0, 10); }
   function fill(ads) {
     var slots = document.querySelectorAll(".jarnama[data-size]");
     Array.prototype.forEach.call(slots, function (slot) {
       var size = slot.getAttribute("data-size"), t = today();
+      var want = slot.getAttribute("data-theme") ? slot.getAttribute("data-theme").split(/\s+/) : pageThemes;
       var pool = ads.filter(function (a) {
         return a.active !== false && a.size === size &&
-          (!a.sites || a.sites.indexOf("all") >= 0 || a.sites.indexOf(site) >= 0) &&
+          (a.themes || []).some(function (th) { return want.indexOf(th) >= 0; }) &&
           (!a.start || a.start <= t) && (!a.end || a.end >= t);
       });
       if (!pool.length) { slot.style.display = "none"; return; }
