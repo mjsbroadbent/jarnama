@@ -1554,20 +1554,8 @@ def _(b):
 
 
 def tsu_seal(size):
-    k = 4
-    s = size * k
-    im = Image.new("RGBA", (s, s), (0, 0, 0, 0))
-    d = ImageDraw.Draw(im)
-    d.ellipse((0, 0, s - 1, s - 1), fill="#ffffff")
-    d.ellipse((s * .06, s * .06, s * .94, s * .94), fill="#13306b")
-    d.ellipse((s * .12, s * .12, s * .88, s * .88), outline="#d4a72c", width=k * 2)
-    book = [(s * .28, s * .38), (s * .5, s * .44), (s * .72, s * .38), (s * .72, s * .62), (s * .5, s * .68), (s * .28, s * .62)]
-    d.polygon(book, fill="#ffffff")
-    d.line((s * .5, s * .44, s * .5, s * .68), fill="#13306b", width=k * 2)
-    f_ = ImageFont.truetype(FONTS["timesb"][0], int(s * .14))
-    d.text((s * .5, s * .27), "TSU", font=f_, fill="#d4a72c", anchor="mm")
-    d.text((s * .5, s * .79), "1958", font=ImageFont.truetype(FONTS["timesb"][0], int(s * .1)), fill="#d4a72c", anchor="mm")
-    return im.resize((size, size), Image.LANCZOS)
+    """The Talas State University seal (stock/tsu_seal.png, from the TSU site's tools/make_seal.py)."""
+    return Image.open(S("tsu_seal.png")).convert("RGBA").resize((size, size), Image.LANCZOS)
 
 
 @ad("tsu/evening_468x60.gif", ["current", "local", "state"], "Talas State University",
