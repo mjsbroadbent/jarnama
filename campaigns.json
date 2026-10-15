@@ -1,0 +1,4 @@
+{
+  "_readme": "One entry per ad. size is WIDTHxHEIGHT. sites lists where it may run (iradone, herald, webring, all). Dates are ISO; leave end empty for no end. active false pauses it.",
+  "ads": []
+}
