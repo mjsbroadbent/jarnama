@@ -1,5 +1,7 @@
 # Attelkom Jarnama
 
+**Publisher guide and full ad inventory:** https://mjsbroadbent.github.io/jarnama/
+
 The ad network of the Irad worldbuilding project. In the world of Irad, **Attelkom Jarnama** (*jarnama*, "advertisement") is the advertising department of Attelkom, the national telecom. It sells and serves the banner ads seen on Iradi websites: IradOne Online, the Talas Herald, the Attelkom-hosted personal pages of the webring, and so on.
 
 Out of world, this repo holds every fake banner ad for those sites in one place, plus a small script that each site includes to show them.
