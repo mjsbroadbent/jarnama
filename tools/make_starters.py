@@ -702,7 +702,7 @@ def _(b):
         b.add(f, 2400)
 
 
-@ad("stjanyl_chicago/festival_300x250.gif", ["diaspora", "local", "current"], "St. Janyl Parish, Chicago",
+@ad("stjanyl_chicago/festival_300x250.gif", ["diaspora", "current"], "St. Janyl Parish, Chicago",
     "St. Janyl Iradi Catholic Parish, Chicago: Irad Day festival", "go.html#stjanylchicago.org")
 def _(b):
     for k in range(2):

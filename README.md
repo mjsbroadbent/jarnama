@@ -28,3 +28,10 @@ The standard IAB sizes of the late 1990s and 2000s: 468×60 full banner, 728×90
 - Ad links point to `go.html#domain`, an in-universe "advertiser's site cannot be reached" page, so no ad ever sends a reader to a real domain.
 - Fonts: the Windows fonts real banners used are not available here. Liberation Sans/Serif stand in for Arial/Times, DejaVu Sans (Condensed) for Verdana/Tahoma, TeX Gyre Heros Cn Bold for Impact (Latin only; Cyrillic falls back to DejaVu).
 - Keep files small the way real networks did: about 150 KB at most, fewer frames for photo ads.
+
+## Sites using Jarnama
+
+| Site | How | Themes |
+|---|---|---|
+| IradOne Online | its own `site.js` reads `campaigns.json` for its `.ad-slot` boxes (leaderboard = 728×90, box = 300×250), mixed with IradOne's house ads | `current state` |
+| Talas Herald | `serve.js` in the page template; slots on the front page, section pages and under every story | `current local state` |
