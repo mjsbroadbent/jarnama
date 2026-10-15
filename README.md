@@ -18,3 +18,13 @@ Out of world, this repo holds every fake banner ad for those sites in one place,
 ## Sizes
 
 The standard IAB sizes of the late 1990s and 2000s: 468×60 full banner, 728×90 leaderboard, 300×250 medium rectangle, 120×600 and 160×600 skyscrapers, 88×31 buttons for the webring.
+
+## Making ads
+
+- `tools/banner.py` is a small PIL toolkit for era-styled animated GIFs: frames and timing, a shared palette, unantialiased "pixel" text, outlines and drop shadows, WordArt-style gradient text, starbursts, glossy pill buttons, Windows 98 / XP dialogs, buttons and progress bars, cursors, light sweeps, and cut-outs of white-background photos.
+- `tools/make_starters.py` builds every ad in `ads/` (one function per ad) and writes its entry into `campaigns.json`. Run `python3 tools/make_starters.py` for all, or pass part of a file name to rebuild one.
+- `stock/` holds the AI product photos the ads use (see `stock/README.md`).
+- `preview.html` shows the whole inventory with a theme filter.
+- Ad links point to `go.html#domain`, an in-universe "advertiser's site cannot be reached" page, so no ad ever sends a reader to a real domain.
+- Fonts: the Windows fonts real banners used are not available here. Liberation Sans/Serif stand in for Arial/Times, DejaVu Sans (Condensed) for Verdana/Tahoma, TeX Gyre Heros Cn Bold for Impact (Latin only; Cyrillic falls back to DejaVu).
+- Keep files small the way real networks did: about 150 KB at most, fewer frames for photo ads.

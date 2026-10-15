@@ -25,7 +25,8 @@
       var inner = /\.html?$/.test(ad.file)
         ? '<iframe src="' + src + '" width="' + w + '" height="' + h + '" scrolling="no" frameborder="0" title="' + (ad.alt || "Advertisement") + '"></iframe>'
         : '<img src="' + src + '" width="' + w + '" height="' + h + '" alt="' + (ad.alt || "") + '">';
-      slot.innerHTML = '<a href="' + (ad.link || "#") + '" rel="sponsored noopener" target="_blank">' + inner + "</a>";
+      var href = !ad.link ? "#" : /^https?:/.test(ad.link) ? ad.link : base + ad.link;
+      slot.innerHTML = '<a href="' + href + '" rel="sponsored noopener" target="_blank">' + inner + "</a>";
       slot.style.display = "";
     });
   }
