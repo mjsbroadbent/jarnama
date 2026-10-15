@@ -2,12 +2,27 @@
    <script src="https://mjsbroadbent.github.io/jarnama/serve.js" data-theme="current state" defer></script>
    <div class="jarnama" data-size="728x90"></div>
    <div class="jarnama" data-size="240x400" data-theme="sketchy"></div>   (a slot can override the theme)
-   Each slot gets a random active ad of its size whose themes overlap the slot's; empty slots stay hidden.
+   Each slot gets a random active ad of its size that fits the slot's themes (see fits() below); empty slots stay hidden.
    Themes are listed in THEMES.md. */
 (function () {
   var me = document.currentScript;
   var base = me.src.replace(/serve\.js.*$/, "");
   var pageThemes = (me.getAttribute("data-theme") || "current").split(/\s+/);
+  // Era themes set the look, the others the kind of advertiser.
+  // An ad fits when its era (if it has one) is among the requested eras (if any were asked for),
+  // and its advertiser type (if it has one) is among the requested types.
+  var ERAS = ["dialup", "flash", "current"];
+  function fits(adThemes, want) {
+    adThemes = adThemes || [];
+    var wantEra = want.filter(function (t) { return ERAS.indexOf(t) >= 0; });
+    var wantType = want.filter(function (t) { return ERAS.indexOf(t) < 0; });
+    var adEra = adThemes.filter(function (t) { return ERAS.indexOf(t) >= 0; });
+    var adType = adThemes.filter(function (t) { return ERAS.indexOf(t) < 0; });
+    var eraOk = !wantEra.length || !adEra.length || adEra.some(function (t) { return wantEra.indexOf(t) >= 0; });
+    var typeOk = !adType.length || adType.some(function (t) { return wantType.indexOf(t) >= 0; });
+    var anyOk = adThemes.some(function (t) { return want.indexOf(t) >= 0; });
+    return eraOk && typeOk && anyOk;
+  }
   function today() { return new Date().toISOString().slice(0, 10); }
   function fill(ads) {
     var slots = document.querySelectorAll(".jarnama[data-size]");
@@ -16,7 +31,7 @@
       var want = slot.getAttribute("data-theme") ? slot.getAttribute("data-theme").split(/\s+/) : pageThemes;
       var pool = ads.filter(function (a) {
         return a.active !== false && a.size === size &&
-          (a.themes || []).some(function (th) { return want.indexOf(th) >= 0; }) &&
+          fits(a.themes, want) &&
           (!a.start || a.start <= t) && (!a.end || a.end >= t);
       });
       if (!pool.length) { slot.style.display = "none"; return; }

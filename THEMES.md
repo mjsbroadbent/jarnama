@@ -17,4 +17,5 @@ A site (or a single slot) asks for a theme, and `serve.js` only shows ads tagged
 
 - Every ad in `campaigns.json` carries `themes`, a list of one or more codes.
 - An era theme (`dialup`, `flash`, `current`) sets the look; the others (`state`, `local`, `diaspora`, `offnet`, `sketchy`) set the advertiser type, and their ads are made in whichever era style suits the site they are aimed at. Tag those ads with both, e.g. `["local", "flash"]`.
+- How a slot matches: an ad fits when its era (if it has one) is among the slot's eras (if the slot names any), and its advertiser type (if it has one) is among the slot's types. So `dialup local` gets 1990s ads from general advertisers and local businesses but no scams; `sketchy` alone gets scams from any era. Ads with only an era tag (Attelkom, Talasbank, Iradiya…) are general advertisers and show on any slot of that era.
 - Real brands never appear. Iradi brands from the lore (Attelkom, Talasbank, Jılmay, Iradiya, IradOne, Tulpar) and invented ones only.

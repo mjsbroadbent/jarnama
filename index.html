@@ -65,6 +65,23 @@
   .meta b { color: var(--ink); }
   .tag { display: inline-block; background: var(--tag); border-radius: 3px; padding: 0 6px; margin: 3px 4px 0 0; font: 11.5px var(--mono); color: var(--ink); }
   footer { color: var(--muted); font-size: 13px; margin-top: 40px; }
+  .builder { grid-template-columns: minmax(0, 1fr); background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 16px; display: grid; gap: 14px; }
+  .builder fieldset { border: 0; padding: 0; margin: 0; min-width: 0; }
+  .builder legend { font-weight: 600; font-size: 14px; margin-bottom: 6px; padding: 0; }
+  .hint { font-weight: 400; color: var(--muted); font-size: 13px; margin-left: 6px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 6px; }
+  .chips label { display: inline-flex; align-items: center; border: 1px solid var(--line); border-radius: 999px; padding: 3px 11px; cursor: pointer; font: 14px var(--mono); background: var(--bg); }
+  .chips input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+  .chips label:has(input:checked) { background: var(--green); border-color: var(--green); color: var(--green-ink); }
+  .chips label:has(input:focus-visible) { outline: 2px solid var(--green); outline-offset: 2px; }
+  .opt { display: flex; gap: 8px; align-items: flex-start; font-size: 14.5px; margin: 4px 0; cursor: pointer; }
+  .opt input { margin-top: 4px; accent-color: var(--green); }
+  .matches { margin: 0; font-size: 14.5px; color: var(--muted); }
+  .matches b { color: var(--ink); }
+  .matches.none b { color: #b3261e; }
+  .builder .code { margin: 0; }
+  .b-preview { overflow-x: auto; }
+  .b-preview img { display: block; max-width: 100%; height: auto; }
 </style>
 </head>
 <body>
@@ -99,6 +116,28 @@
   font: 11px sans-serif; text-transform: uppercase; color: #888; }
 .jarnama img { max-width: 100%; height: auto; }</code></pre></div>
 
+    <h2 id="builder">Make your code</h2>
+    <p>Pick a size and the themes you want, and copy the result into your page.</p>
+    <div class="builder">
+      <fieldset>
+        <legend>Size</legend>
+        <div class="chips" id="b-size"></div>
+      </fieldset>
+      <fieldset>
+        <legend>Themes <span class="hint">pick one era, then any advertiser types</span></legend>
+        <div class="chips" id="b-era"></div>
+        <div class="chips" id="b-type"></div>
+      </fieldset>
+      <fieldset>
+        <legend>Options</legend>
+        <label class="opt"><input type="checkbox" id="b-own"> This box only (themes go on the box, not the script)</label>
+        <label class="opt"><input type="checkbox" id="b-css" checked> Include the "Advertisement" label styling</label>
+      </fieldset>
+      <p class="matches" id="b-matches" aria-live="polite"></p>
+      <div class="b-preview" id="b-preview" aria-label="Example ad for this size and theme"></div>
+      <div class="code"><button class="copy" type="button">Copy</button><pre><code id="b-out"></code></pre></div>
+    </div>
+
     <h2>Sizes</h2>
     <p>Use one of these in <code>data-size</code>. The common ones in Irad were 468×60 in the dial-up years, 728×90 and 240×400 in the Flash years, and 728×90 and 300×250 now.</p>
     <div class="sizes" aria-hidden="true">
@@ -131,7 +170,7 @@
     </tbody>
   </table></div>
   <div class="col">
-    <div class="note">Era themes (<code>dialup</code>, <code>flash</code>, <code>current</code>) set the look; the others set the kind of advertiser. Most ads carry both, so <code>dialup local</code> gives you 1990s small-business ads and <code>current state</code> gives you today's government notices. IradOne uses <code>current state</code>; the Talas Herald uses <code>current local state</code>.</div>
+    <div class="note">Era themes (<code>dialup</code>, <code>flash</code>, <code>current</code>) set the look; the others set the kind of advertiser. A box shows ads from its era, and only the advertiser types you ask for: <code>dialup local</code> gives 1990s ads from big companies and small businesses but no scams, and adding <code>sketchy</code> lets the scams in too. A type on its own, like <code>sketchy</code>, takes ads from any era. IradOne uses <code>current state</code>; the Talas Herald uses <code>current local state</code>.</div>
   </div>
 
   <h2 id="ads">All ads</h2>
@@ -191,9 +230,79 @@
       f.appendChild(b);
     });
   }
+  // Era themes set the look, the others the kind of advertiser.
+  // An ad fits when its era (if it has one) is among the requested eras (if any were asked for),
+  // and its advertiser type (if it has one) is among the requested types.
+  function fits(adThemes, want) {
+    adThemes = adThemes || [];
+    var wantEra = want.filter(function (t) { return ERAS.indexOf(t) >= 0; });
+    var wantType = want.filter(function (t) { return ERAS.indexOf(t) < 0; });
+    var adEra = adThemes.filter(function (t) { return ERAS.indexOf(t) >= 0; });
+    var adType = adThemes.filter(function (t) { return ERAS.indexOf(t) < 0; });
+    var eraOk = !wantEra.length || !adEra.length || adEra.some(function (t) { return wantEra.indexOf(t) >= 0; });
+    var typeOk = !adType.length || adType.some(function (t) { return wantType.indexOf(t) >= 0; });
+    var anyOk = adThemes.some(function (t) { return want.indexOf(t) >= 0; });
+    return eraOk && typeOk && anyOk;
+  }
+  // ---------- code builder ----------
+  var SIZES = ["728x90", "468x60", "300x250", "240x400", "160x600", "120x600", "88x31"];
+  var ERAS = ["dialup", "flash", "current"];
+  var TYPES = ["state", "local", "diaspora", "offnet", "sketchy"];
+  var SRC = "https://mjsbroadbent.github.io/jarnama/serve.js";
+  var CSS = '.jarnama { margin: 1.5rem auto; text-align: center; }\n.jarnama:empty { display: none; }\n' +
+    '.jarnama::before { content: "Advertisement"; display: block;\n  font: 11px sans-serif; text-transform: uppercase; color: #888; }\n' +
+    '.jarnama img { max-width: 100%; height: auto; }';
+  function chips(id, name, values, type, checked) {
+    var box = document.getElementById(id);
+    values.forEach(function (v) {
+      var l = document.createElement("label"), i = document.createElement("input");
+      i.type = type; i.name = name; i.value = v; i.checked = checked.indexOf(v) >= 0;
+      i.addEventListener("change", build);
+      l.appendChild(i); l.appendChild(document.createTextNode(v.replace("x", "×")));
+      box.appendChild(l);
+    });
+  }
+  function picked(name) {
+    return Array.prototype.map.call(document.querySelectorAll('input[name="' + name + '"]:checked'), function (i) { return i.value; });
+  }
+  var shown = "";
+  function build() {
+    var size = picked("size")[0], themes = picked("era").concat(picked("type"));
+    var own = document.getElementById("b-own").checked, css = document.getElementById("b-css").checked;
+    var t = themes.join(" ") || "current";
+    var box = '<div class="jarnama" data-size="' + size + '"' + (own ? ' data-theme="' + t + '"' : "") + '></div>';
+    var out = "";
+    if (css) out += "<!-- in your stylesheet -->\n<style>\n" + CSS + "\n</style>\n\n";
+    out += "<!-- where the ad goes -->\n" + box + "\n\n";
+    out += "<!-- once per page, before </body> -->\n" +
+      '<script src="' + SRC + '"' + (own ? "" : '\n        data-theme="' + t + '"') + " defer></" + "script>";
+    document.getElementById("b-out").textContent = out;
+    var want = t.split(" ");
+    var pool = ads.filter(function (a) { return a.size === size && fits(a.themes, want); });
+    var m = document.getElementById("b-matches");
+    if (!ads.length) { m.textContent = ""; return; }
+    m.className = "matches" + (pool.length ? "" : " none");
+    m.innerHTML = pool.length
+      ? "<b>" + pool.length + "</b> ad" + (pool.length === 1 ? "" : "s") + " can fill this box right now. One of them:"
+      : "<b>No ads yet</b> for this size and theme, so the box would stay hidden. Try another size or add a theme.";
+    var pv = document.getElementById("b-preview");
+    if (!pool.length) { pv.innerHTML = ""; shown = ""; return; }
+    if (!pool.some(function (a) { return a.file === shown; })) shown = pool[Math.floor(Math.random() * pool.length)].file;
+    var ad = pool.filter(function (a) { return a.file === shown; })[0], wh = size.split("x");
+    pv.innerHTML = '<img width="' + wh[0] + '" height="' + wh[1] + '">';
+    pv.querySelector("img").src = ad.file;
+    pv.querySelector("img").alt = ad.alt || "";
+  }
+  chips("b-size", "size", SIZES, "radio", ["728x90"]);
+  chips("b-era", "era", ERAS, "radio", ["current"]);
+  chips("b-type", "type", TYPES, "checkbox", ["local"]);
+  document.getElementById("b-own").addEventListener("change", build);
+  document.getElementById("b-css").addEventListener("change", build);
+  build();
+
   fetch("campaigns.json", { cache: "no-cache" }).then(function (r) { return r.json(); }).then(function (d) {
     ads = (d.ads || []).filter(function (a) { return a.active !== false; });
-    filters(); draw();
+    filters(); draw(); build();
   }).catch(function () {
     document.getElementById("gallery").innerHTML = "<p>The ad list couldn't be loaded. Try reloading the page.</p>";
   });
