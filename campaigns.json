@@ -160,9 +160,8 @@
       "file": "ads/avtoshkola/driving_468x60.gif",
       "size": "468x60",
       "themes": [
-        "dialup",
-        "local",
-        "flash"
+        "flash",
+        "local"
       ],
       "link": "go.html#avtoshkola-jol.ir.ad",
       "alt": "Avtoshkola Jol driving school, Talas: licence in 2 months",

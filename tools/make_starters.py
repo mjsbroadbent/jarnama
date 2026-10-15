@@ -1181,7 +1181,7 @@ def _(b):
         b.add(f, 250)
 
 
-@ad("avtoshkola/driving_468x60.gif", ["dialup", "local", "flash"], "Avtoshkola Jol",
+@ad("avtoshkola/driving_468x60.gif", ["flash", "local"], "Avtoshkola Jol",
     "Avtoshkola Jol driving school, Talas: licence in 2 months", "go.html#avtoshkola-jol.ir.ad", colors=48)
 def _(b):
     car = cut("driving_car.png")
