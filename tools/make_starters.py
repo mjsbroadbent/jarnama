@@ -397,25 +397,63 @@ def _(b):
             b.add(f, 900 if state == 0 else 1300)
 
 
+def sim_face(front=True):
+    """A SIM card (RGBA, 110x150): the chip side or the printed back."""
+    im = Image.new("RGBA", (110, 150), (0, 0, 0, 0))
+    d = ImageDraw.Draw(im)
+    d.rounded_rectangle((0, 0, 109, 149), 9, fill=(255, 255, 255, 255) if front else (0, 120, 200, 255),
+                        outline=(60, 60, 60, 255), width=2)
+    d.polygon([(84, 0), (110, 0), (110, 26)], fill=(0, 0, 0, 0))      # the clipped corner
+    d.line([(84, 1), (108, 25)], fill=(60, 60, 60, 255), width=2)
+    if front:
+        d.rounded_rectangle((26, 38, 84, 84), 6, fill=(227, 194, 107, 255), outline=(138, 109, 31, 255), width=2)
+        for y in (50, 61, 72):
+            d.line([(26, y), (84, y)], fill=(138, 109, 31, 255))
+        d.line([(55, 38), (55, 84)], fill=(138, 109, 31, 255))
+        text(im, (55, 118), "SIM", font("arialb", 18), "#333", anchor="mm")
+    else:
+        text(im, (55, 52), "Steppe", font("arialbi", 18), "#ffffff", anchor="mm")
+        text(im, (55, 74), "Mobile", font("arialbi", 18), "#ffe14d", anchor="mm")
+        text(im, (55, 118), "4G • KZ", font("arialb", 13), "#ffffff", anchor="mm")
+    return im
+
+
 @ad("offnet/kazsim_300x250.gif", ["offnet", "flash"], "SteppeMobile (Kazakhstan)",
     "Kazakh SIM cards for the border districts, delivered", "go.html#steppemobile-sim.kz")
 def _(b):
-    for i in range(8):
+    front, back = sim_face(True), sim_face(False)
+    n = 18
+    for i in range(n + 8):
         f = gradient(b.frame(), (0, 0, 300, 250), "#ffe14d", "#ffb400")
-        # SIM card drawn flat
-        rect(f, (24, 40, 134, 180), fill="#ffffff", outline="#555", radius=8)
-        rect(f, (50, 78, 108, 124), fill="#e3c26b", outline="#8a6d1f", radius=5)
-        for y in (90, 101, 112):
-            ImageDraw.Draw(f).line([(50, y), (108, y)], fill=rgb("#8a6d1f"))
-        text(f, (79, 154), "SIM", font("arialb", 18), "#333", anchor="mm")
-        text(f, (210, 62), "Нет связи", font("arialb", 17), "#222", anchor="mm")
-        text(f, (210, 84), "у границы?", font("arialb", 17), "#222", anchor="mm")
-        text(f, (210, 120), "Казахская", font("arial", 15), "#222", anchor="mm")
-        text(f, (210, 138), "SIM-карта", font("arial", 15), "#222", anchor="mm")
-        text(f, (210, 164), "$15", font("impact", 34), "#c00000" if i % 2 else "#222", anchor="mm")
-        rect(f, (24, 198, 276, 232), fill="#222222", radius=4)
-        text(f, (150, 215), "Доставка в любой район", font("arialb", 14), "#ffe14d", anchor="mm")
-        b.add(f, 500)
+        d = ImageDraw.Draw(f)
+        spin = i < n
+        a = 2 * math.pi * i / n if spin else 0
+        c = math.cos(a)
+        face = front if c >= 0 else back
+        w = max(2, int(110 * abs(c)))
+        card = face.resize((w, 150), Image.LANCZOS)
+        y = 112 - 10 * math.sin(math.pi * i / n) if spin else 112       # a little hop while it spins
+        d.ellipse((79 - w * 0.45, 196, 79 + w * 0.45, 206), fill=mix("#ffb400", "#7a5200", 0.45))
+        paste(f, card, (79, y), anchor="mm")
+        if not spin:                                    # sparkles once it lands
+            for k, (sx, sy) in enumerate(((22, 40), (136, 44), (128, 170), (18, 160))):
+                r = 7 if (i + k) % 2 == 0 else 4
+                d.polygon([(sx, sy - r), (sx + r / 3, sy - r / 3), (sx + r, sy), (sx + r / 3, sy + r / 3),
+                           (sx, sy + r), (sx - r / 3, sy + r / 3), (sx - r, sy), (sx - r / 3, sy - r / 3)], fill=rgb("#ffffff"))
+        bars = min(4, int(4 * (i + 1) / n)) if spin else 4  # signal bars fill as the card turns
+        for k in range(4):
+            rect(f, (176 + k * 14, 34 - k * 6, 186 + k * 14, 46), fill="#222222" if k < bars else "#e8c25a")
+        if bars == 4:
+            text(f, (240, 40), "4G", font("arialb", 14), "#222", anchor="lm")
+        text(f, (218, 78), "Нет связи" if bars < 4 else "Есть связь!", font("arialb", 17),
+             "#222" if bars < 4 else "#a00000", anchor="mm")
+        text(f, (218, 100), "у границы?", font("arialb", 17), "#222", anchor="mm")
+        text(f, (218, 130), "Казахская SIM", font("arial", 15), "#222", anchor="mm")
+        big = not spin and i % 2 == 0
+        text(f, (218, 166), "$15", font("impact", 40 if big else 36), "#c00000" if not spin and i % 2 else "#222", anchor="mm")
+        rect(f, (24, 212, 276, 240), fill="#222222", radius=4)
+        text(f, (150, 226), "Доставка в любой район", font("arialb", 14), "#ffe14d", anchor="mm")
+        b.add(f, 70 if spin else 350)
 
 
 # ====================================================================== flash (2004-2014)
@@ -592,21 +630,29 @@ def _(b):
 @ad("jilmay/delivery_300x250.gif", ["current", "local"], "Jılmay",
     "Jılmay Cargo: order from abroad, delivered in Irad", "go.html#jilmay.ir.ad")
 def _(b):
-    for k, (top, big, sub) in enumerate((("Jılmay Cargo", "Order abroad.", "We bring it to Talas."),
-                                         ("Jılmay Cargo", "Chet eldeñ", "buyurtma — üyüñüzgö"),
-                                         ("Jılmay", "$1 / kg", "first parcel, until 31 Oct"))):
-        f = b.frame("#fff5c2")
-        ImageDraw.Draw(f).ellipse((214, 18, 282, 86), fill=rgb("#fdd835"), outline=rgb("#e0a800"), width=2)
-        d = ImageDraw.Draw(f)
-        d.ellipse((234, 40, 241, 47), fill=rgb("#4a3000"))
-        d.ellipse((255, 40, 262, 47), fill=rgb("#4a3000"))
-        d.arc((230, 46, 266, 74), 20, 160, fill=rgb("#4a3000"), width=3)
-        text(f, (20, 40), top, font("poppinsb", 22), "#3a2a00", anchor="lm")
-        text(f, (20, 130), big, font("poppinsb", 30, for_text=big), "#1a1a1a", anchor="lm")
-        text(f, (20, 166), sub, font("poppins", 16, for_text=sub), "#333", anchor="lm")
-        rect(f, (20, 198, 160, 230), fill="#1a1a1a", radius=16)
-        text(f, (90, 214), "jilmay.ir.ad", font("poppinsm", 13), "#fdd835", anchor="mm")
-        b.add(f, 2200)
+    logo = Image.open(S("jilmay_logo.png")).convert("RGBA")
+    logo = logo.crop(logo.getchannel("A").getbbox())
+    emoji = Image.open(S("jilmay_emoji.png")).convert("RGBA")
+    emoji = emoji.crop(emoji.getchannel("A").getbbox())
+    green = "#16a84a"
+    msgs = (("Order abroad.", "We bring it to Talas.", "Jılmay Cargo"),
+            ("Chet eldeñ buyurtma", "— üyüñüzgö!", "Jılmay Cargo"),
+            ("$1 / kg", "first parcel, until 31 Oct", "Jılmay Cargo"))
+    for big, sub, tag in msgs:
+        for j in range(6):
+            t = j / 6
+            f = b.frame("#fff6cc")
+            paste(f, logo, (20, 18), scale_h=34)
+            # the site's emoji bobs and tilts, like it's saying hello
+            e = emoji.resize((84, 84), Image.LANCZOS).rotate(10 * math.sin(2 * math.pi * t), resample=Image.BICUBIC, expand=True)
+            paste(f, e, (240, 92 - 6 * abs(math.sin(math.pi * t))), anchor="mm")
+            rect(f, (20, 66, 108, 86), fill=green, radius=10)
+            text(f, (64, 76), tag, font("poppinsb", 11), "#ffffff", anchor="mm")
+            text(f, (20, 160), big, fit_font("poppinsb", big, 260, 28), "#1a1a1a", anchor="lm")
+            text(f, (20, 188), sub, font("poppins", 15, for_text=sub), "#333", anchor="lm")
+            rect(f, (20, 206, 158, 234), fill=green, radius=14)
+            text(f, (89, 220), "jilmay.ir.ad", font("poppinsm", 13), "#ffffff", anchor="mm")
+            b.add(f, 140 if j < 5 else 1500)
 
 
 def cartoon_bottle(t, blink=False):
