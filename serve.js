@@ -1,5 +1,5 @@
 /* Attelkom Jarnama ad server.
-   <script src="https://mjsbroadbent.github.io/jarnama/serve.js" data-theme="current state" defer></script>
+   <script src="https://ads.attelkom.net/serve.js" data-theme="current state" defer></script>
    <div class="jarnama" data-size="728x90"></div>
    <div class="jarnama" data-size="240x400" data-theme="sketchy"></div>   (a slot can override the theme)
    Each slot gets a random active ad of its size that fits the slot's themes (see fits() below); empty slots stay hidden.
