@@ -609,28 +609,115 @@ def _(b):
         b.add(f, 2200)
 
 
+def cartoon_bottle(t, blink=False):
+    """A cartoon soda bottle (RGBA), drawn at 3x and scaled down. t in 0..1 drives squash and tilt."""
+    S3 = 3
+    W, H = 90 * S3, 200 * S3
+    im = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+    d = ImageDraw.Draw(im)
+    cx = W // 2
+
+    def half(y):                                     # half-width of the bottle at height y (in 1x units)
+        if y < 16:
+            return 12
+        if y < 52:
+            return 10
+        if y < 84:
+            k = (y - 52) / 32
+            return 10 + 22 * (0.5 - 0.5 * math.cos(math.pi * k))
+        return 32 + 2.5 * math.sin(math.pi * (y - 84) / 104)   # a slight belly
+
+    top, bot = 10, 192
+    left = [(cx - half(y) * S3, y * S3) for y in range(16, bot - 8)]
+    right = [(cx + half(y) * S3, y * S3) for y in range(bot - 9, 15, -1)]
+    # rounded bottom
+    bottom = []
+    for i in range(21):
+        a = math.pi * i / 20
+        bottom.append((cx + half(bot - 8) * S3 * math.cos(a), (bot - 8) * S3 + 8 * S3 * math.sin(a)))
+    body = left + bottom[::-1] + right
+    ink = (14, 59, 18, 255)
+    d.polygon(body, fill=(64, 201, 64, 255))
+    # darker right side for roundness
+    shade = Image.new("L", (W, H), 0)
+    sd = ImageDraw.Draw(shade)
+    sd.polygon([(cx + half(y) * S3 * 0.45, y * S3) for y in range(56, bot)] + [(cx + half(y) * S3, y * S3) for y in range(bot - 1, 55, -1)], fill=90)
+    mask = Image.new("L", (W, H), 0)
+    ImageDraw.Draw(mask).polygon(body, fill=255)
+    from PIL import ImageChops
+    shade = ImageChops.multiply(shade, mask)
+    im.paste((30, 140, 40, 255), (0, 0), shade)
+    # highlight streak
+    d.rounded_rectangle((cx - 22 * S3, 92 * S3, cx - 14 * S3, 170 * S3), 4 * S3, fill=(210, 255, 210, 230))
+    d.rounded_rectangle((cx - 7 * S3, 22 * S3, cx - 3 * S3, 46 * S3), 2 * S3, fill=(210, 255, 210, 200))
+    d.line(body + [body[0]], fill=ink, width=4 * S3, joint="curve")
+    # cap with crimped edge
+    d.rounded_rectangle((cx - 15 * S3, top * S3, cx + 15 * S3, (top + 9) * S3), 3 * S3, fill=(242, 196, 40, 255), outline=ink, width=3 * S3)
+    for k in range(-12, 13, 6):
+        d.line([(cx + k * S3, (top + 2) * S3), (cx + k * S3, (top + 7) * S3)], fill=(190, 140, 20, 255), width=S3)
+    # label: cream band with a wavy top and bottom
+    ly0, ly1 = 104, 150
+    wave_t = [(cx - 33 * S3 + i * S3 * 66 / 30, (ly0 + 3 * math.sin(i / 30 * 2 * math.pi)) * S3) for i in range(31)]
+    wave_b = [(cx + 33 * S3 - i * S3 * 66 / 30, (ly1 + 3 * math.sin(i / 30 * 2 * math.pi)) * S3) for i in range(31)]
+    lab = Image.new("L", (W, H), 0)
+    ImageDraw.Draw(lab).polygon(wave_t + wave_b, fill=255)
+    lab = ImageChops.multiply(lab, mask)
+    im.paste((255, 248, 220, 255), (0, 0), lab)
+    d.line(wave_t, fill=ink, width=3 * S3)
+    d.line(wave_b, fill=ink, width=3 * S3)
+    # a face on the label
+    ey = 118 * S3
+    for ex in (-10, 10):
+        if blink:
+            d.arc((cx + (ex - 4) * S3, ey - 2 * S3, cx + (ex + 4) * S3, ey + 4 * S3), 200, 340, fill=ink, width=2 * S3)
+        else:
+            d.ellipse((cx + (ex - 3) * S3, ey - 4 * S3, cx + (ex + 3) * S3, ey + 4 * S3), fill=ink)
+            d.ellipse((cx + (ex - 1) * S3, ey - 3 * S3, cx + (ex + 1) * S3, ey - 1 * S3), fill=(255, 255, 255, 255))
+    d.arc((cx - 9 * S3, 118 * S3, cx + 9 * S3, 136 * S3), 20, 160, fill=ink, width=3 * S3)
+    for ex in (-17, 17):                              # rosy cheeks
+        d.ellipse((cx + (ex - 4) * S3, 127 * S3, cx + (ex + 4) * S3, 132 * S3), fill=(255, 150, 140, 200))
+    # tarragon sprig on the shoulder
+    for k, (dx, dy, ang) in enumerate(((-18, 70, -40), (-24, 78, -70), (-12, 80, -20))):
+        leaf = Image.new("RGBA", (16 * S3, 6 * S3), (0, 0, 0, 0))
+        ImageDraw.Draw(leaf).ellipse((0, 0, 16 * S3 - 1, 6 * S3 - 1), fill=(24, 110, 34, 255), outline=ink, width=S3)
+        leaf = leaf.rotate(ang, expand=True, resample=Image.BICUBIC)
+        im.alpha_composite(leaf, (cx + dx * S3 - leaf.width // 2, dy * S3 - leaf.height // 2))
+    im = im.resize((W // S3, H // S3), Image.LANCZOS)
+    # squash and stretch, then tilt
+    sq = 1 + 0.06 * math.sin(2 * math.pi * t)
+    im = im.resize((int(im.width / sq), int(im.height * sq)), Image.LANCZOS)
+    return im.rotate(8 * math.sin(2 * math.pi * t), resample=Image.BICUBIC, expand=True)
+
+
 @ad("jasil/tarragon_300x250.gif", ["current", "flash", "local"], "Jasil",
     "Jasil tarragon soda, made in Nurzhan", "go.html#jasil.ir.ad")
 def _(b):
-    for i in range(10):
-        f = gradient(b.frame(), (0, 0, 300, 250), "#9be15d", "#2f8f2f")
-        # bottle drawn flat: green glass, white label
-        x = 200
-        rect(f, (x + 14, 26, x + 34, 60), fill="#1f6b1f")
-        rect(f, (x + 12, 20, x + 36, 30), fill="#d4af37")
+    n = 12
+    for i in range(n):
+        t = i / n
+        f = gradient(b.frame(), (0, 0, 300, 250), "#b8f07a", "#2f9a2f")
         d = ImageDraw.Draw(f)
-        d.rounded_rectangle((x, 56, x + 48, 226), 14, fill=rgb("#36c236"), outline=rgb("#1f6b1f"), width=2)
-        rect(f, (x + 2, 110, x + 46, 170), fill="#ffffff")
-        text(f, (x + 24, 140), "JASIL", font("arialbi", 13), "#1f8f2b", anchor="mm")
-        for k in range(6):                       # bubbles rising
-            by = 220 - ((i * 14 + k * 37) % 150)
-            d.ellipse((x + 10 + (k * 7) % 28, by, x + 15 + (k * 7) % 28, by + 5), outline=rgb("#d8ffd8"))
-        text(f, (22, 60), "JASIL", font("arialbi", 44), "#ffffff", anchor="lm", shadow="#1f5f1f", sxy=(2, 2))
-        text(f, (22, 100), "Tarhun limonady", font("arialb", 15), "#ffffff", anchor="lm")
-        text(f, (22, 122), "Тархун с 1974 года", font("arial", 14), "#f0ffe0", anchor="lm")
-        text(f, (22, 196), "Muzdai ich!", font("arialbi", 22), "#ffff66", anchor="lm", shadow="#1f5f1f")
-        text(f, (22, 222), "Nurzhan Pivo-Bezalkogol' Zavod", font("arial", 10), "#e0ffe0", anchor="lm")
-        b.add(f, 160)
+        # sunburst rays behind the bottle
+        for k in range(12):
+            a0 = 2 * math.pi * k / 12
+            d.polygon([(232, 128), (232 + 260 * math.cos(a0), 128 + 260 * math.sin(a0)),
+                       (232 + 260 * math.cos(a0 + 0.22), 128 + 260 * math.sin(a0 + 0.22))], fill=mix("#b8f07a", "#ffffff", 0.35))
+        bot = cartoon_bottle(t, blink=(i == 7))
+        paste(f, bot, (232, 236), anchor="mb")
+        for k in range(7):                          # bubbles popping out of the top
+            ph = (t + k / 7) % 1
+            bx = 226 + 14 * math.sin(k * 2.1 + ph * 6)
+            by = 40 - ph * 40
+            r = 2 + (k % 3)
+            d.ellipse((bx - r, by - r, bx + r, by + r), outline=rgb("#ffffff"), width=2)
+        text(f, (20, 52), "JASIL", font("arialbi", 46), "#ffffff", anchor="lm", outline="#14501a", ow=3)
+        text(f, (22, 94), "Tarhun limonady", font("arialb", 15), "#14501a", anchor="lm")
+        text(f, (22, 114), "Тархун с 1974 года", font("arial", 14), "#14501a", anchor="lm")
+        wob = 2 * math.sin(2 * math.pi * t)
+        text(f, (22, 190 + wob), "Muzdai ich!", font("arialbi", 24), "#ffeb3b", anchor="lm", outline="#14501a", ow=2)
+        rect(f, (0, 236, 300, 250), fill="#14501a")
+        text(f, (150, 243), "Nurzhan Pivo-Bezalkogol' Zavod • с 1974", font("arial", 10), "#e8ffe0", anchor="mm")
+        b.add(f, 110 if i != 7 else 160)
 
 
 # ====================================================================== local
