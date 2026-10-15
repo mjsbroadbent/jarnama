@@ -133,6 +133,28 @@
     },
     {
       "advertiser": "Attelkom",
+      "file": "ads/attelkom/home100_300x250.gif",
+      "size": "300x250",
+      "themes": [
+        "current"
+      ],
+      "link": "go.html#attelkom.ir.ad",
+      "alt": "Attelkom home internet: up to 100 Mbit/s*, connection free until 30 November",
+      "active": true
+    },
+    {
+      "advertiser": "Attelkom",
+      "file": "ads/attelkom/home100_468x60.gif",
+      "size": "468x60",
+      "themes": [
+        "current"
+      ],
+      "link": "go.html#attelkom.ir.ad",
+      "alt": "Attelkom home internet up to 100 Mbit/s* (*central district of Talas)",
+      "active": true
+    },
+    {
+      "advertiser": "Attelkom",
       "file": "ads/attelkom/vet_sms_300x250.gif",
       "size": "300x250",
       "themes": [
@@ -189,6 +211,18 @@
       ],
       "link": "go.html#cyberzone.ir.ad",
       "alt": "CyberZone Nurzhan computer club: 40 PCs, LAN tournaments, open all night",
+      "active": true
+    },
+    {
+      "advertiser": "The Talas Herald",
+      "file": "ads/herald/delivery_468x60.gif",
+      "size": "468x60",
+      "themes": [
+        "current",
+        "local"
+      ],
+      "link": "https://talasherald.com/subscribe.html",
+      "alt": "The Talas Herald delivered to your door before 7am: print and digital, 90 som a month",
       "active": true
     },
     {
@@ -287,6 +321,21 @@
       "active": true
     },
     {
+      "advertiser": "Talas North Cold Store",
+      "file": "ads/kartoshka/storage_468x60.gif",
+      "size": "468x60",
+      "themes": [
+        "local",
+        "current",
+        "flash"
+      ],
+      "link": "go.html#talas-sklad.ir.ad",
+      "alt": "Store your potatoes until spring: cellars at Talas North, 2 som per kg a month",
+      "start": "2026-09-20",
+      "end": "2026-12-15",
+      "active": true
+    },
+    {
       "advertiser": "Kompyuter-Servis",
       "file": "ads/kompservis/pc_468x60.gif",
       "size": "468x60",
@@ -296,6 +345,32 @@
       ],
       "link": "go.html#kompservis.ir.ad",
       "alt": "Kompyuter-Servis, Talas: Pentium III computers from $890",
+      "active": true
+    },
+    {
+      "advertiser": "Kömür-Servis",
+      "file": "ads/komur/coal_300x250.gif",
+      "size": "300x250",
+      "themes": [
+        "local",
+        "current",
+        "flash"
+      ],
+      "link": "go.html#komur-servis.ir.ad",
+      "alt": "Coal delivered to your yard: Tash-Kömür coal, from 110 som a sack",
+      "active": true
+    },
+    {
+      "advertiser": "Kömür-Servis",
+      "file": "ads/komur/coal_468x60.gif",
+      "size": "468x60",
+      "themes": [
+        "local",
+        "current",
+        "flash"
+      ],
+      "link": "go.html#komur-servis.ir.ad",
+      "alt": "Tash-Kömür coal delivered in Talas: 1 tonne 1 900 som. 0 (555) 41-22-90",
       "active": true
     },
     {
@@ -345,6 +420,21 @@
       ],
       "link": "go.html#netclub.ir.ad",
       "alt": "Net-Club internet café, Talas",
+      "active": true
+    },
+    {
+      "advertiser": "NurGaz",
+      "file": "ads/nurgaz/heating_728x90.gif",
+      "size": "728x90",
+      "themes": [
+        "current",
+        "state",
+        "local"
+      ],
+      "link": "go.html#nurgaz.ir.ad",
+      "alt": "NurGaz: the heating season has begun. Pay for gas by the 25th at any Talasbank branch or in the Talasbank app",
+      "start": "2026-10-01",
+      "end": "2027-03-31",
       "active": true
     },
     {
@@ -557,6 +647,20 @@
       "active": true
     },
     {
+      "advertiser": "ISEZ Health Department",
+      "file": "ads/state/flu_vaccine_300x250.gif",
+      "size": "300x250",
+      "themes": [
+        "state",
+        "current"
+      ],
+      "link": "go.html#health.isez.ir.ad",
+      "alt": "Free seasonal flu vaccination at your district polyclinic until 30 November",
+      "start": "2026-10-01",
+      "end": "2026-11-30",
+      "active": true
+    },
+    {
       "advertiser": "ISEZ Statistics Office",
       "file": "ads/state/livestock_count_728x90.gif",
       "size": "728x90",
@@ -686,6 +790,64 @@
       ],
       "link": "go.html#toyordo.ir.ad",
       "alt": "Toy-Ordo banquet hall, Talas: weddings up to 500 guests",
+      "active": true
+    },
+    {
+      "advertiser": "Talas State University",
+      "file": "ads/tsu/evening_300x250.gif",
+      "size": "300x250",
+      "themes": [
+        "current",
+        "local",
+        "state"
+      ],
+      "link": "go.html#tsu.ir.ad",
+      "alt": "Talas State University evening courses for adults. Enrolment until 1 November",
+      "start": "2026-10-01",
+      "end": "2026-11-01",
+      "active": true
+    },
+    {
+      "advertiser": "Talas State University",
+      "file": "ads/tsu/evening_468x60.gif",
+      "size": "468x60",
+      "themes": [
+        "current",
+        "local",
+        "state"
+      ],
+      "link": "go.html#tsu.ir.ad",
+      "alt": "Talas State University evening courses: accounting, English, computer literacy. Enrolment until 1 November",
+      "start": "2026-10-01",
+      "end": "2026-11-01",
+      "active": true
+    },
+    {
+      "advertiser": "Tulpar Talas FC",
+      "file": "ads/tulpartalas/derby_300x250.gif",
+      "size": "300x250",
+      "themes": [
+        "current",
+        "local"
+      ],
+      "link": "go.html#tulpartalas.ir.ad",
+      "alt": "Tulpar Talas: biz menen Nurzhanga! Away tickets and fan bus for the 31 October derby",
+      "start": "2026-10-12",
+      "end": "2026-10-31",
+      "active": true
+    },
+    {
+      "advertiser": "Tulpar Talas FC",
+      "file": "ads/tulpartalas/derby_728x90.gif",
+      "size": "728x90",
+      "themes": [
+        "current",
+        "local"
+      ],
+      "link": "go.html#tulpartalas.ir.ad",
+      "alt": "Tulpar Talas: Kara-Ak derby, 31 October, NurGaz Stadium. Fan bus from Talas with ticket, 450 som",
+      "start": "2026-10-12",
+      "end": "2026-10-31",
       "active": true
     }
   ]

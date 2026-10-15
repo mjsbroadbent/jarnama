@@ -1339,6 +1339,316 @@ def _(b):
         b.add(f, 2200)
 
 
+# ====================================================================== batch 3 (Oct 2026, Herald slots)
+# Stock: stock/README.md "Batch 3". Timely local and state ads for autumn 2026.
+
+def crest_tulpar(size):
+    """Tulpar Talas FC crest: a crimson shield with a white wing and the club initials (drawn at 4x)."""
+    k = 4
+    W = H = size * k
+    im = Image.new("RGBA", (W, int(H * 1.15)), (0, 0, 0, 0))
+    d = ImageDraw.Draw(im)
+    w, h = W, int(H * 1.15)
+    shield = [(w * .08, h * .05), (w * .92, h * .05), (w * .92, h * .55), (w * .5, h * .97), (w * .08, h * .55)]
+    d.polygon(shield, fill="#ffffff")
+    inner = [(w * .14, h * .10), (w * .86, h * .10), (w * .86, h * .53), (w * .5, h * .89), (w * .14, h * .53)]
+    d.polygon(inner, fill="#a3112b")
+    for i in range(5):  # a stylised wing: five white feathers
+        y = h * (.24 + i * .075)
+        d.rounded_rectangle((w * (.24 + i * .03), y, w * (.76 - i * .05), y + h * .045), radius=h * .02, fill="#ffffff")
+    f_ = ImageFont.truetype(FONTS["timesb"][0], int(h * .16))
+    d.text((w * .5, h * .70), "TT", font=f_, fill="#ffffff", anchor="mm")
+    return im.resize((size, int(size * 1.15)), Image.LANCZOS)
+
+
+def stock3(name, size, focus=(0.5, 0.5)):
+    return photo(S("b3/" + name), size, focus=focus)
+
+
+@ad("tulpartalas/derby_728x90.gif", ["current", "local"], "Tulpar Talas FC",
+    "Tulpar Talas: Kara-Ak derby, 31 October, NurGaz Stadium. Fan bus from Talas with ticket, 450 som",
+    "go.html#tulpartalas.ir.ad", start="2026-10-12", end="2026-10-31", colors=64)
+def _(b):
+    crim, dark = "#a3112b", "#6e0a1c"
+    crest = crest_tulpar(64)
+    fans = Image.open(S("b3/fans.png")).convert("RGB")
+    fans = ImageOps.fit(fans, (520, 390), Image.LANCZOS)
+    msgs = [("KARA-AK DERBY", "31.10 • 18:00 • NurGaz Stadium"),
+            ("ЧЕМПИОН РЕШАЕТСЯ ЗДЕСЬ", "Chempion bul jerde anyktalat"),
+            ("АВТОБУС БОЛЕЛЬЩИКОВ", "Талас → Нуржан • 450 сом с билетом")]
+    n = 0
+    for big, small in msgs:
+        for j in range(4):
+            f = b.frame(dark)
+            x = int(110 + (n * 4 + j) * 6)  # slow pan (starts right of the flare: pyro is banned at Irad grounds) across the stand
+            f.paste(fans.crop((x, 130, x + 330, 220)), (0, 0))
+            for i in range(60):  # fade the photo into the crimson panel
+                rect(f, (270 + i, 0, 271 + i, 89), fill=mix(f.getpixel((270 + i, 45)), crim, i / 60))
+            rect(f, (330, 0, 727, 89), fill=crim)
+            paste(f, crest, (362, 45), anchor="mm")
+            text(f, (402, 36), big, fit_font("interblk", big, 200, 26), "#ffffff", anchor="lm")
+            text(f, (402, 64), small, fit_font("interb", small, 200, 14), "#ffd9de", anchor="lm")
+            rect(f, (612, 26, 716, 64), fill="#ffffff", radius=4)
+            text(f, (664, 45), "БИЛЕТЫ", font("interx", 15, for_text="Б"), crim, anchor="mm")
+            b.add(f, 150 if j < 3 else 2000)
+        n += 1
+
+
+@ad("tulpartalas/derby_300x250.gif", ["current", "local"], "Tulpar Talas FC",
+    "Tulpar Talas: biz menen Nurzhanga! Away tickets and fan bus for the 31 October derby",
+    "go.html#tulpartalas.ir.ad", start="2026-10-12", end="2026-10-31")
+def _(b):
+    crim = "#a3112b"
+    pl = stock3("player.png", (300, 160), focus=(0.5, 0.3))
+    crest = crest_tulpar(46)
+    slides = [("Biz menen", "Nurzhanga!", "31 октября • 18:00"),
+              ("Автобус + билет", "450 сом", "отправление 13:00, Silk Road Arena"),
+              ("Kassa:", "Silk Road Arena", "ежедневно 10:00–19:00")]
+    for a, big, c in slides:
+        f = b.frame(crim)
+        f.paste(pl, (0, 0))
+        rect(f, (0, 160, 299, 249), fill=crim)
+        rect(f, (0, 156, 299, 160), fill="#ffffff")
+        paste(f, crest, (14, 172), anchor="lt")
+        text(f, (72, 182), a, font("interb", 15, for_text=a), "#ffd9de", anchor="lm")
+        text(f, (72, 208), big, fit_font("interblk", big, 216, 26), "#ffffff", anchor="lm")
+        text(f, (72, 233), c, fit_font("inter", c, 216, 12), "#ffffff", anchor="lm")
+        rect(f, (8, 8, 118, 30), fill="#000000")
+        text(f, (63, 19), "KARA-AK DERBY", font("interx", 11), "#ffffff", anchor="mm")
+        b.add(f, 2600)
+
+
+@ad("komur/coal_468x60.gif", ["local", "current", "flash"], "Kömür-Servis",
+    "Tash-Kömür coal delivered in Talas: 1 tonne 1 900 som. 0 (555) 41-22-90",
+    "go.html#komur-servis.ir.ad", colors=64)
+def _(b):
+    sacks = trim(photo(S("b3/coal_sacks.png"), (240, 180), fit="contain", remove_white=True))
+    for k in range(6):
+        f = b.frame("#ffd800" if k % 2 == 0 else "#ffffff")
+        paste(f, sacks, (4, 58), scale_h=56, anchor="lb")
+        if k < 2:
+            text(f, (96, 6), "УГОЛЬ • KÖMÜR", font("impact", 24, for_text="УГОЛЬ"), "#000", anchor="lt")
+            text(f, (96, 36), "Таш-Кумыр • орех и кулак • мешки и тонны", font("tahomab", 13), "#c00000", anchor="lt")
+        elif k < 4:
+            text(f, (96, 8), "1 тонна — 1 900 сом", font("tahomab", 20), "#000", anchor="lt")
+            text(f, (96, 36), "мешок 50 кг — 110 сом • доставка по городу", font("tahoma", 13), "#000", anchor="lt")
+        else:
+            text(f, (96, 4), "0 (555) 41-22-90", font("impact", 36), "#c00000", anchor="lt", outline="#000" if k % 2 else None)
+            text(f, (352, 14), "звоните", font("tahomab", 13), "#000", anchor="lt")
+            text(f, (352, 32), "без выходных", font("tahomab", 13), "#000", anchor="lt")
+        b.add(f, 1500)
+    b.durations[-1] = 2600
+
+
+@ad("komur/coal_300x250.gif", ["local", "current", "flash"], "Kömür-Servis",
+    "Coal delivered to your yard: Tash-Kömür coal, from 110 som a sack",
+    "go.html#komur-servis.ir.ad", colors=128)
+def _(b):
+    truck = stock3("coal_truck.png", (300, 150), focus=(0.5, 0.5))
+    for k in range(4):
+        f = b.frame("#ffffff")
+        f.paste(truck, (0, 0))
+        rect(f, (0, 0, 299, 30), fill="#000000")
+        text(f, (150, 15), "УГОЛЬ С ДОСТАВКОЙ", font("interblk", 19, for_text="У"), "#ffd800", anchor="mm")
+        rect(f, (0, 150, 299, 249), fill="#ffd800")
+        if k % 2 == 0:
+            text(f, (150, 168), "Kömür üygö jetkirip beremiz!", font("tahomab", 14), "#000", anchor="mm")
+            text(f, (14, 192), "мешок 50 кг", font("tahoma", 14), "#000", anchor="lm")
+            text(f, (286, 192), "110 сом", font("tahomab", 16), "#000", anchor="rm")
+            text(f, (14, 212), "1 тонна (самосвал)", font("tahoma", 14), "#000", anchor="lm")
+            text(f, (286, 212), "1 900 сом", font("tahomab", 16), "#000", anchor="rm")
+            text(f, (150, 236), "уголь Таш-Кумыр • орех и кулак", font("tahoma", 11), "#333", anchor="mm")
+        else:
+            text(f, (150, 172), "Заказ по телефону:", font("tahomab", 14), "#000", anchor="mm")
+            text(f, (150, 206), "0 (555) 41-22-90", font("impact", 38), "#c00000" if k == 1 else "#000", anchor="mm")
+            text(f, (150, 236), "Талас и пригороды • без выходных", font("tahoma", 12), "#000", anchor="mm")
+        b.add(f, 2600)
+
+
+@ad("nurgaz/heating_728x90.gif", ["current", "state", "local"], "NurGaz",
+    "NurGaz: the heating season has begun. Pay for gas by the 25th at any Talasbank branch or in the Talasbank app",
+    "go.html#nurgaz.ir.ad", start="2026-10-01", end="2027-03-31")
+def _(b):
+    blue, deep = "#0b5aa6", "#073c70"
+    flame = stock3("gas_flame.png", (230, 90), focus=(0.45, 0.55))
+    rad = stock3("radiator.png", (230, 90), focus=(0.5, 0.5))
+    def logo(f, x, y):
+        d = ImageDraw.Draw(f)
+        d.ellipse((x, y, x + 34, y + 34), fill="#ffffff")
+        d.polygon([(x + 17, y + 5), (x + 26, y + 20), (x + 17, y + 29), (x + 8, y + 20)], fill="#f28c00")
+        d.polygon([(x + 17, y + 14), (x + 21, y + 22), (x + 17, y + 27), (x + 13, y + 22)], fill="#0b5aa6")
+        text(f, (x + 42, y + 17), "NurGaz", font("interx", 22), "#ffffff", anchor="lm")
+    frames = [(flame, "Отопительный сезон начался", "Isytuu mezgili bashtaldy — gazdy ubaktyluu tölöñüz"),
+              (rad, "Оплатите газ до 25 числа", "Talasbank • приложение Talasbank • кассы NurGaz"),
+              (flame, "Утечка газа? Звоните 104", "круглосуточно, бесплатно")]
+    for img, a, c in frames:
+        f = b.frame(blue)
+        f.paste(img, (0, 0))
+        for i in range(40):
+            rect(f, (190 + i, 0, 191 + i, 89), fill=mix(f.getpixel((190 + i, 45)), blue, i / 40))
+        logo(f, 244, 8)
+        text(f, (244, 56), a, fit_font("interb", a, 340, 22), "#ffffff", anchor="lm")
+        text(f, (244, 78), c, fit_font("inter", c, 470, 13), "#cfe3f7", anchor="lm")
+        rect(f, (600, 18, 716, 46), fill="#f28c00", radius=3)
+        text(f, (658, 32), "Оплатить", font("interb", 14, for_text="О"), "#ffffff", anchor="mm")
+        b.add(f, 2800)
+
+
+@ad("kartoshka/storage_468x60.gif", ["local", "current", "flash"], "Talas North Cold Store",
+    "Store your potatoes until spring: cellars at Talas North, 2 som per kg a month",
+    "go.html#talas-sklad.ir.ad", start="2026-09-20", end="2026-12-15", colors=96)
+def _(b):
+    cel = stock3("cellar.png", (150, 60), focus=(0.5, 0.6))
+    pot = trim(photo(S("b3/potatoes.png"), (200, 150), fit="contain", remove_white=True))
+    msgs = [("Овощехранилище «Талас-Север»", "картофель • лук • морковь • яблоки"),
+            ("2 сом за кг в месяц", "храните урожай до весенних цен!"),
+            ("Kartoshkañyzdy jazga cheyin saktañyz", "тел. 0 (555) 62-18-05 • весы на месте")]
+    for a, c in msgs:
+        f = b.frame("#2e5e1e")
+        f.paste(cel, (0, 0))
+        paste(f, pot, (184, 60), scale_h=42, anchor="mb")
+        text(f, (218, 20), a, fit_font("tahomab", a, 244, 16), "#ffffff", anchor="lm")
+        text(f, (218, 42), c, fit_font("tahoma", c, 244, 12), "#ffe680", anchor="lm")
+        b.add(f, 2400)
+
+
+@ad("attelkom/home100_468x60.gif", ["current"], "Attelkom",
+    "Attelkom home internet up to 100 Mbit/s* (*central district of Talas)", "go.html#attelkom.ir.ad")
+def _(b):
+    logo = Image.open(S("attelkom_logo_color.png")).convert("RGBA")
+    r = Image.open(S("b3/router.png")).convert("RGB").crop((240, 40, 900, 730))
+    r = ImageOps.autocontrast(r, cutoff=(0, 3))  # lift the grey studio sweep to white
+    m = Image.new("L", r.size, 0)
+    ImageDraw.Draw(m).ellipse((30, 30, r.width - 30, r.height - 30), fill=255)
+    router = r.convert("RGBA")
+    router.putalpha(m.filter(ImageFilter.GaussianBlur(40)))
+    msgs = [("до 100 Мбит/с*", "Домашний интернет Attelkom"), ("от 890 сом/мес", "подключение 0 сом до 30.11"),
+            ("Üy internet", "*в центральном районе г. Талас. Скорость не гарантируется")]
+    for big, small in msgs:
+        f = b.frame("#ffffff")
+        paste(f, logo, (8, 30), scale_h=40, anchor="lm")
+        paste(f, router, (190, 30), scale_h=58, anchor="mm")
+        text(f, (232, 22), big, fit_font("interblk", big, 224, 24), "#1f8a2b", anchor="lm")
+        text(f, (232, 46), small, fit_font("inter", small, 228, 12), "#555", anchor="lm")
+        rect(f, (0, 0, 467, 59), outline="#1f8a2b")
+        b.add(f, 2300)
+
+
+@ad("attelkom/home100_300x250.gif", ["current"], "Attelkom",
+    "Attelkom home internet: up to 100 Mbit/s*, connection free until 30 November", "go.html#attelkom.ir.ad")
+def _(b):
+    fam = stock3("family_laptop.png", (300, 150), focus=(0.5, 0.4))
+    logo = attelkom_logo(0)
+    for k, (a, c) in enumerate((("до 100 Мбит/с*", "Домашний интернет для всей семьи"),
+                                ("0 сом", "подключение до 30 ноября"))):
+        f = b.frame("#ffffff")
+        f.paste(fam, (0, 0))
+        rect(f, (0, 150, 300, 250), fill="#1f8a2b")
+        rect(f, (196, 8, 292, 30), fill="#ff8a00", radius=11)
+        text(f, (244, 19), "АКЦИЯ", font("interx", 12, for_text="А"), "#ffffff", anchor="mm")
+        text(f, (16, 176), a, fit_font("interx", a, 270, 28), "#ffffff", anchor="lm")
+        text(f, (16, 204), c, font("inter", 14, for_text=c), "#e5f6e6", anchor="lm")
+        text(f, (16, 238), "*центральный район г. Талас", font("inter", 9, for_text="ц"), "#bfe5c4", anchor="lm")
+        paste(f, logo, (288, 242), scale_w=70, anchor="rb")
+        b.add(f, 2600)
+
+
+def tsu_seal(size):
+    k = 4
+    s = size * k
+    im = Image.new("RGBA", (s, s), (0, 0, 0, 0))
+    d = ImageDraw.Draw(im)
+    d.ellipse((0, 0, s - 1, s - 1), fill="#ffffff")
+    d.ellipse((s * .06, s * .06, s * .94, s * .94), fill="#13306b")
+    d.ellipse((s * .12, s * .12, s * .88, s * .88), outline="#d4a72c", width=k * 2)
+    book = [(s * .28, s * .38), (s * .5, s * .44), (s * .72, s * .38), (s * .72, s * .62), (s * .5, s * .68), (s * .28, s * .62)]
+    d.polygon(book, fill="#ffffff")
+    d.line((s * .5, s * .44, s * .5, s * .68), fill="#13306b", width=k * 2)
+    f_ = ImageFont.truetype(FONTS["timesb"][0], int(s * .14))
+    d.text((s * .5, s * .27), "TSU", font=f_, fill="#d4a72c", anchor="mm")
+    d.text((s * .5, s * .79), "1932", font=ImageFont.truetype(FONTS["timesb"][0], int(s * .1)), fill="#d4a72c", anchor="mm")
+    return im.resize((size, size), Image.LANCZOS)
+
+
+@ad("tsu/evening_468x60.gif", ["current", "local", "state"], "Talas State University",
+    "Talas State University evening courses: accounting, English, computer literacy. Enrolment until 1 November",
+    "go.html#tsu.ir.ad", start="2026-10-01", end="2026-11-01")
+def _(b):
+    seal = tsu_seal(48)
+    msgs = [("Вечерние курсы ТГУ", "Talas State University • Talas mamlekettik universiteti"),
+            ("Бухгалтерия • English • Компьютер", "3 месяца • занятия 18:30–20:30 • сертификат"),
+            ("Приём до 1 ноября", "ул. Университетская, 12, корпус 3 • тел. 2-31-40-17")]
+    for a, c in msgs:
+        f = b.frame("#13306b")
+        paste(f, seal, (6, 30), anchor="lm")
+        text(f, (64, 20), a, fit_font("georgiab", a, 396, 18), "#ffffff", anchor="lm")
+        text(f, (64, 43), c, fit_font("tahoma", c, 396, 12), "#d4c48c", anchor="lm")
+        rect(f, (0, 56, 467, 59), fill="#d4a72c")
+        b.add(f, 2400)
+
+
+@ad("tsu/evening_300x250.gif", ["current", "local", "state"], "Talas State University",
+    "Talas State University evening courses for adults. Enrolment until 1 November",
+    "go.html#tsu.ir.ad", start="2026-10-01", end="2026-11-01")
+def _(b):
+    cls = stock3("class.png", (300, 140), focus=(0.5, 0.5))
+    seal = tsu_seal(44)
+    for k in range(2):
+        f = b.frame("#13306b")
+        f.paste(cls, (0, 54))
+        paste(f, seal, (8, 5), anchor="lt")
+        text(f, (60, 16), "Talas State University", font("georgiab", 15), "#ffffff", anchor="lm")
+        text(f, (60, 36), "Вечерние курсы для взрослых", font("tahoma", 12), "#d4c48c", anchor="lm")
+        if k == 0:
+            items = ["Бухгалтерия и налоги", "English (A1–B2)", "Компьютерная грамотность"]
+            rect(f, (0, 194, 299, 249), fill="#13306b")
+            text(f, (14, 207), "• " + items[0] + "   • " + items[1], font("tahomab", 12), "#ffffff", anchor="lm")
+            text(f, (14, 226), "• " + items[2] + "   • 3 месяца", font("tahomab", 12), "#ffffff", anchor="lm")
+            text(f, (14, 243), "сертификат государственного образца", font("tahoma", 10), "#d4c48c", anchor="lm")
+        else:
+            rect(f, (0, 194, 299, 249), fill="#d4a72c")
+            text(f, (150, 212), "ПРИЁМ ДО 1 НОЯБРЯ", font("interblk", 20, for_text="П"), "#13306b", anchor="mm")
+            text(f, (150, 236), "корпус 3, каб. 104 • тел. 2-31-40-17", font("tahomab", 12), "#13306b", anchor="mm")
+        b.add(f, 3000)
+
+
+@ad("state/flu_vaccine_300x250.gif", ["state", "current"], "ISEZ Health Department",
+    "Free seasonal flu vaccination at your district polyclinic until 30 November",
+    "go.html#health.isez.ir.ad", start="2026-10-01", end="2026-11-30")
+def _(b):
+    vac = stock3("vaccine.png", (300, 140), focus=(0.5, 0.4))
+    crim = "#a5121e"
+    for k, (a, c) in enumerate((("Tumoogo karshy emdöö", "Вакцинация от гриппа"),
+                                ("БЕСПЛАТНО", "в поликлинике по месту жительства до 30 ноября"))):
+        f = b.frame("#ffffff")
+        rect(f, (0, 0, 299, 34), fill=crim)
+        text(f, (12, 17), "ISEZ • Департамент здравоохранения", font("interb", 12, for_text="Д"), "#ffffff", anchor="lm")
+        f.paste(vac, (0, 34))
+        text(f, (150, 196), a, fit_font("interx", a, 280, 24), crim, anchor="mm")
+        text(f, (150, 224), c, fit_font("inter", c, 284, 13), "#222", anchor="mm")
+        rect(f, (0, 243, 299, 249), fill=crim)
+        b.add(f, 3200)
+
+
+@ad("herald/delivery_468x60.gif", ["current", "local"], "The Talas Herald",
+    "The Talas Herald delivered to your door before 7am: print and digital, 90 som a month",
+    "https://talasherald.com/subscribe.html")
+def _(b):
+    paper = stock3("newspaper.png", (120, 60), focus=(0.5, 0.55))
+    msgs = [("The Talas Herald", "on your doormat before 7am"),
+            ("90 som a month", "home delivery + every story online"),
+            ("Subscribe today", "+996-39-2-44-10-97 • talasherald.com")]
+    for a, c in msgs:
+        f = b.frame("#faf8f3")
+        f.paste(paper, (0, 0))
+        text(f, (136, 22), a, fit_font("timesb", a, 230, 24), "#111", anchor="lm")
+        text(f, (136, 44), c, fit_font("georgia", c, 230, 12), "#555", anchor="lm")
+        rect(f, (376, 18, 460, 42), fill="#8c1d18")
+        text(f, (418, 30), "SUBSCRIBE", font("arialb", 11), "#ffffff", anchor="mm")
+        rect(f, (0, 0, 467, 59), outline="#8c1d18")
+        b.add(f, 2400)
+
+
 # ====================================================================== build
 
 def main(only=None):

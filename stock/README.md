@@ -42,3 +42,25 @@ Rejected: a satellite phone (seed 9114 came out as a router).
 | sat_phone2.png | 9216 | rugged handheld satellite phone (label blurred) |
 
 Also `iradone_logo.png`, `freeirad_logo.png`, `jilmay_logo.png` and `jilmay_emoji.png`, rasterized from the wiki's logo files.
+
+## Batch 3 (2026-10-15), in `b3/`
+
+Same settings. For the autumn 2026 Herald slots. Logos and lettering the model invented were smudged out (the player's shirt maker's mark and badge, the truck door decal, the router's name).
+
+| File | Prompt (abridged) |
+|---|---|
+| fans.png | supporters in white and crimson knitted scarves, stand at dusk (the ad crops out the flare: pyro is banned at Irad grounds) |
+| player.png | footballer celebrating in a plain white shirt with crimson sleeves |
+| coal_truck.png | old blue Soviet-era dump truck with coal in a village yard, autumn poplars |
+| coal_sacks.png | white sacks of coal, white background |
+| gas_flame.png | blue gas flame on an enamel stove, aluminium kettle |
+| radiator.png | cast-iron radiator under a frosted window, knitted socks |
+| cellar.png | burlap sacks of potatoes in a stone cellar, bare bulb |
+| potatoes.png | potatoes spilling from a burlap sack, white background |
+| router.png | plain white home wifi router, two antennas |
+| family_laptop.png | Central Asian family on a sofa round a laptop, carpet on the wall |
+| class.png | adult evening students in a university computer room |
+| vaccine.png | polyclinic nurse giving an elderly man a flu jab |
+| newspaper.png | folded newspaper on a doormat with a glass of tea |
+
+`attelkom_logo_color.png` is the green logo from attelkom-new, rasterized.
