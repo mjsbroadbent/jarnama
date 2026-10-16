@@ -595,7 +595,7 @@ def attelkom_logo(h):
 
 
 @ad("attelkom/4g_30gb_728x90.gif", ["current"], "Attelkom",
-    "Attelkom 4G: 30 GB for 30 days, 120 som", "go.html#attelkom.ir.ad")
+    "Attelkom 4G: 30 GB for 30 days, 120 som", "go.html#attelkom.net")
 def _(b):
     logo = attelkom_logo(0)
     frames = [("30 GB", "на 30 дней", "120 сом"), ("Безлимит", "мессенджеры и соцсети", "+0 сом"),
@@ -613,7 +613,7 @@ def _(b):
 
 
 @ad("attelkom/4g_family_300x250.gif", ["current"], "Attelkom",
-    "Attelkom Üy-bülö family plan: four SIMs, one bill", "go.html#attelkom.ir.ad")
+    "Attelkom Üy-bülö family plan: four SIMs, one bill", "go.html#attelkom.net")
 def _(b):
     fam = photo(S("family.png"), (300, 150), focus=(0.5, 0.35))
     logo = attelkom_logo(0)
@@ -628,7 +628,7 @@ def _(b):
 
 
 @ad("jilmay/delivery_300x250.gif", ["current", "local"], "Jılmay",
-    "Jılmay Cargo: order from abroad, delivered in Irad", "go.html#jilmay.ir.ad")
+    "Jılmay Cargo: order from abroad, delivered in Irad", "go.html#jilmay.com")
 def _(b):
     logo = Image.open(S("jilmay_logo.png")).convert("RGBA")
     logo = logo.crop(logo.getchannel("A").getbbox())
@@ -651,7 +651,7 @@ def _(b):
             text(f, (20, 160), big, fit_font("poppinsb", big, 260, 28), "#1a1a1a", anchor="lm")
             text(f, (20, 188), sub, font("poppins", 15, for_text=sub), "#333", anchor="lm")
             rect(f, (20, 206, 158, 234), fill=green, radius=14)
-            text(f, (89, 220), "jilmay.ir.ad", font("poppinsm", 13), "#ffffff", anchor="mm")
+            text(f, (89, 220), "jilmay.com", font("poppinsm", 13), "#ffffff", anchor="mm")
             b.add(f, 140 if j < 5 else 1500)
 
 
@@ -736,7 +736,7 @@ def cartoon_bottle(t, blink=False):
 
 
 @ad("jasil/tarragon_300x250.gif", ["current", "flash", "local"], "Jasil",
-    "Jasil tarragon soda, made in Nurzhan", "go.html#jasil.ir.ad")
+    "Jasil tarragon soda, made in Nurzhan", "go.html#jasil.com")
 def _(b):
     n = 12
     for i in range(n):
@@ -785,7 +785,7 @@ def _(b):
 
 
 @ad("kymyz/kok_jailoo_468x60.gif", ["local", "current"], "Kök-Jailoo Kymyz",
-    "Kök-Jailoo farm kymyz, fresh from the summer pastures, delivered in Talas", "go.html#jilmay.ir.ad")
+    "Kök-Jailoo farm kymyz, fresh from the summer pastures, delivered in Talas", "go.html#jilmay.com")
 def _(b):
     bot = trim(cutout(Image.open(S("kymyz_bottles.png")).convert("RGB")))
     for k, (a, c) in enumerate((("Свежий кымыз", "с летних пастбищ Кок-Жайлоо"),
@@ -860,7 +860,7 @@ def cut(name, thresh=228):
 
 
 @ad("akyel/autumn_auction_728x90.gif", ["flash", "local", "current"], "Akyel Syndicate",
-    "Akyel Syndicate autumn auction, Talas: palomino and golden Akyel colts", "go.html#akyel-syndicate.ir.ad")
+    "Akyel Syndicate autumn auction, Talas: palomino and golden Akyel colts", "go.html#akyel-syndicate.com")
 def _(b):
     horse = photo(S("akyel.png"), (150, 80), focus=(0.4, 0.5))
     lines = [("AUTUMN AUCTION", "Akyel colts and fillies • Talas, 24 October"),
@@ -903,7 +903,7 @@ def _(b):
 
 
 @ad("kyzyladyr/horse_fair_160x600.gif", ["current", "local", "state"], "Kyzyl-Adyr Horse Fair",
-    "Kyzyl-Adyr horse fair: at chabysh endurance race, ulak, kymyz, 26–27 September", "go.html#kyzyladyr.ir.ad")
+    "Kyzyl-Adyr horse fair: at chabysh endurance race, ulak, kymyz, 26–27 September", "go.html#kyzyladyr.id.gov")
 def _(b):
     pic = photo(S("race.png"), (160, 300), focus=(0.4, 0.5))
     for j in range(10):
@@ -962,7 +962,7 @@ def _(b):
 
 
 @ad("attelkom/vet_sms_300x250.gif", ["current", "local"], "Attelkom",
-    "Attelkom and Talasbank: pay the vet and buy feed by SMS, no bank trip", "go.html#attelkom.ir.ad")
+    "Attelkom and Talasbank: pay the vet and buy feed by SMS, no bank trip", "go.html#attelkom.net")
 def _(b):
     pic = photo(S("herder_phone.png"), (300, 150), focus=(0.5, 0.35))
     logo = Image.open(S("attelkom_logo_white.png")).convert("RGBA")
@@ -1002,7 +1002,7 @@ def _(b):
 
 
 @ad("atkuch/feed_468x60.gif", ["local", "current", "flash"], "At-Küch Feed",
-    "At-Küch horse feed, Nurzhan mill: oats and pellets delivered to the valleys", "go.html#jilmay.ir.ad")
+    "At-Küch horse feed, Nurzhan mill: oats and pellets delivered to the valleys", "go.html#jilmay.com")
 def _(b):
     sack = cut("feed.png", thresh=225)
     for k, (a, c) in enumerate((("AT-KÜCH", "Корм для лошадей • овёс, гранулы"),
@@ -1133,7 +1133,7 @@ def _(b):
 
 
 @ad("talasbank/app_300x250.gif", ["current"], "Talasbank",
-    "Talasbank app: dollar and som accounts in your pocket", "go.html#talasbank.ir.ad")
+    "Talasbank app: dollar and som accounts in your pocket", "go.html#talasbank.com")
 def _(b):
     man = photo(S("man_phone.png"), (150, 250), focus=(0.5, 0.3))
     for k, (bal, cur) in enumerate((("12 480", "сом"), ("1 486", "USD"))):
@@ -1152,7 +1152,7 @@ def _(b):
 
 
 @ad("bazarmarket/weekly_728x90.gif", ["current", "local"], "Bazar Market",
-    "Bazar Market supermarkets: this week's prices in Talas and Nurzhan", "go.html#bazarmarket.ir.ad")
+    "Bazar Market supermarkets: this week's prices in Talas and Nurzhan", "go.html#bazarmarket.com")
 def _(b):
     basket = cut("groceries.png")
     deals = [("Нан", "18 сом"), ("Сүт 1 л", "52 сом"), ("Алма 1 кг", "60 сом"), ("Кымыз", "95 сом")]
@@ -1367,7 +1367,7 @@ def stock3(name, size, focus=(0.5, 0.5)):
 
 @ad("tulpartalas/derby_728x90.gif", ["current", "local"], "Tulpar Talas FC",
     "Tulpar Talas: Kara-Ak derby, 31 October, NurGaz Stadium. Fan bus from Talas with ticket, 450 som",
-    "go.html#tulpartalas.ir.ad", start="2026-10-12", end="2026-10-31", colors=64)
+    "go.html#tulpartalas.com", start="2026-10-12", end="2026-10-31", colors=64)
 def _(b):
     crim, dark = "#a3112b", "#6e0a1c"
     crest = crest_tulpar(64)
@@ -1396,7 +1396,7 @@ def _(b):
 
 @ad("tulpartalas/derby_300x250.gif", ["current", "local"], "Tulpar Talas FC",
     "Tulpar Talas: biz menen Nurzhanga! Away tickets and fan bus for the 31 October derby",
-    "go.html#tulpartalas.ir.ad", start="2026-10-12", end="2026-10-31")
+    "go.html#tulpartalas.com", start="2026-10-12", end="2026-10-31")
 def _(b):
     crim = "#a3112b"
     pl = stock3("player.png", (300, 160), focus=(0.5, 0.3))
@@ -1420,7 +1420,7 @@ def _(b):
 
 @ad("komur/coal_468x60.gif", ["local", "current", "flash"], "Kömür-Servis",
     "Tash-Kömür coal delivered in Talas: 1 tonne 1 900 som. 0 (555) 41-22-90",
-    "go.html#komur-servis.ir.ad", colors=64)
+    "go.html#komur-servis.com", colors=64)
 def _(b):
     sacks = trim(photo(S("b3/coal_sacks.png"), (240, 180), fit="contain", remove_white=True))
     for k in range(6):
@@ -1442,7 +1442,7 @@ def _(b):
 
 @ad("komur/coal_300x250.gif", ["local", "current", "flash"], "Kömür-Servis",
     "Coal delivered to your yard: Tash-Kömür coal, from 110 som a sack",
-    "go.html#komur-servis.ir.ad", colors=128)
+    "go.html#komur-servis.com", colors=128)
 def _(b):
     truck = stock3("coal_truck.png", (300, 150), focus=(0.5, 0.5))
     for k in range(4):
@@ -1467,7 +1467,7 @@ def _(b):
 
 @ad("nurgaz/heating_728x90.gif", ["current", "state", "local"], "NurGaz",
     "NurGaz: the heating season has begun. Pay for gas by the 25th at any Talasbank branch or in the Talasbank app",
-    "go.html#nurgaz.ir.ad", start="2026-10-01", end="2027-03-31")
+    "go.html#nurgaz.com", start="2026-10-01", end="2027-03-31")
 def _(b):
     blue, deep = "#0b5aa6", "#073c70"
     flame = stock3("gas_flame.png", (230, 90), focus=(0.45, 0.55))
@@ -1496,7 +1496,7 @@ def _(b):
 
 @ad("kartoshka/storage_468x60.gif", ["local", "current", "flash"], "Talas North Cold Store",
     "Store your potatoes until spring: cellars at Talas North, 2 som per kg a month",
-    "go.html#talas-sklad.ir.ad", start="2026-09-20", end="2026-12-15", colors=96)
+    "go.html#talas-sklad.com", start="2026-09-20", end="2026-12-15", colors=96)
 def _(b):
     cel = stock3("cellar.png", (150, 60), focus=(0.5, 0.6))
     pot = trim(photo(S("b3/potatoes.png"), (200, 150), fit="contain", remove_white=True))
@@ -1513,7 +1513,7 @@ def _(b):
 
 
 @ad("attelkom/home100_468x60.gif", ["current"], "Attelkom",
-    "Attelkom home internet up to 100 Mbit/s* (*central district of Talas)", "go.html#attelkom.ir.ad")
+    "Attelkom home internet up to 100 Mbit/s* (*central district of Talas)", "go.html#attelkom.net")
 def _(b):
     logo = Image.open(S("attelkom_logo_color.png")).convert("RGBA")
     r = Image.open(S("b3/router.png")).convert("RGB").crop((240, 40, 900, 730))
@@ -1535,7 +1535,7 @@ def _(b):
 
 
 @ad("attelkom/home100_300x250.gif", ["current"], "Attelkom",
-    "Attelkom home internet: up to 100 Mbit/s*, connection free until 30 November", "go.html#attelkom.ir.ad")
+    "Attelkom home internet: up to 100 Mbit/s*, connection free until 30 November", "go.html#attelkom.net")
 def _(b):
     fam = stock3("family_laptop.png", (300, 150), focus=(0.5, 0.4))
     logo = attelkom_logo(0)
@@ -1602,7 +1602,7 @@ def _(b):
 
 @ad("state/flu_vaccine_300x250.gif", ["state", "current"], "ISEZ Health Department",
     "Free seasonal flu vaccination at your district polyclinic until 30 November",
-    "go.html#health.isez.ir.ad", start="2026-10-01", end="2026-11-30")
+    "go.html#health.id.gov", start="2026-10-01", end="2026-11-30")
 def _(b):
     vac = stock3("vaccine.png", (300, 140), focus=(0.5, 0.4))
     crim = "#a5121e"
