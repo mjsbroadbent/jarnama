@@ -353,7 +353,7 @@ def _(b):
 # ====================================================================== offnet
 
 @ad("offnet/tulparcoin_300x250.gif", ["offnet", "current"], "Tulpar",
-    "Tulparcoin: free TLPR for every Iradi number, in the Tulpar app", "go.html#tulpar.app")
+    "Tulparcoin: free TLPR for every Iradi number, in the Tulpar app", "go.html#tulparapp.com")
 def _(b):
     logo = Image.open(os.path.join(STOCK, "tulpar_icon.png")).convert("RGBA") if os.path.exists(S("tulpar_icon.png")) else None
     for i in range(10):
