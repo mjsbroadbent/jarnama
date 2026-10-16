@@ -78,18 +78,15 @@
    "status": "partial"
   },
   {
+   "id": "steppecrawl",
+   "url": "https://steppecrawl.online/",
+   "status": "ok"
+  },
+  {
    "id": "kuble",
    "url": "https://kublesoft.net/",
    "old": [
     "kuble.ir.ad"
-   ],
-   "status": "ok"
-  },
-  {
-   "id": "steppecrawl",
-   "url": "https://steppecrawl.online/",
-   "old": [
-    "spisio.github.io/steppe-crawl"
    ],
    "status": "ok"
   },
