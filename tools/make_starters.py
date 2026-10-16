@@ -1560,7 +1560,7 @@ def tsu_seal(size):
 
 @ad("tsu/evening_468x60.gif", ["current", "local", "state"], "Talas State University",
     "Talas State University evening courses: accounting, English, computer literacy. Enrolment until 1 November",
-    "go.html#tsu.ir.ad", start="2026-10-01", end="2026-11-01")
+    "go.html#talasuniversity.org", start="2026-10-01", end="2026-11-01")
 def _(b):
     seal = tsu_seal(48)
     msgs = [("Вечерние курсы ТГУ", "Talas State University • Talas mamlekettik universiteti"),
@@ -1577,7 +1577,7 @@ def _(b):
 
 @ad("tsu/evening_300x250.gif", ["current", "local", "state"], "Talas State University",
     "Talas State University evening courses for adults. Enrolment until 1 November",
-    "go.html#tsu.ir.ad", start="2026-10-01", end="2026-11-01")
+    "go.html#talasuniversity.org", start="2026-10-01", end="2026-11-01")
 def _(b):
     cls = stock3("class.png", (300, 140), focus=(0.5, 0.5))
     seal = tsu_seal(44)
