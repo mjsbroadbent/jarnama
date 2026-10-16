@@ -29,7 +29,7 @@ The standard IAB sizes of the late 1990s and 2000s: 468×60 full banner, 728×90
 - `stock/` holds the AI product photos the ads use (see `stock/README.md`).
 - `index.html` is the in-world landing page of ads.attelkom.net (Attelkom site style) with a partner login that fills itself in (demo_partner) and goes to `gallery.html`, the publisher guide, code builder and ad gallery. Images in `img/` (logo from attelkom-new, AI hero image).
 - `preview.html` shows the whole inventory with a theme filter.
-- Ad links point to `go.html#domain`, an in-universe "advertiser's site cannot be reached" page, so no ad ever sends a reader to a real domain.
+- Ad links point to `go.html#domain`. If the domain is one of the project's own live Irad sites (listed in `sites.json`) the reader is sent there; every other advertiser domain (many are real domains owned by strangers) gets the in-universe "advertiser's site cannot be reached" page, so no ad ever sends a reader to a domain outside the project.
 - Fonts: the Windows fonts real banners used are not available here. Liberation Sans/Serif stand in for Arial/Times, DejaVu Sans (Condensed) for Verdana/Tahoma, TeX Gyre Heros Cn Bold for Impact (Latin only; Cyrillic falls back to DejaVu).
 - Keep files small the way real networks did: about 150 KB at most, fewer frames for photo ads.
 
