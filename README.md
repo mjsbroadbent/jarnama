@@ -40,4 +40,6 @@ The standard IAB sizes of the late 1990s and 2000s: 468×60 full banner, 728×90
 | IradOne Online | its own `site.js` reads `campaigns.json` for its `.ad-slot` boxes (leaderboard = 728×90, box = 300×250), mixed with IradOne's house ads | `current state` |
 | Talas Herald | `serve.js` in the page template; slots on the front page, section pages and under every story | `current local state` |
 | Jarysh | `serve.js` in the page template; a 728×90 slot above the footer, next to Jarysh's own house ads | `current local sketchy` |
+
+Jarysh's own animated ads (Aigyr, Steppe Gaming, Texas Hat House, The Pink Filly, Chongtor Power) are also in the pool, as WebP files copied from `jarysh/img/ads/` (rendered there by `tools/render_ads.py`); re-copy them if Jarysh redraws them.
 | Kartalar (Attelkom Maps) | `serve.js`; a 300×250 slot at the foot of every place panel, filled by `window.jarnamaFill()` when the panel opens | `current local state` |

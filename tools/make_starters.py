@@ -1644,26 +1644,9 @@ def _(b):
 
 # ====================================================================== Jarysh / Aigyr (jarysh.com art)
 
-def jarysh_still(name):
-    return Image.open(S("jarysh/" + name)).convert("RGB")
-
-
-@ad("aigyr/gold_728x90.gif", ["current", "local"], "Aigyr Brewing Company",
-    "Aigyr Gold: Ride Hard. Drink Aigyr.", "go.html#jarysh.com/aigyr.html", colors=200)
-def _(b):
-    f = b.frame("#000000"); f.paste(jarysh_still("aigyr-728.jpg"), (0, 0)); b.add(f, 5000)
-
-
-@ad("aigyr/gold_300x250.gif", ["current", "local"], "Aigyr Brewing Company",
-    "Aigyr Gold: official beer of Aigyr Ulak Nights", "go.html#jarysh.com/aigyr.html", colors=200)
-def _(b):
-    f = b.frame("#000000"); f.paste(jarysh_still("aigyr-300.jpg"), (0, 0)); b.add(f, 5000)
-
-
-@ad("jarysh/steppe_gaming_300x250.gif", ["current", "sketchy"], "Steppe Gaming N.V.",
-    "Steppe Gaming: 200% bonus on your first ulak bet", "go.html#bet.jarysh.com", colors=200)
-def _(b):
-    f = b.frame("#000000"); f.paste(jarysh_still("steppe-300.jpg"), (0, 0)); b.add(f, 5000)
+# Jarysh's own animated ads (aigyr, steppe gaming, texas hat house, pink filly, chongtor power) are
+# copied as WebP from jarysh/img/ads/ (made there by tools/render_ads.py) and listed in
+# campaigns.json by hand; only the Ulak Nights banners are drawn here.
 
 
 @ad("jarysh/ulak_nights_728x90.gif", ["current", "local"], "Jarysh Entertainment Group",

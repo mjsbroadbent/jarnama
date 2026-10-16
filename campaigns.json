@@ -15,7 +15,7 @@
     },
     {
       "advertiser": "Aigyr Brewing Company",
-      "file": "ads/aigyr/gold_300x250.gif",
+      "file": "ads/aigyr/gold_300x250.webp",
       "size": "300x250",
       "themes": [
         "current",
@@ -27,14 +27,14 @@
     },
     {
       "advertiser": "Aigyr Brewing Company",
-      "file": "ads/aigyr/gold_728x90.gif",
+      "file": "ads/aigyr/gold_728x90.webp",
       "size": "728x90",
       "themes": [
         "current",
         "local"
       ],
       "link": "go.html#jarysh.com/aigyr.html",
-      "alt": "Aigyr Gold: Ride Hard. Drink Aigyr.",
+      "alt": "Aigyr Lager. Ride Hard. Drink Aigyr.",
       "active": true
     },
     {
@@ -308,15 +308,51 @@
       "active": true
     },
     {
+      "advertiser": "Chongtor Power",
+      "file": "ads/jarysh/chongtor_power_300x250.webp",
+      "size": "300x250",
+      "themes": [
+        "current",
+        "sketchy"
+      ],
+      "link": "go.html#chongtorpower.com",
+      "alt": "Chongtor Power herbal capsules: feel like a stallion, plain packaging, cash on delivery",
+      "active": true
+    },
+    {
+      "advertiser": "The Pink Filly",
+      "file": "ads/jarysh/pink_filly_300x250.webp",
+      "size": "300x250",
+      "themes": [
+        "current",
+        "sketchy"
+      ],
+      "link": "go.html#pinkfilly.club",
+      "alt": "The Pink Filly gentlemen's club, Chuy Avenue: free entry till midnight with an Ulak Nights ticket",
+      "active": true
+    },
+    {
       "advertiser": "Steppe Gaming N.V.",
-      "file": "ads/jarysh/steppe_gaming_300x250.gif",
+      "file": "ads/jarysh/steppe_gaming_300x250.webp",
       "size": "300x250",
       "themes": [
         "current",
         "sketchy"
       ],
       "link": "go.html#bet.jarysh.com",
-      "alt": "Steppe Gaming: 200% bonus on your first ulak bet",
+      "alt": "Steppe Gaming jackpot: 200% bonus up to 5,000 som and 50 free spins",
+      "active": true
+    },
+    {
+      "advertiser": "Texas Hat House",
+      "file": "ads/jarysh/texas_hat_house_300x250.webp",
+      "size": "300x250",
+      "themes": [
+        "current",
+        "local"
+      ],
+      "link": "go.html#texashathouse.com",
+      "alt": "Texas Hat House, Chuy Avenue, Talas: -30% on boots, free hat band with an Ulak Nights ticket",
       "active": true
     },
     {
