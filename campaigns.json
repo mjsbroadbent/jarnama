@@ -14,6 +14,30 @@
       "active": true
     },
     {
+      "advertiser": "Aigyr Brewing Company",
+      "file": "ads/aigyr/gold_300x250.gif",
+      "size": "300x250",
+      "themes": [
+        "current",
+        "local"
+      ],
+      "link": "go.html#jarysh.com/aigyr.html",
+      "alt": "Aigyr Gold: official beer of Aigyr Ulak Nights",
+      "active": true
+    },
+    {
+      "advertiser": "Aigyr Brewing Company",
+      "file": "ads/aigyr/gold_728x90.gif",
+      "size": "728x90",
+      "themes": [
+        "current",
+        "local"
+      ],
+      "link": "go.html#jarysh.com/aigyr.html",
+      "alt": "Aigyr Gold: Ride Hard. Drink Aigyr.",
+      "active": true
+    },
+    {
       "advertiser": "Ak-Örgöö Residences",
       "file": "ads/akorgoo/city_240x400.gif",
       "size": "240x400",
@@ -281,6 +305,42 @@
       ],
       "link": "go.html#iradone.com",
       "alt": "Ulak League derby, Kara vs Ak, live on IradOne Sport",
+      "active": true
+    },
+    {
+      "advertiser": "Steppe Gaming N.V.",
+      "file": "ads/jarysh/steppe_gaming_300x250.gif",
+      "size": "300x250",
+      "themes": [
+        "current",
+        "sketchy"
+      ],
+      "link": "go.html#bet.jarysh.com",
+      "alt": "Steppe Gaming: 200% bonus on your first ulak bet",
+      "active": true
+    },
+    {
+      "advertiser": "Jarysh Entertainment Group",
+      "file": "ads/jarysh/ulak_nights_300x250.gif",
+      "size": "300x250",
+      "themes": [
+        "current",
+        "local"
+      ],
+      "link": "go.html#jarysh.com/ulak-nights.html",
+      "alt": "Aigyr Ulak Nights at the State Hippodrome: tickets from 25 som",
+      "active": true
+    },
+    {
+      "advertiser": "Jarysh Entertainment Group",
+      "file": "ads/jarysh/ulak_nights_728x90.gif",
+      "size": "728x90",
+      "themes": [
+        "current",
+        "local"
+      ],
+      "link": "go.html#jarysh.com/ulak-nights.html",
+      "alt": "Aigyr Ulak Nights: every league Saturday at the State Hippodrome, tickets from 25 som",
       "active": true
     },
     {

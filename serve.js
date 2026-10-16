@@ -2,6 +2,7 @@
    <script src="https://ads.attelkom.net/serve.js" data-theme="current state" defer></script>
    <div class="jarnama" data-size="728x90"></div>
    <div class="jarnama" data-size="240x400" data-theme="sketchy"></div>   (a slot can override the theme)
+   Slots added after load are filled by window.jarnamaFill().
    Each slot gets a random active ad of its size that fits the slot's themes (see fits() below); empty slots stay hidden.
    Themes are listed in THEMES.md. */
 (function () {
@@ -25,8 +26,9 @@
   }
   function today() { return new Date().toISOString().slice(0, 10); }
   function fill(ads) {
-    var slots = document.querySelectorAll(".jarnama[data-size]");
+    var slots = document.querySelectorAll(".jarnama[data-size]:not([data-filled])");
     Array.prototype.forEach.call(slots, function (slot) {
+      slot.setAttribute("data-filled", "");
       var size = slot.getAttribute("data-size"), t = today();
       var want = slot.getAttribute("data-theme") ? slot.getAttribute("data-theme").split(/\s+/) : pageThemes;
       var pool = ads.filter(function (a) {
@@ -45,6 +47,9 @@
       slot.style.display = "";
     });
   }
+  // Pages that add slots later (e.g. the Kartalar place panel) call window.jarnamaFill().
+  var loaded = null;
+  window.jarnamaFill = function () { if (loaded) fill(loaded); };
   fetch(base + "campaigns.json", { cache: "no-cache" }).then(function (r) { return r.json(); })
-    .then(function (d) { fill(d.ads || []); }).catch(function () {});
+    .then(function (d) { loaded = d.ads || []; fill(loaded); }).catch(function () {});
 })();

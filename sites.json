@@ -1,0 +1,118 @@
+{
+ "updated": "2026-10-16",
+ "sites": [
+  {
+   "id": "attelkom",
+   "url": "https://attelkom.net/",
+   "status": "ok"
+  },
+  {
+   "id": "attelkom-old",
+   "url": "https://www.attelkom.net/",
+   "status": "old-server"
+  },
+  {
+   "id": "kartalar",
+   "url": "https://maps.attelkom.net/",
+   "status": "ok"
+  },
+  {
+   "id": "jarnama",
+   "url": "https://ads.attelkom.net/",
+   "status": "ok"
+  },
+  {
+   "id": "iradone",
+   "url": "https://iradone.com/",
+   "status": "ok"
+  },
+  {
+   "id": "herald",
+   "url": "https://talasherald.com/",
+   "old": [
+    "talasherald.ir.ad"
+   ],
+   "status": "ok"
+  },
+  {
+   "id": "times",
+   "url": "https://mjsbroadbent.github.io/IradTimes/",
+   "status": "blocked"
+  },
+  {
+   "id": "wiki",
+   "url": "https://irad.wiki/",
+   "status": "ok"
+  },
+  {
+   "id": "tsu",
+   "url": "https://talasuniversity.org/",
+   "old": [
+    "tsu.edu.ir.ad"
+   ],
+   "status": "ok"
+  },
+  {
+   "id": "church",
+   "url": "https://mjsbroadbent.github.io/churchofsaintjanyl/",
+   "status": "foreign-host"
+  },
+  {
+   "id": "palace",
+   "url": "https://iradpalaceof.art/",
+   "status": "ok"
+  },
+  {
+   "id": "tulpar",
+   "url": "https://tulparapp.com/",
+   "status": "partial"
+  },
+  {
+   "id": "jilmay",
+   "url": "https://jilmay.com/",
+   "status": "ok"
+  },
+  {
+   "id": "jarysh",
+   "url": "https://jarysh.com/",
+   "status": "partial"
+  },
+  {
+   "id": "kuble",
+   "url": "https://kublesoft.net/",
+   "old": [
+    "kuble.ir.ad"
+   ],
+   "status": "ok"
+  },
+  {
+   "id": "arsha",
+   "url": "https://arshakitep.com/",
+   "old": [
+    "spisio.github.io/arsha-books"
+   ],
+   "status": "ok"
+  },
+  {
+   "id": "filmsociety",
+   "url": "https://iradfilmsociety.neocities.org/",
+   "status": "foreign-host"
+  },
+  {
+   "id": "dastorkon",
+   "url": "https://spisio.github.io/dastorkon/",
+   "status": "foreign-host"
+  },
+  {
+   "id": "freeirad",
+   "url": "https://freeirad.org/",
+   "status": "blocked"
+  },
+  {
+   "id": "bet-jarysh",
+   "url": "https://bet.jarysh.com/",
+   "status": "blocked",
+   "live": false
+  }
+ ]
+}

@@ -13,6 +13,7 @@ Out of world, this repo holds every fake banner ad for those sites in one place,
 | `ads/<advertiser>/` | The banners for one advertiser: GIFs, PNGs or self-contained HTML5 banners, named by size (`728x90.gif`, `300x250.html`) |
 | `campaigns.json` | Every ad: advertiser, file, size, themes, link, start and end dates, active flag |
 | `THEMES.md` | The ad themes (era looks and advertiser types) a site asks for |
+| `go.html` | Where every ad click lands: opens the advertiser's site when it is live (`sites.json`), Attelkom's restricted-resources notice when it is blocked, and "site unavailable" otherwise. `sites.json` is copied from the irad-persona skill's site registry by `python3 tools/sync_sites.py`. |
 | `serve.js` | Included by each site. Fills `<div class="jarnama" data-size="728x90"></div>` slots with a random ad of the page's (or slot's) theme |
 | `research/` | Notes on real Central Asian advertising (style, sizes, offers, languages) and the house style guide for Iradi ads |
 | `tools/` | Scripts that build the animated GIFs |
@@ -38,3 +39,5 @@ The standard IAB sizes of the late 1990s and 2000s: 468×60 full banner, 728×90
 |---|---|---|
 | IradOne Online | its own `site.js` reads `campaigns.json` for its `.ad-slot` boxes (leaderboard = 728×90, box = 300×250), mixed with IradOne's house ads | `current state` |
 | Talas Herald | `serve.js` in the page template; slots on the front page, section pages and under every story | `current local state` |
+| Jarysh | `serve.js` in the page template; a 728×90 slot above the footer, next to Jarysh's own house ads | `current local sketchy` |
+| Kartalar (Attelkom Maps) | `serve.js`; a 300×250 slot at the foot of every place panel, filled by `window.jarnamaFill()` when the panel opens | `current local state` |

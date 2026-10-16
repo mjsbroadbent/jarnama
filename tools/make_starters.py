@@ -1642,6 +1642,69 @@ def _(b):
 
 # ====================================================================== build
 
+# ====================================================================== Jarysh / Aigyr (jarysh.com art)
+
+def jarysh_still(name):
+    return Image.open(S("jarysh/" + name)).convert("RGB")
+
+
+@ad("aigyr/gold_728x90.gif", ["current", "local"], "Aigyr Brewing Company",
+    "Aigyr Gold: Ride Hard. Drink Aigyr.", "go.html#jarysh.com/aigyr.html", colors=200)
+def _(b):
+    f = b.frame("#000000"); f.paste(jarysh_still("aigyr-728.jpg"), (0, 0)); b.add(f, 5000)
+
+
+@ad("aigyr/gold_300x250.gif", ["current", "local"], "Aigyr Brewing Company",
+    "Aigyr Gold: official beer of Aigyr Ulak Nights", "go.html#jarysh.com/aigyr.html", colors=200)
+def _(b):
+    f = b.frame("#000000"); f.paste(jarysh_still("aigyr-300.jpg"), (0, 0)); b.add(f, 5000)
+
+
+@ad("jarysh/steppe_gaming_300x250.gif", ["current", "sketchy"], "Steppe Gaming N.V.",
+    "Steppe Gaming: 200% bonus on your first ulak bet", "go.html#bet.jarysh.com", colors=200)
+def _(b):
+    f = b.frame("#000000"); f.paste(jarysh_still("steppe-300.jpg"), (0, 0)); b.add(f, 5000)
+
+
+@ad("jarysh/ulak_nights_728x90.gif", ["current", "local"], "Jarysh Entertainment Group",
+    "Aigyr Ulak Nights: every league Saturday at the State Hippodrome, tickets from 25 som",
+    "go.html#jarysh.com/ulak-nights.html", colors=128)
+def _(b):
+    crowd = photo(S("jarysh/crowd.jpg"), (300, 90), focus=(0.5, 0.45))
+    gold, black = "#f2c230", "#0c0c0c"
+    frames = [("AIGYR ULAK NIGHTS", "every league Saturday · State Hippodrome"),
+              ("ULAK. BEER. GIRLS.", "afterparty at Club Doran · buses from midnight"),
+              ("TICKETS FROM 25 SOM", "jarysh.com · Aigyr Deck VIP 140 som")]
+    for k, (big, small) in enumerate(frames):
+        f = b.frame(black)
+        f.paste(crowd, (0, 0))
+        for i in range(60):
+            rect(f, (240 + i, 0, 241 + i, 89), fill=mix(f.getpixel((240 + i, 45)), black, i / 60))
+        text(f, (318, 34), big, fit_font("impact", big, 290, 34), gold, anchor="lm")
+        text(f, (318, 66), small, fit_font("arialb", small, 300, 14), "#ffffff", anchor="lm")
+        rect(f, (628, 26, 716, 64), fill=gold if k % 2 == 0 else "#e0218a", radius=4)
+        text(f, (672, 45), "BUY", font("impact", 24), black, anchor="mm")
+        b.add(f, 2000)
+
+
+@ad("jarysh/ulak_nights_300x250.gif", ["current", "local"], "Jarysh Entertainment Group",
+    "Aigyr Ulak Nights at the State Hippodrome: tickets from 25 som", "go.html#jarysh.com/ulak-nights.html", colors=128)
+def _(b):
+    deck = photo(S("jarysh/deck.jpg"), (300, 160), focus=(0.5, 0.4))
+    gold, black = "#f2c230", "#0c0c0c"
+    for k, (big, small) in enumerate((("SATURDAY NIGHT", "ulak under the lights"), ("25 SOM", "general · VIP deck 140"))):
+        f = b.frame(black)
+        f.paste(deck, (0, 0))
+        rect(f, (0, 0, 299, 22), fill=gold)
+        text(f, (150, 11), "AIGYR ULAK NIGHTS", font("impact", 16), black, anchor="mm")
+        text(f, (16, 190), big, fit_font("impact", big, 268, 36), gold, anchor="lm")
+        text(f, (16, 222), small, fit_font("arialb", small, 180, 14), "#ffffff", anchor="lm")
+        rect(f, (204, 208, 288, 238), fill="#e0218a" if k else gold, radius=4)
+        text(f, (246, 223), "TICKETS", font("impact", 15), black, anchor="mm")
+        b.add(f, 2400)
+
+
+
 def main(only=None):
     camp_path = os.path.join(ROOT, "campaigns.json")
     camp = json.load(open(camp_path)) if os.path.exists(camp_path) else {"ads": []}
