@@ -590,8 +590,11 @@ def _(b):
 
 # ====================================================================== current (2015-now)
 
-def attelkom_logo(h):
-    return Image.open(os.path.join(STOCK, "attelkom_logo_white.png")).convert("RGBA")
+def attelkom_logo(h, color=False):
+    """The 2019 site logo (attelkom-new/img/logo-2019*.svg, rendered to PNG). Pre-2019 banners
+    use stock/attelkom_logo_*.png (the original emblem) or attelkom_mark()."""
+    name = "attelkom_logo_2019_color.png" if color else "attelkom_logo_2019_white.png"
+    return Image.open(os.path.join(STOCK, name)).convert("RGBA")
 
 
 @ad("attelkom/4g_30gb_728x90.gif", ["current"], "Attelkom",
@@ -965,7 +968,7 @@ def _(b):
     "Attelkom and Talasbank: pay the vet and buy feed by SMS, no bank trip", "go.html#attelkom.net")
 def _(b):
     pic = photo(S("herder_phone.png"), (300, 150), focus=(0.5, 0.35))
-    logo = Image.open(S("attelkom_logo_white.png")).convert("RGBA")
+    logo = attelkom_logo(0)
     steps = ["*555*7#", "Vet: 600 som", "✓ Paid"]
     for k, s in enumerate(steps):
         f = b.frame("#1f8f2b")
@@ -1515,7 +1518,7 @@ def _(b):
 @ad("attelkom/home100_468x60.gif", ["current"], "Attelkom",
     "Attelkom home internet up to 100 Mbit/s* (*central district of Talas)", "go.html#attelkom.net")
 def _(b):
-    logo = Image.open(S("attelkom_logo_color.png")).convert("RGBA")
+    logo = attelkom_logo(0, color=True)
     r = Image.open(S("b3/router.png")).convert("RGB").crop((240, 40, 900, 730))
     r = ImageOps.autocontrast(r, cutoff=(0, 3))  # lift the grey studio sweep to white
     m = Image.new("L", r.size, 0)
