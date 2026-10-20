@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-16",
+ "updated": "2026-10-20",
  "sites": [
   {
    "id": "attelkom",
@@ -25,6 +25,16 @@
    "id": "iradone",
    "url": "https://iradone.com/",
    "status": "ok"
+  },
+  {
+   "id": "iradgov",
+   "url": "https://iradgov.org/",
+   "status": "ok"
+  },
+  {
+   "id": "eirad",
+   "url": "https://e-irad.org/",
+   "status": "partial"
   },
   {
    "id": "herald",
@@ -73,6 +83,11 @@
    "status": "ok"
   },
   {
+   "id": "kochaudio",
+   "url": "https://kochaudio.online/",
+   "status": "ok"
+  },
+  {
    "id": "jarysh",
    "url": "https://jarysh.com/",
    "status": "partial"
@@ -109,6 +124,11 @@
    "old": [
     "spisio.github.io/dastorkon"
    ],
+   "status": "ok"
+  },
+  {
+   "id": "talas-sut",
+   "url": "https://talas-sut.com/",
    "status": "ok"
   },
   {
