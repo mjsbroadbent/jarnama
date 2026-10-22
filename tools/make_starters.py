@@ -1480,15 +1480,10 @@ def _(b):
     "NurGaz: the heating season has begun. Pay for gas by the 25th at any Talasbank branch or in the Talasbank app",
     "go.html#nurgaz.com", start="2026-10-01", end="2027-03-31")
 def _(b):
-    blue, deep = "#0b5aa6", "#073c70"
+    blue, deep = "#141414", "#000000"                # NurGaz black, with its orange
     flame = stock3("gas_flame.png", (230, 90), focus=(0.45, 0.55))
     rad = stock3("radiator.png", (230, 90), focus=(0.5, 0.5))
-    def logo(f, x, y):
-        d = ImageDraw.Draw(f)
-        d.ellipse((x, y, x + 34, y + 34), fill="#ffffff")
-        d.polygon([(x + 17, y + 5), (x + 26, y + 20), (x + 17, y + 29), (x + 8, y + 20)], fill="#f28c00")
-        d.polygon([(x + 17, y + 14), (x + 21, y + 22), (x + 17, y + 27), (x + 13, y + 22)], fill="#0b5aa6")
-        text(f, (x + 42, y + 17), "NurGaz", font("interx", 22), "#ffffff", anchor="lm")
+    nlogo = brand("NurGaz_logo_white.png")
     frames = [(flame, "Отопительный сезон начался", "Isytuu mezgili bashtaldy — gazdy ubaktyluu tölöñüz"),
               (rad, "Оплатите газ до 25 числа", "Talasbank • приложение Talasbank • кассы NurGaz"),
               (flame, "Утечка газа? Звоните 104", "круглосуточно, бесплатно")]
@@ -1497,11 +1492,12 @@ def _(b):
         f.paste(img, (0, 0))
         for i in range(40):
             rect(f, (190 + i, 0, 191 + i, 89), fill=mix(f.getpixel((190 + i, 45)), blue, i / 40))
-        logo(f, 244, 8)
-        text(f, (244, 56), a, fit_font("interb", a, 340, 22), "#ffffff", anchor="lm")
-        text(f, (244, 78), c, fit_font("inter", c, 470, 13), "#cfe3f7", anchor="lm")
-        rect(f, (600, 18, 716, 46), fill="#f28c00", radius=3)
-        text(f, (658, 32), "Оплатить", font("interb", 14, for_text="О"), "#ffffff", anchor="mm")
+        paste(f, nlogo, (244, 10), scale_h=26)
+        rect(f, (244, 40, 716, 42), fill="#f28c00")
+        text(f, (244, 60), a, fit_font("interb", a, 340, 20), "#ffffff", anchor="lm")
+        text(f, (244, 80), c, fit_font("inter", c, 470, 12), "#d6d6d6", anchor="lm")
+        rect(f, (600, 8, 716, 34), fill="#f28c00", radius=3)
+        text(f, (658, 21), "Оплатить", font("interb", 14, for_text="О"), "#ffffff", anchor="mm")
         b.add(f, 2800)
 
 
