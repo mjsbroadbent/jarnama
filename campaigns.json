@@ -214,6 +214,17 @@
       "active": true
     },
     {
+      "advertiser": "Bank of Irad",
+      "file": "ads/bankofirad/banknote_300x250.gif",
+      "size": "300x250",
+      "themes": [
+        "state"
+      ],
+      "link": "go.html#iradgov.org",
+      "alt": "Bank of Irad: know your som, check the tündük watermark and the ram's-horn border",
+      "active": true
+    },
+    {
       "advertiser": "Bazar Market",
       "file": "ads/bazarmarket/weekly_728x90.gif",
       "size": "728x90",
@@ -223,6 +234,29 @@
       ],
       "link": "go.html#bazarmarket.com",
       "alt": "Bazar Market supermarkets: this week's prices in Talas and Nurzhan",
+      "active": true
+    },
+    {
+      "advertiser": "Bereke",
+      "file": "ads/bereke/pomegranate_300x250.gif",
+      "size": "300x250",
+      "themes": [
+        "current"
+      ],
+      "link": "go.html#bereke.com",
+      "alt": "Bereke: pomegranate season, fresh from the Fergana valley",
+      "active": true
+    },
+    {
+      "advertiser": "Bereke",
+      "file": "ads/bereke/weekly_728x90.gif",
+      "size": "728x90",
+      "themes": [
+        "current",
+        "local"
+      ],
+      "link": "go.html#bereke.com",
+      "alt": "Bereke supermarkets: this week's prices, 76 stores in Talas",
       "active": true
     },
     {
@@ -269,6 +303,30 @@
       ],
       "link": "go.html#webring.ir.ad",
       "alt": "Irad Webring: next site",
+      "active": true
+    },
+    {
+      "advertiser": "Iradenergo",
+      "file": "ads/iradenergo/pay_728x90.gif",
+      "size": "728x90",
+      "themes": [
+        "state",
+        "current"
+      ],
+      "link": "go.html#iradenergo.ir.ad",
+      "alt": "Talas and Nurzhan Electric Networks: pay your electricity bill at the post office or in the bank app",
+      "active": true
+    },
+    {
+      "advertiser": "Iradenergo",
+      "file": "ads/iradenergo/winter_300x250.gif",
+      "size": "300x250",
+      "themes": [
+        "state",
+        "current"
+      ],
+      "link": "go.html#iradenergo.ir.ad",
+      "alt": "Iradenergo: winter is coming, save power from 18:00 to 22:00",
       "active": true
     },
     {
@@ -595,6 +653,31 @@
       "active": true
     },
     {
+      "advertiser": "Irad Pochtasy",
+      "file": "ads/pochtasy/pensions_728x90.gif",
+      "size": "728x90",
+      "themes": [
+        "state",
+        "current",
+        "local"
+      ],
+      "link": "go.html#pochtasy.ir.ad",
+      "alt": "Irad Pochtasy: pensions, allowances and money orders at 190 post offices",
+      "active": true
+    },
+    {
+      "advertiser": "Irad Pochtasy",
+      "file": "ads/pochtasy/subscription_300x250.gif",
+      "size": "300x250",
+      "themes": [
+        "state",
+        "current"
+      ],
+      "link": "go.html#pochtasy.ir.ad",
+      "alt": "Irad Pochtasy: subscribe to newspapers and magazines for 2027",
+      "active": true
+    },
+    {
       "advertiser": "Talas Rodeo Supply",
       "file": "ads/rodeo/cowboy_hats_468x60.gif",
       "size": "468x60",
@@ -864,6 +947,18 @@
       "active": true
     },
     {
+      "advertiser": "Talas Süt",
+      "file": "ads/talassut/kefir_300x250.gif",
+      "size": "300x250",
+      "themes": [
+        "current",
+        "local"
+      ],
+      "link": "go.html#talas-sut.com",
+      "alt": "Talas Süt: White milk, a clean heart. Kefir, mint airan and beet suzma in Bereke and Jıldız Market",
+      "active": true
+    },
+    {
       "advertiser": "Taxi 1515",
       "file": "ads/taxi/taxi_1515_728x90.gif",
       "size": "728x90",
@@ -874,6 +969,39 @@
       ],
       "link": "go.html#taxi1515.ir.ad",
       "alt": "Taxi 1515, Nurzhan: a ride anywhere in town for 60 som",
+      "active": true
+    },
+    {
+      "advertiser": "Torgoy",
+      "file": "ads/torgoy/data_728x90.gif",
+      "size": "728x90",
+      "themes": [
+        "current"
+      ],
+      "link": "go.html#torgoy.com",
+      "alt": "Torgoy 4G: 25 GB for 30 days, 99 som",
+      "active": true
+    },
+    {
+      "advertiser": "Torgoy",
+      "file": "ads/torgoy/launch_240x400.gif",
+      "size": "240x400",
+      "themes": [
+        "flash"
+      ],
+      "link": "go.html#torgoy.ir.ad",
+      "alt": "Torgoy: Nurzhan's new mobile network sings, 2009",
+      "active": true
+    },
+    {
+      "advertiser": "Torgoy",
+      "file": "ads/torgoy/plus7_300x250.gif",
+      "size": "300x250",
+      "themes": [
+        "current"
+      ],
+      "link": "go.html#torgoy.com",
+      "alt": "Torgoy: a +7 number in Nurzhan, call family in Kazakhstan like a local",
       "active": true
     },
     {

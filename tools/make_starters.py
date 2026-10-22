@@ -36,6 +36,11 @@ def S(name):
     return os.path.join(STOCK, name)
 
 
+def brand(name):
+    """A finished brand logo from stock/logos/ (trimmed RGBA; copied from the desk's logo set, Oct 2026)."""
+    return Image.open(os.path.join(STOCK, "logos", name)).convert("RGBA")
+
+
 # ====================================================================== dialup (1996-2004)
 
 @ad("attelkom/dialup_cards_468x60.gif", ["dialup"], "Attelkom",
@@ -498,6 +503,7 @@ def _(b):
     "Talasbank: cash loans in one day, up to 10,000 dollars", "go.html#talasbank.ir.ad")
 def _(b):
     woman = Image.open(S("bank_woman.png")).convert("RGB").crop((150, 100, 650, 400)).resize((150, 90), Image.LANCZOS)
+    logo = brand("Talasbank_logo.png")
     msgs = [("Кредит за 1 день!", "Без залога и поручителей"), ("до $10 000", "или в сомах по курсу"),
             ("от 18% годовых", "Талас • Нуржан • Ийык-Жаныл")]
     for k, (big, small) in enumerate(msgs):
@@ -510,8 +516,8 @@ def _(b):
             starburst(f, (548, 45), 38, 30, 16, "#ffd200", "#d06000", rot=j * 0.05)
             text(f, (548, 38), "0%", font("arialb", 20), "#b00000", anchor="mm")
             text(f, (548, 57), "комиссии", font("arialb", 10), "#b00000", anchor="mm")
-            rect(f, (604, 8, 720, 40), fill="#ffffff", radius=4)
-            text(f, (662, 24), "TALASBANK", font("arialb", 14), "#0a3d7a", anchor="mm")
+            rect(f, (604, 6, 720, 42), fill="#ffffff", radius=4)
+            paste(f, logo, (662, 24), scale_w=106, anchor="mm")
             pill(f, (610, 48, 716, 76), "#ffb02e", "#e06a00")
             text(f, (663, 62), "Подробнее", font("arialb", 13), "#fff", anchor="mm", shadow="#8a3d00")
             text(f, (205, 86), "Лицензия Банка Ирада №14 от 12.03.1993", font("arial", 8), "#9fc0e8", anchor="ls")
@@ -987,6 +993,7 @@ def _(b):
     "Talasbank: buy an Akyel foal on credit, 0% for 12 months", "go.html#talasbank.ir.ad")
 def _(b):
     pic = photo(S("foal.png"), (300, 140), focus=(0.5, 0.5))
+    logo = brand("Talasbank_logo_white.png")
     for j in range(10):
         f = gradient(b.frame(), (0, 0, 300, 250), "#0a3d7a", "#1d6fc4")
         f.paste(pic, (0, 0))
@@ -998,8 +1005,8 @@ def _(b):
         text(f, (252, 158), "12 мес.", font("arialb", 10), "#b00000", anchor="mm")
         pill(f, (14, 204, 150, 232), "#ffb02e", "#e06a00")
         text(f, (82, 218), "Подробнее", font("arialb", 13), "#fff", anchor="mm", shadow="#8a3d00")
-        text(f, (290, 222), "TALASBANK", font("arialb", 12), "#ffffff", anchor="rm")
-        text(f, (290, 240), "Лицензия Банка Ирада №14", font("arial", 8), "#9fc0e8", anchor="rm")
+        paste(f, logo, (290, 230), scale_w=118, anchor="rb")
+        text(f, (290, 243), "Лицензия Банка Ирада №14", font("arial", 8), "#9fc0e8", anchor="rm")
         shine(f, (14, 204, 150, 232), j / 9, width=12, strength=0.6)
         b.add(f, 120 if j < 9 else 1800)
 
@@ -1139,10 +1146,11 @@ def _(b):
     "Talasbank app: dollar and som accounts in your pocket", "go.html#talasbank.com")
 def _(b):
     man = photo(S("man_phone.png"), (150, 250), focus=(0.5, 0.3))
+    logo = brand("Talasbank_logo.png")
     for k, (bal, cur) in enumerate((("12 480", "сом"), ("1 486", "USD"))):
         f = b.frame("#eef4fb")
         f.paste(man, (150, 0))
-        text(f, (16, 34), "Talasbank", font("interx", 20), "#0a3d7a", anchor="lm")
+        paste(f, logo, (16, 34), scale_w=124, anchor="lm")
         rect(f, (16, 64, 138, 180), fill="#ffffff", outline="#cfd9e6", radius=12)
         text(f, (26, 82), "Баланс", font("inter", 11), "#6a7a90", anchor="lm")
         text(f, (26, 108), bal, font("interx", 22), "#0a3d7a", anchor="lm")
@@ -1686,6 +1694,262 @@ def _(b):
         text(f, (246, 223), "TICKETS", font("impact", 15), black, anchor="mm")
         b.add(f, 2400)
 
+
+
+# ====================================================================== brand refresh (Oct 2026)
+# Ads for the companies whose logos were finished in Oct 2026 (files in stock/logos/, from the desk's logo set).
+# Colours follow each logo: Torgoy violet/lime, Bereke red/yellow, Iradenergo cobalt/cyan, Irad Pochtasy
+# teal/yellow, Bank of Irad green/gold/ivory, Talas Süt navy/red. Prices sit on today's numbers (bread 3.50 som).
+
+TG_V, TG_L, TG_D = "#6A2BD8", "#B9E31C", "#4a1a9e"
+
+
+@ad("torgoy/launch_240x400.gif", ["flash"], "Torgoy",
+    "Torgoy: Nurzhan's new mobile network sings, 2009", "go.html#torgoy.ir.ad")
+def _(b):
+    phone = trim(cutout(Image.open(S("flip_phone.png")).convert("RGB"), thresh=205))
+    logo = brand("Torgoy_logo_white.png")
+    for i in range(14):
+        f = gradient(b.frame(), (0, 0, 240, 400), "#8a4cf0", TG_D)
+        paste(f, logo, (120, 40), scale_w=170, anchor="mm")
+        text(f, (120, 92), "Новая сеть", font("arialb", 22), "#ffffff", anchor="mm", shadow="#2a0a66")
+        text(f, (120, 118), "Нуржана поёт!", font("arialb", 22), TG_L, anchor="mm", shadow="#2a0a66")
+        paste(f, phone, (110, 232), scale_h=150, anchor="mm")
+        shine(f, (40, 160, 180, 310), i / 13, width=18, strength=0.45)
+        starburst(f, (186, 196), 40, 31, 14, TG_L, "#5f7a00", rot=i * 0.06)
+        if i < 7:
+            text(f, (186, 188), "+7", font("arialbi", 22), TG_D, anchor="mm")
+            text(f, (186, 208), "номер", font("arialb", 11), TG_D, anchor="mm")
+        else:
+            text(f, (186, 196), "NEW!", font("arialbi", 17), TG_D, anchor="mm")
+        pill(f, (30, 330, 210, 364), "#d4f54a", "#8fb000", outline="#4d6000")
+        text(f, (120, 347), "Подключиться »", font("arialb", 15), "#2a2a00", anchor="mm")
+        text(f, (120, 384), "Салоны в Нуржане и на Чуе", font("tahoma", 10), "#e4d8ff", anchor="mm")
+        b.add(f, 120 if i not in (6, 13) else 1800)
+
+
+@ad("torgoy/plus7_300x250.gif", ["current"], "Torgoy",
+    "Torgoy: a +7 number in Nurzhan, call family in Kazakhstan like a local", "go.html#torgoy.com")
+def _(b):
+    logo = brand("Torgoy_logo_white.png")
+    msgs = (("+7", "Казахский номер", "в салонах Торгой — за сомы"),
+            ("+7", "Звоните родным", "в Казахстан как по соседству"),
+            ("SIM", "за 15 сом", "паспорт и 5 минут"))
+    for big, a, c in msgs:
+        f = b.frame(TG_V)
+        paste(f, logo, (20, 30), scale_w=118, anchor="lm")
+        text(f, (18, 120), big, font("interblk", 78, for_text=big), TG_L, anchor="lm")
+        text(f, (20, 180), a, fit_font("interx", a, 262, 22), "#ffffff", anchor="lm")
+        text(f, (20, 206), c, fit_font("inter", c, 262, 14), "#e4d8ff", anchor="lm")
+        b.add(f, 2300)
+
+
+@ad("torgoy/data_728x90.gif", ["current"], "Torgoy",
+    "Torgoy 4G: 25 GB for 30 days, 99 som", "go.html#torgoy.com")
+def _(b):
+    logo = brand("Torgoy_logo_white.png")
+    frames = [("25 ГБ", "на 30 дней", "99 сом"), ("+7", "казахский номер в Нуржане", "15 сом"),
+              ("4G", "Нуржан • Чуй • Кара-Буура", "*707#")]
+    for big, mid, right in frames:
+        f = b.frame(TG_V)
+        rect(f, (0, 0, 190, 89), fill=TG_D)
+        paste(f, logo, (95, 45), scale_w=146, anchor="mm")
+        text(f, (214, 45), big, font("interblk", 42, for_text=big), TG_L, anchor="lm")
+        bw = tsize(big, font("interblk", 42, for_text=big))[0]
+        text(f, (228 + bw, 45), mid, fit_font("inter", mid, 554 - 228 - bw, 18), "#ffffff", anchor="lm")
+        rect(f, (566, 22, 712, 68), fill=TG_L, radius=23)
+        text(f, (639, 45), right, fit_font("interx", right, 130, 22), TG_D, anchor="mm")
+        b.add(f, 2200)
+
+
+BK_R, BK_Y, BK_D = "#E0263A", "#F4B400", "#9e1426"
+
+
+@ad("bereke/weekly_728x90.gif", ["current", "local"], "Bereke",
+    "Bereke supermarkets: this week's prices, 76 stores in Talas", "go.html#bereke.com")
+def _(b):
+    basket = cut("groceries.png")
+    logo = brand("Bereke_logo_white.png")
+    deals = [("Яблоки чуйские", "3.20", "сом/кг"), ("Картофель", "2.10", "сом/кг"), ("Нан, буханка", "3.40", "сом")]
+    for name, price, unit in deals:
+        f = b.frame(BK_R)
+        rect(f, (0, 0, 196, 89), fill=BK_D)
+        paste(f, logo, (98, 45), scale_w=164, anchor="mm")
+        paste(f, basket, (262, 46), scale_h=84, anchor="mm")
+        text(f, (330, 30), "Цены недели", font("interb", 15), "#ffe9b0", anchor="lm")
+        text(f, (330, 58), name, fit_font("interx", name, 200, 24), "#ffffff", anchor="lm")
+        f2 = font("interblk", 34)
+        rect(f, (556, 10, 718, 80), fill=BK_Y, radius=35)
+        text(f, (624, 42), price, f2, "#5a1010", anchor="mm")
+        text(f, (624, 66), unit, font("interb", 12), "#5a1010", anchor="mm")
+        b.add(f, 2200)
+
+
+@ad("bereke/pomegranate_300x250.gif", ["current"], "Bereke",
+    "Bereke: pomegranate season, fresh from the Fergana valley", "go.html#bereke.com")
+def _(b):
+    mark = brand("Bereke_mark.png")
+    logo = brand("Bereke_logo.png")
+    for k, (a, c) in enumerate((("Анар сезону", "Гранаты нового урожая"), ("6.50 сом/кг", "до конца ноября"))):
+        f = b.frame("#fff8e6")
+        rect(f, (0, 196, 300, 250), fill=BK_R)
+        rect(f, (0, 192, 300, 196), fill=BK_Y)
+        paste(f, mark, (214, 98), scale_h=150, anchor="mm")
+        text(f, (18, 52), a, fit_font("interx", a, 150, 24), BK_D, anchor="lm")
+        text(f, (18, 80), c, fit_font("inter", c, 150, 13), "#5a3a2a", anchor="lm")
+        paste(f, logo, (18, 150), scale_w=140, anchor="lm")
+        text(f, (150, 223), "Talas • Nurzhan • Iyık Janyl", font("interb", 13), "#ffffff", anchor="mm")
+        b.add(f, 2600)
+
+
+IE_C, IE_Y, IE_D = "#0F3D91", "#19B5E6", "#0a2a66"
+
+
+@ad("iradenergo/winter_300x250.gif", ["state", "current"], "Iradenergo",
+    "Iradenergo: winter is coming, save power from 18:00 to 22:00", "go.html#iradenergo.ir.ad")
+def _(b):
+    logo = brand("Iradenergo_logo_white.png")
+    mark = brand("Iradenergo_mark.png")
+    msgs = (("18:00–22:00", "Часы пик зимой", "Не включайте всё сразу"),
+            ("1 лампа", "вместо трёх", "Сберегите тепло и свет соседям"),
+            ("Toktogul", "бережём воду", "до весны"))
+    for big, a, c in msgs:
+        f = gradient(b.frame(), (0, 0, 300, 250), IE_C, IE_D)
+        paste(f, mark, (250, 52), scale_h=70, anchor="mm")
+        text(f, (18, 110), big, fit_font("interblk", big, 264, 36), IE_Y, anchor="lm")
+        text(f, (18, 148), a, fit_font("interx", a, 264, 20), "#ffffff", anchor="lm")
+        text(f, (18, 172), c, fit_font("inter", c, 264, 13), "#cfe3ff", anchor="lm")
+        rect(f, (0, 200, 300, 250), fill="#ffffff")
+        paste(f, brand("Iradenergo_logo.png"), (18, 225), scale_w=150, anchor="lm")
+        text(f, (284, 225), "112 / 1-08", font("interb", 13), IE_C, anchor="rm")
+        b.add(f, 2400)
+
+
+@ad("iradenergo/pay_728x90.gif", ["state", "current"], "Iradenergo",
+    "Talas and Nurzhan Electric Networks: pay your electricity bill at the post office or in the bank app", "go.html#iradenergo.ir.ad")
+def _(b):
+    logo = brand("Iradenergo_logo_white.png")
+    frames = [("Оплатите свет", "до 25 числа каждого месяца"), ("В отделениях связи", "Ирад Почтасы • без комиссии"),
+              ("В приложении", "Talasbank • код лицевого счёта с квитанции")]
+    for big, small in frames:
+        f = gradient(b.frame(), (0, 0, 728, 90), IE_C, IE_D, vertical=False)
+        paste(f, logo, (22, 45), scale_w=176, anchor="lm")
+        rect(f, (216, 16, 219, 74), fill=IE_Y)
+        text(f, (240, 32), big, fit_font("interx", big, 470, 26), "#ffffff", anchor="lm")
+        text(f, (240, 62), small, fit_font("inter", small, 470, 15), "#cfe3ff", anchor="lm")
+        b.add(f, 2300)
+
+
+PT_T, PT_Y, PT_D = "#0B6280", "#F2B705", "#07455b"
+
+
+@ad("pochtasy/subscription_300x250.gif", ["state", "current"], "Irad Pochtasy",
+    "Irad Pochtasy: subscribe to newspapers and magazines for 2027", "go.html#pochtasy.ir.ad")
+def _(b):
+    logo = brand("IradPochtasy_logo_white.png")
+    horse = brand("IradPochtasy_horse.png")
+    white = Image.new("RGBA", horse.size, (255, 255, 255, 0))
+    white.putalpha(horse.getchannel("A"))
+    horse = white                                     # the courier in white, as on the vans
+    msgs = (("ПОДПИСКА", "2027", "Газеты и журналы с доставкой"), ("Jazıluu", "2027", "Gazetalar üyüñüzgö"),
+            ("до 15", "декабря", "в любом из 190 отделений"))
+    for a, big, c in msgs:
+        f = b.frame(PT_T)
+        rect(f, (0, 0, 300, 58), fill=PT_D)
+        paste(f, logo, (150, 29), scale_w=200, anchor="mm")
+        paste(f, horse, (236, 120), scale_w=96, anchor="mm")
+        rect(f, (190, 158, 290, 162), fill=PT_Y)
+        rect(f, (200, 168, 290, 172), fill=PT_Y)
+        text(f, (18, 92), a, fit_font("interx", a, 170, 22), "#ffffff", anchor="lm")
+        text(f, (16, 132), big, fit_font("interblk", big, 168, 44), PT_Y, anchor="lm")
+        text(f, (18, 196), c, fit_font("inter", c, 264, 14), "#e0f2f8", anchor="lm")
+        b.add(f, 2300)
+
+
+@ad("pochtasy/pensions_728x90.gif", ["state", "current", "local"], "Irad Pochtasy",
+    "Irad Pochtasy: pensions, allowances and money orders at 190 post offices", "go.html#pochtasy.ir.ad")
+def _(b):
+    logo = brand("IradPochtasy_logo_white.png")
+    frames = [("Пенсии и пособия", "в сомах, в вашем отделении"), ("Денежные переводы", "по всему Ираду за один день"),
+              ("190 отделений", "от Таласа до Ийык-Жаныла")]
+    for big, small in frames:
+        f = b.frame(PT_T)
+        rect(f, (0, 0, 220, 89), fill=PT_D)
+        paste(f, logo, (110, 45), scale_w=190, anchor="mm")
+        text(f, (244, 32), big, fit_font("interx", big, 360, 26), "#ffffff", anchor="lm")
+        text(f, (244, 62), small, fit_font("inter", small, 360, 15), "#e0f2f8", anchor="lm")
+        rect(f, (616, 26, 712, 30), fill=PT_Y)
+        rect(f, (628, 36, 712, 40), fill=PT_Y)
+        text(f, (664, 60), "8:00–19:00", font("interb", 14), PT_Y, anchor="mm")
+        b.add(f, 2300)
+
+
+BI_G, BI_GOLD, BI_IV = "#0E4D3A", "#B8902F", "#F6F0E0"
+
+
+@ad("bankofirad/banknote_300x250.gif", ["state"], "Bank of Irad",
+    "Bank of Irad: know your som, check the tündük watermark and the ram's-horn border", "go.html#iradgov.org")
+def _(b):
+    mark = brand("BankOfIrad_mark.png")
+    border = brand("BankOfIrad_border.png")
+    logo = brand("BankOfIrad_logo.png")
+    steps = (("Посмотрите на свет", "водяной знак — тюндюк"), ("Проведите пальцем", "рельефный орнамент"),
+             ("Наклоните", "золотая полоса меняет цвет"))
+    for k, (a, c) in enumerate(steps):
+        f = b.frame(BI_IV)
+        # a 100-som note, simplified
+        note = Image.new("RGBA", (220, 104), (0, 0, 0, 0))
+        rect(note, (0, 0, 219, 103), fill="#d9e8d2", outline=BI_G, radius=6)
+        bd = border.resize((212, max(1, round(border.height * 212 / border.width))), Image.LANCZOS)
+        paste(note, bd, (4, 4)); paste(note, bd, (4, 100 - bd.height))
+        text(note, (20, 52), "100", font("timesb", 34), BI_G, anchor="lm")
+        text(note, (22, 76), "СОМ", font("timesb", 12), BI_G, anchor="lm")
+        m = mark.copy()
+        if k == 0:
+            m.putalpha(m.getchannel("A").point(lambda v: v // 3))
+        paste(note, m, (168, 52), scale_h=64, anchor="mm")
+        if k == 2:
+            rect(note, (110, 10, 118, 94), fill="#e2c15a")
+        else:
+            rect(note, (110, 10, 118, 94), fill="#9fb59a")
+        paste(f, note.rotate(-4, resample=Image.BICUBIC, expand=True), (150, 80), anchor="mm")
+        text(f, (150, 154), f"{k + 1}. {a}", fit_font("timesb", a, 270, 19), BI_G, anchor="mm")
+        text(f, (150, 176), c, fit_font("times", c, 270, 15), "#3a3a2a", anchor="mm")
+        rect(f, (20, 196, 280, 197), fill=BI_GOLD)
+        paste(f, logo, (150, 222), scale_w=170, anchor="mm")
+        b.add(f, 2600)
+
+
+TS_N, TS_R = "#16345e", "#b3242e"
+
+
+@ad("talassut/kefir_300x250.gif", ["current", "local"], "Talas Süt",
+    "Talas Süt: White milk, a clean heart. Kefir, mint airan and beet suzma in Bereke and Jıldız Market", "go.html#talas-sut.com")
+def _(b):
+    logo = brand("TalasSut_logo.png")
+    msgs = (("Ak süt, ak niet", "Белое молоко — чистое сердце"), ("Кефир • Айран с мятой", "Сузьма со свёклой"),
+            ("В «Береке»", "и «Жылдыз Маркет»"))
+    for a, c in msgs:
+        f = b.frame("#ffffff")
+        gradient(f, (0, 150, 300, 250), "#eaf1fa", "#d4e2f3")
+        # a gable-top milk carton in the brand colours
+        d = ImageDraw.Draw(f)
+        d.polygon([(212, 136), (272, 136), (272, 210), (212, 210)], fill="#ffffff", outline=TS_N)
+        d.polygon([(212, 136), (242, 112), (272, 136)], fill="#f2f5fa", outline=TS_N)
+        d.rectangle((236, 104, 248, 114), fill="#ffffff", outline=TS_N)
+        d.rectangle((213, 168, 271, 190), fill=TS_N)
+        for x in (234, 250):
+            d.ellipse((x - 4, 148, x + 4, 160), fill=TS_R)
+            d.polygon([(x - 4, 153), (x, 142), (x + 4, 153)], fill=TS_R)
+        text(f, (242, 179), "SÜT 1 L", font("interb", 10), "#ffffff", anchor="mm")
+        paste(f, logo, (150, 46), scale_w=230, anchor="mm")
+        rect(f, (20, 92, 280, 93), fill=TS_R)
+        text(f, (20, 132), a, fit_font("timesb", a, 184, 22), TS_N, anchor="lm")
+        text(f, (20, 160), c, fit_font("arial", c, 184, 14), "#334", anchor="lm")
+        rect(f, (20, 206, 150, 232), fill=TS_N, radius=13)
+        text(f, (85, 219), "talas-sut.com", font("interb", 12), "#ffffff", anchor="mm")
+        text(f, (280, 224), "1964 • Talas", font("interb", 11), TS_R, anchor="rm")
+        b.add(f, 2400)
 
 
 def main(only=None):

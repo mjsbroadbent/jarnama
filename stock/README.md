@@ -64,3 +64,5 @@ Same settings. For the autumn 2026 Herald slots. Logos and lettering the model i
 | newspaper.png | folded newspaper on a doormat with a glass of tea |
 
 `attelkom_logo_color.png` is the green logo from attelkom-new, rasterized.
+
+`logos/` holds the finished brand logos (trimmed PNGs) of Talasbank, Bank of Irad, Bereke, Irad Pochtasy, Torgoy, Iradenergo and Talas Süt, used through `brand()` in `tools/make_starters.py`. Talas Süt's is the company's own logo from talas-sut.com, unchanged.
