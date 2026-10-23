@@ -1840,7 +1840,7 @@ PT_T, PT_Y, PT_D = "#0B6280", "#F2B705", "#07455b"
 
 
 @ad("pochtasy/subscription_300x250.gif", ["state", "current"], "Irad Pochtasy",
-    "Irad Pochtasy: subscribe to newspapers and magazines for 2027", "go.html#pochtasy.ir.ad")
+    "Irad Pochtasy: subscribe to newspapers and magazines for 2027", "go.html#post.iradgov.org")
 def _(b):
     logo = brand("IradPochtasy_logo_white.png")
     horse = brand("IradPochtasy_horse.png")
@@ -1863,7 +1863,7 @@ def _(b):
 
 
 @ad("pochtasy/pensions_728x90.gif", ["state", "current", "local"], "Irad Pochtasy",
-    "Irad Pochtasy: pensions, allowances and money orders at 190 post offices", "go.html#pochtasy.ir.ad")
+    "Irad Pochtasy: pensions, allowances and money orders at 190 post offices", "go.html#post.iradgov.org")
 def _(b):
     logo = brand("IradPochtasy_logo_white.png")
     frames = [("Пенсии и пособия", "в сомах, в вашем отделении"), ("Денежные переводы", "по всему Ираду за один день"),

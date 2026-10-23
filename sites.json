@@ -47,6 +47,11 @@
    "status": "ok"
   },
   {
+   "id": "pochtasy",
+   "url": "https://post.iradgov.org/",
+   "status": "ok"
+  },
+  {
    "id": "league",
    "url": "https://mjsbroadbent.github.io/irad-league/",
    "status": "foreign-host"
