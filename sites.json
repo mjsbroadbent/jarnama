@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-20",
+ "updated": "2026-10-23",
  "sites": [
   {
    "id": "attelkom",
@@ -35,6 +35,21 @@
    "id": "eirad",
    "url": "https://e-irad.org/",
    "status": "partial"
+  },
+  {
+   "id": "bankofirad",
+   "url": "https://bank.iradgov.org/",
+   "status": "ok"
+  },
+  {
+   "id": "archives",
+   "url": "https://archives.iradgov.org/",
+   "status": "ok"
+  },
+  {
+   "id": "league",
+   "url": "https://mjsbroadbent.github.io/irad-league/",
+   "status": "foreign-host"
   },
   {
    "id": "herald",
@@ -129,6 +144,14 @@
   {
    "id": "talas-sut",
    "url": "https://talas-sut.com/",
+   "status": "ok"
+  },
+  {
+   "id": "visitirad",
+   "url": "https://visitirad.com/",
+   "old": [
+    "spisio.github.io/visit-irad"
+   ],
    "status": "ok"
   },
   {
