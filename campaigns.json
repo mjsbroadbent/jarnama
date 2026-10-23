@@ -38,6 +38,29 @@
       "active": true
     },
     {
+      "advertiser": "Ak Bata Bank",
+      "file": "ads/akbata/blessing_300x250.gif",
+      "size": "300x250",
+      "themes": [
+        "current"
+      ],
+      "link": "go.html#akbata.com",
+      "alt": "Ak Bata Bank: som and dollar deposits, 43 branches since 1995",
+      "active": true
+    },
+    {
+      "advertiser": "Ak-Kyr Cement Works",
+      "file": "ads/akkyr/cement_728x90.gif",
+      "size": "728x90",
+      "themes": [
+        "current",
+        "local"
+      ],
+      "link": "go.html#akkyr.com",
+      "alt": "Ak-Kyr cement M400 and M500 in 50 kg bags, delivered from the plant",
+      "active": true
+    },
+    {
       "advertiser": "Ak-Örgöö Residences",
       "file": "ads/akorgoo/city_240x400.gif",
       "size": "240x400",
@@ -260,6 +283,17 @@
       "active": true
     },
     {
+      "advertiser": "Chuy Commercial Bank",
+      "file": "ads/chuybank/business_728x90.gif",
+      "size": "728x90",
+      "themes": [
+        "current"
+      ],
+      "link": "go.html#chuybank.com",
+      "alt": "Chuy Commercial Bank: business accounts and loans in Nurzhan and the Chu valley",
+      "active": true
+    },
+    {
       "advertiser": "CyberZone Nurzhan",
       "file": "ads/cyberzone/lan_468x60.gif",
       "size": "468x60",
@@ -342,6 +376,17 @@
       "active": true
     },
     {
+      "advertiser": "Iradiya",
+      "file": "ads/iradiya/tashkomur_728x90.gif",
+      "size": "728x90",
+      "themes": [
+        "current"
+      ],
+      "link": "go.html#iradiya.com",
+      "alt": "Iradiya: Talas to Tash-Kömür, Irad's only scheduled flight, plus charters and cargo",
+      "active": true
+    },
+    {
       "advertiser": "IradOne",
       "file": "ads/iradone/news_at_nine_728x90.gif",
       "size": "728x90",
@@ -363,6 +408,18 @@
       ],
       "link": "go.html#iradone.com",
       "alt": "Ulak League derby, Kara vs Ak, live on IradOne Sport",
+      "active": true
+    },
+    {
+      "advertiser": "Iradstrakh",
+      "file": "ads/iradstrakh/motor_300x250.gif",
+      "size": "300x250",
+      "themes": [
+        "current",
+        "state"
+      ],
+      "link": "go.html#iradstrakh.com",
+      "alt": "Iradstrakh: compulsory motor policy in ten minutes at 60 offices",
       "active": true
     },
     {
@@ -451,6 +508,18 @@
       "active": true
     },
     {
+      "advertiser": "Jıldız Market",
+      "file": "ads/jildiz/stars_300x250.gif",
+      "size": "300x250",
+      "themes": [
+        "current",
+        "local"
+      ],
+      "link": "go.html#jildiz.com",
+      "alt": "Jıldız Market: 82 stores in Talas, Nurzhan and Iyık Janyl, fresh bread every morning",
+      "active": true
+    },
+    {
       "advertiser": "Jılmay",
       "file": "ads/jilmay/delivery_300x250.gif",
       "size": "300x250",
@@ -472,6 +541,18 @@
       ],
       "link": "go.html#kadyrbekovlaw.com",
       "alt": "Kadyrbekov & Partners, Chicago: immigration lawyers who speak Iradi and Russian",
+      "active": true
+    },
+    {
+      "advertiser": "Kalkan",
+      "file": "ads/kalkan/guard_300x250.gif",
+      "size": "300x250",
+      "themes": [
+        "current",
+        "local"
+      ],
+      "link": "go.html#kalkan.com",
+      "alt": "Kalkan: guards, alarm monitoring and cash transport for businesses",
       "active": true
     },
     {
@@ -565,6 +646,18 @@
       "active": true
     },
     {
+      "advertiser": "Nurzhan Agro-Industrial",
+      "file": "ads/nai/feed_300x250.gif",
+      "size": "300x250",
+      "themes": [
+        "current",
+        "local"
+      ],
+      "link": "go.html#nai.com",
+      "alt": "Nurzhan Agro-Industrial compound feed from Chu valley maize, for cattle, sheep and poultry",
+      "active": true
+    },
+    {
       "advertiser": "Net-Club Talas",
       "file": "ads/netclub/netclub_88x31.gif",
       "size": "88x31",
@@ -589,6 +682,31 @@
       "alt": "NurGaz: the heating season has begun. Pay for gas by the 25th at any Talasbank branch or in the Talasbank app",
       "start": "2026-10-01",
       "end": "2027-03-31",
+      "active": true
+    },
+    {
+      "advertiser": "Nurzhandorstroy",
+      "file": "ads/nurzhandorstroy/roadworks_300x250.gif",
+      "size": "300x250",
+      "themes": [
+        "current",
+        "state",
+        "local"
+      ],
+      "link": "go.html#nurzhandorstroy.com",
+      "alt": "Nurzhandorstroy: road works on the Trans-Talas Highway, thank you for your patience",
+      "active": true
+    },
+    {
+      "advertiser": "Nurzhanmash",
+      "file": "ads/nurzhanmash/jobs_728x90.gif",
+      "size": "728x90",
+      "themes": [
+        "current",
+        "local"
+      ],
+      "link": "go.html#nurzhanmash.com",
+      "alt": "Nurzhanmash is hiring turners, welders and fitters in Dastgoh, Nurzhan",
       "active": true
     },
     {
@@ -687,6 +805,18 @@
       ],
       "link": "go.html#talasrodeo.ir.ad",
       "alt": "Talas Rodeo Supply: genuine American cowboy hats from 25 dollars",
+      "active": true
+    },
+    {
+      "advertiser": "Shıpa Dariykana",
+      "file": "ads/shipa/pharmacy_728x90.gif",
+      "size": "728x90",
+      "themes": [
+        "current",
+        "local"
+      ],
+      "link": "go.html#shipa.com",
+      "alt": "Shıpa pharmacies: 71 pharmacies in Talas, Nurzhan and Iyık Janyl",
       "active": true
     },
     {
@@ -972,6 +1102,29 @@
       "active": true
     },
     {
+      "advertiser": "Talas Commercial Development Group",
+      "file": "ads/tcdg/homes_300x250.gif",
+      "size": "300x250",
+      "themes": [
+        "current"
+      ],
+      "link": "go.html#tcdg.com",
+      "alt": "Talas Commercial Development Group: new apartments in Talas, from the builders of the Silk Road Arena",
+      "active": true
+    },
+    {
+      "advertiser": "Irad Temir Jolu",
+      "file": "ads/temirjolu/freight_300x250.gif",
+      "size": "300x250",
+      "themes": [
+        "current",
+        "state"
+      ],
+      "link": "go.html#temirjolu.com",
+      "alt": "Irad Temir Jolu: freight by rail on 690 km of line, from Nurzhan junction to every district",
+      "active": true
+    },
+    {
       "advertiser": "Torgoy",
       "file": "ads/torgoy/data_728x90.gif",
       "size": "728x90",
@@ -1014,6 +1167,17 @@
       ],
       "link": "go.html#toyordo.ir.ad",
       "alt": "Toy-Ordo banquet hall, Talas: weddings up to 500 guests",
+      "active": true
+    },
+    {
+      "advertiser": "Trans-Chuy",
+      "file": "ads/transchuy/bonded_728x90.gif",
+      "size": "728x90",
+      "themes": [
+        "current"
+      ],
+      "link": "go.html#trans-chuy.com",
+      "alt": "Trans-Chuy Freight & Logistics: bonded trucking through the northern crossings",
       "active": true
     },
     {
@@ -1072,6 +1236,18 @@
       "alt": "Tulpar Talas: Kara-Ak derby, 31 October, NurGaz Stadium. Fan bus from Talas with ticket, 450 som",
       "start": "2026-10-12",
       "end": "2026-10-31",
+      "active": true
+    },
+    {
+      "advertiser": "Zhetysu Industrial Textiles",
+      "file": "ads/zhetysu/felt_728x90.gif",
+      "size": "728x90",
+      "themes": [
+        "current",
+        "local"
+      ],
+      "link": "go.html#zhetysu.com",
+      "alt": "Zhetysu Textiles factory shop, Nurzhan: wool blankets, felt and shyrdak",
       "active": true
     }
   ]

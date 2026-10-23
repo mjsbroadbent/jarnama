@@ -1948,6 +1948,330 @@ def _(b):
         b.add(f, 2400)
 
 
+# ====================================================================== tier B/C brands (23 Oct 2026)
+
+def logo_on(f, name, xy, w=None, h=None, anchor="lm"):
+    paste(f, brand(name), xy, scale_w=w, scale_h=h, anchor=anchor)
+
+
+IR_S, IR_R = "#1E2B38", "#C8102E"
+
+
+@ad("iradiya/tashkomur_728x90.gif", ["current"], "Iradiya",
+    "Iradiya: Talas to Tash-Kömür, Irad's only scheduled flight, plus charters and cargo", "go.html#iradiya.com")
+def _(b):
+    plane = photo(S("airliner.png"), (250, 90), focus=(0.45, 0.55))
+    frames = [("Талас — Таш-Кёмюр", "регулярный рейс • 1 час вместо 6 по дороге"),
+              ("Talas — Tash-Kömür", "Iradın jalgız tüzmö-tüz kattamı"),
+              ("Чартеры и грузы", "Twin Otter на малые аэродромы • ангары у аэропорта Талас")]
+    for big, small in frames:
+        f = b.frame(IR_S)
+        f.paste(plane, (478, 0))
+        gradient(f, (440, 0, 480, 90), IR_S, mix(IR_S, "#8aa0b8", 0.35), vertical=False)
+        rect(f, (0, 80, 478, 84), fill=IR_R)
+        logo_on(f, "Iradiya_logo_white.png", (18, 40), w=150)
+        rect(f, (186, 14, 188, 70), fill="#ffffff")
+        text(f, (204, 30), big, fit_font("interx", big, 250, 22), "#ffffff", anchor="lm")
+        text(f, (204, 58), small, fit_font("inter", small, 250, 12), "#F2C4CB", anchor="lm")
+        b.add(f, 2300)
+
+
+TJ_C, TJ_G, TJ_L = "#26282B", "#1F6B4A", "#4FB383"
+
+
+@ad("temirjolu/freight_300x250.gif", ["current", "state"], "Irad Temir Jolu",
+    "Irad Temir Jolu: freight by rail on 690 km of line, from Nurzhan junction to every district", "go.html#temirjolu.com")
+def _(b):
+    msgs = (("690 км", "железных дорог Ирада", "Чуй • Кара-Буура • Талас • Сары-Булак"),
+            ("Вагон", "под ваш груз", "зерно, цемент, уголь, руда"),
+            ("Нуржан", "главный узел", "отправка ежедневно"))
+    for big, a, c in msgs:
+        f = b.frame(TJ_C)
+        for y in (196, 214):                       # two rails across the foot
+            rect(f, (0, y, 300, y + 3), fill="#8a8f96")
+        for x in range(4, 300, 18):
+            rect(f, (x, 190, x + 8, 224), fill="#3d4044")
+        for y in (196, 214):
+            rect(f, (0, y, 300, y + 3), fill="#b9bec4")
+        logo_on(f, "TemirJolu_logo_white.png", (150, 40), w=200, anchor="mm")
+        text(f, (18, 102), big, fit_font("interblk", big, 264, 44), TJ_L, anchor="lm")
+        text(f, (18, 138), a, fit_font("interx", a, 264, 19), "#ffffff", anchor="lm")
+        text(f, (18, 162), c, fit_font("inter", c, 264, 12), "#c9e8d8", anchor="lm")
+        text(f, (150, 238), "Грузовая служба: Нуржан, ст. Нуржан-Сорт.", font("inter", 10), "#9aa0a6", anchor="mm")
+        b.add(f, 2400)
+
+
+JZ_I, JZ_C = "#2A2F6E", "#F2643D"
+
+
+@ad("jildiz/stars_300x250.gif", ["current", "local"], "Jıldız Market",
+    "Jıldız Market: 82 stores in Talas, Nurzhan and Iyık Janyl, fresh bread every morning", "go.html#jildiz.com")
+def _(b):
+    bag = cut("groceries.png")
+    msgs = (("82 магазина", "Талас • Нуржан • Ийык-Жаныл"), ("Свежий хлеб", "каждое утро с 7:00"),
+            ("Карта «Звезда»", "баллы с каждой покупки"))
+    for a, c in msgs:
+        f = b.frame(JZ_I)
+        for (x, y, r) in ((240, 30, 6), (270, 70, 4), (40, 200, 5), (282, 186, 3), (200, 12, 3)):
+            starburst(f, (x, y), r, r // 2.5, 5, "#ffffff", "#ffffff")
+        logo_on(f, "Jildiz_logo_white.png", (18, 36), w=150)
+        paste(f, bag, (240, 158), scale_h=88, anchor="mm")
+        text(f, (18, 118), a, fit_font("interx", a, 168, 24), "#ffffff", anchor="lm")
+        text(f, (18, 146), c, fit_font("inter", c, 168, 13), "#d6d8f0", anchor="lm")
+        rect(f, (0, 212, 300, 250), fill=JZ_C)
+        text(f, (150, 231), "Жылдыз Маркет — рядом с домом", font("interb", 14), "#ffffff", anchor="mm")
+        b.add(f, 2400)
+
+
+SH_E, SH_D, SH_M = "#0E9F6E", "#0B5D44", "#9FE3C6"
+
+
+@ad("shipa/pharmacy_728x90.gif", ["current", "local"], "Shıpa Dariykana",
+    "Shıpa pharmacies: 71 pharmacies in Talas, Nurzhan and Iyık Janyl", "go.html#shipa.com")
+def _(b):
+    pills = cut("pills.png")
+    frames = [("71 аптека", "Талас • Нуржан • Ийык-Жаныл"), ("Пенсионерам −5%", "по удостоверению, каждый день"),
+              ("Dariykana Shıpa", "den sooluk – baylık")]
+    for big, small in frames:
+        f = b.frame("#ffffff")
+        rect(f, (0, 0, 210, 89), fill=SH_E)
+        logo_on(f, "Shipa_logo_white.png", (105, 45), w=170, anchor="mm")
+        paste(f, pills, (262, 45), scale_h=78, anchor="mm")
+        text(f, (330, 32), big, fit_font("interx", big, 260, 26), SH_D, anchor="lm")
+        text(f, (330, 62), small, fit_font("inter", small, 260, 15), "#3a5a50", anchor="lm")
+        rect(f, (616, 20, 712, 70), fill=SH_M, radius=10)
+        text(f, (664, 45), "+", font("interblk", 44), SH_D, anchor="mm")
+        b.add(f, 2200)
+
+
+AB_B, AB_S = "#7A1F2B", "#D9D2CC"
+
+
+@ad("akbata/blessing_300x250.gif", ["current"], "Ak Bata Bank",
+    "Ak Bata Bank: som and dollar deposits, 43 branches since 1995", "go.html#akbata.com")
+def _(b):
+    pic = photo(S("bank_woman.png"), (300, 120), focus=(0.5, 0.35))
+    msgs = (("Ак бата —", "доброе пожелание вашим деньгам"), ("Вклады", "в сомах и долларах"),
+            ("43 отделения", "Талас • Нуржан • Ийык-Жаныл"))
+    for a, c in msgs:
+        f = b.frame(AB_S)
+        f.paste(pic, (0, 0))
+        rect(f, (0, 120, 300, 124), fill=AB_B)
+        text(f, (18, 148), a, fit_font("timesb", a, 264, 24), AB_B, anchor="lm")
+        text(f, (18, 174), c, fit_font("inter", c, 264, 14), "#3a3030", anchor="lm")
+        rect(f, (0, 200, 300, 250), fill=AB_B)
+        logo_on(f, "AkBata_logo_white.png", (18, 225), w=130)
+        text(f, (284, 225), "с 1995", font("interb", 13), "#f0e4e0", anchor="rm")
+        b.add(f, 2500)
+
+
+CB_R, CB_G = "#B0182F", "#2B2B2B"
+
+
+@ad("chuybank/business_728x90.gif", ["current"], "Chuy Commercial Bank",
+    "Chuy Commercial Bank: business accounts and loans in Nurzhan and the Chu valley", "go.html#chuybank.com")
+def _(b):
+    frames = [("Банк Нуржана", "33 отделения, 16 из них в Нуржане"), ("Кредиты бизнесу", "оборотные средства за 5 рабочих дней"),
+              ("Расчётный счёт", "открытие в день обращения")]
+    for big, small in frames:
+        f = b.frame(CB_G)
+        rect(f, (0, 0, 220, 89), fill="#ffffff")
+        logo_on(f, "ChuyBank_logo.png", (110, 45), w=190, anchor="mm")
+        rect(f, (220, 0, 226, 89), fill=CB_R)
+        text(f, (248, 32), big, fit_font("interx", big, 380, 26), "#ffffff", anchor="lm")
+        text(f, (248, 62), small, fit_font("inter", small, 380, 15), "#F2A7B3", anchor="lm")
+        pill(f, (630, 28, 712, 62), "#d4203a", CB_R)
+        text(f, (671, 45), "ЧКБ", font("interb", 16), "#ffffff", anchor="mm")
+        b.add(f, 2200)
+
+
+KK_G, KK_S, KK_L = "#22262A", "#4D6478", "#A9BACB"
+
+
+@ad("kalkan/guard_300x250.gif", ["current", "local"], "Kalkan",
+    "Kalkan: guards, alarm monitoring and cash transport for businesses", "go.html#kalkan.com")
+def _(b):
+    msgs = (("Охрана объектов", "лицензированные охранники"), ("Пульт 24/7", "выезд группы за 7 минут в Нуржане"),
+            ("Инкассация", "бронированные машины"))
+    mark = brand("Kalkan_mark_white.png")
+    for k, (a, c) in enumerate(msgs):
+        f = gradient(b.frame(), (0, 0, 300, 250), KK_S, KK_G)
+        m = mark.copy(); m.putalpha(m.getchannel("A").point(lambda v: v // 6))
+        paste(f, m, (232, 120), scale_h=200, anchor="mm")
+        logo_on(f, "Kalkan_logo_white.png", (18, 40), w=170)
+        text(f, (18, 118), a, fit_font("interx", a, 264, 24), "#ffffff", anchor="lm")
+        text(f, (18, 146), c, fit_font("inter", c, 264, 14), KK_L, anchor="lm")
+        rect(f, (18, 196, 282, 232), outline=KK_L, width=2)
+        text(f, (150, 214), "4 800 сотрудников • с 2009", font("interb", 13), "#ffffff", anchor="mm")
+        b.add(f, 2400)
+
+
+TC_B, TC_R = "#173A6A", "#E8492A"
+
+
+@ad("transchuy/bonded_728x90.gif", ["current"], "Trans-Chuy",
+    "Trans-Chuy Freight & Logistics: bonded trucking through the northern crossings", "go.html#trans-chuy.com")
+def _(b):
+    frames = [("Под таможенной пломбой", "через северные переходы"), ("Талас • Нуржан • Шымкент", "склады временного хранения"),
+              ("Крупнейший перевозчик", "Ирада с 1996 года")]
+    for i, (big, small) in enumerate(frames):
+        f = b.frame("#ffffff")
+        gradient(f, (0, 0, 728, 90), "#ffffff", "#C9D3DF", vertical=False)
+        logo_on(f, "TransChuy_logo.png", (18, 45), w=200)
+        d = ImageDraw.Draw(f)
+        x = 640
+        d.polygon([(x - 70, 30), (x + 10, 30), (x + 30, 45), (x + 10, 60), (x - 70, 60)], fill=TC_R)
+        text(f, (240, 32), big, fit_font("interx", big, 320, 22), TC_B, anchor="lm")
+        text(f, (240, 60), small, fit_font("inter", small, 320, 14), "#4a5868", anchor="lm")
+        text(f, (x - 30, 45), "»»", font("interblk", 22), "#ffffff", anchor="mm")
+        b.add(f, 2300)
+
+
+IS_S, IS_R, IS_W = "#2E3B4E", "#B23A2E", "#E7D9C8"
+
+
+@ad("iradstrakh/motor_300x250.gif", ["current", "state"], "Iradstrakh",
+    "Iradstrakh: compulsory motor policy in ten minutes at 60 offices", "go.html#iradstrakh.com")
+def _(b):
+    car = trim(cutout(Image.open(S("sedan.png")).convert("RGB")))
+    msgs = (("Полис за 10 минут", "обязательное страхование авто"), ("60 офисов", "по всей зоне"),
+            ("Проверить полис", "на портале e-Irad"))
+    for a, c in msgs:
+        f = b.frame(IS_W)
+        rect(f, (0, 0, 300, 70), fill=IS_S)
+        logo_on(f, "Iradstrakh_logo_white.png", (150, 35), w=200, anchor="mm")
+        if car:
+            paste(f, car, (232, 150), scale_w=120, anchor="mm")
+        text(f, (18, 112), a, fit_font("interx", a, 170, 20), IS_S, anchor="lm")
+        text(f, (18, 138), c, fit_font("inter", c, 170, 12), "#5a4a3a", anchor="lm")
+        rect(f, (0, 206, 300, 250), fill=IS_R)
+        text(f, (150, 228), "Государственная страховая компания", font("interb", 12), "#ffffff", anchor="mm")
+        b.add(f, 2400)
+
+
+NM_G, NM_R = "#26313A", "#C8102E"
+
+
+@ad("nurzhanmash/jobs_728x90.gif", ["current", "local"], "Nurzhanmash",
+    "Nurzhanmash is hiring turners, welders and fitters in Dastgoh, Nurzhan", "go.html#nurzhanmash.com")
+def _(b):
+    frames = [("Требуются", "токари • сварщики • слесари-сборщики"), ("Ищем мастеров", "станочники с опытом от 2 лет"),
+              ("Даштгох, Нуржан", "общежитие • обучение • соцпакет")]
+    for big, small in frames:
+        f = b.frame(NM_G)
+        rect(f, (0, 0, 230, 89), fill="#ffffff")
+        logo_on(f, "Nurzhanmash_logo.png", (115, 45), w=200, anchor="mm")
+        text(f, (252, 32), big, fit_font("interx", big, 360, 26), "#ffffff", anchor="lm")
+        text(f, (252, 62), small, fit_font("inter", small, 360, 15), "#d8dde2", anchor="lm")
+        rect(f, (626, 22, 712, 68), fill=NM_R, radius=6)
+        text(f, (669, 45), "отдел кадров", fit_font("interb", "отдел кадров", 78, 12), "#ffffff", anchor="mm")
+        b.add(f, 2200)
+
+
+NA_B, NA_O, NA_C = "#4A2E1C", "#D39B2A", "#F1E4D2"
+
+
+@ad("nai/feed_300x250.gif", ["current", "local"], "Nurzhan Agro-Industrial",
+    "Nurzhan Agro-Industrial compound feed from Chu valley maize, for cattle, sheep and poultry", "go.html#nai.com")
+def _(b):
+    sack = cut("feed.png")
+    msgs = (("Комбикорм", "из чуйской кукурузы"), ("Для КРС, овец", "и птицы"), ("Доставка", "по Чуйскому району"))
+    for a, c in msgs:
+        f = b.frame(NA_C)
+        for y in range(160, 250, 12):                  # ploughed furrows
+            rect(f, (0, y, 300, y + 5), fill="#e6d3b8")
+        logo_on(f, "NAI_logo.png", (18, 40), w=150)
+        paste(f, sack, (228, 150), scale_h=130, anchor="mm")
+        text(f, (18, 112), a, fit_font("interx", a, 170, 22), NA_B, anchor="lm")
+        text(f, (18, 138), c, fit_font("inter", c, 170, 13), "#6a4a30", anchor="lm")
+        rect(f, (18, 200, 170, 232), fill=NA_O, radius=16)
+        text(f, (94, 216), "склад: Нуржан", font("interb", 13), NA_B, anchor="mm")
+        b.add(f, 2400)
+
+
+ZT_R, ZT_G = "#B03A2E", "#2B2B2E"
+
+
+@ad("zhetysu/felt_728x90.gif", ["current", "local"], "Zhetysu Industrial Textiles",
+    "Zhetysu Textiles factory shop, Nurzhan: wool blankets, felt and shyrdak", "go.html#zhetysu.com")
+def _(b):
+    frames = [("Фирменный магазин", "Жетысу Текстиль, Нуржан"), ("Шерстяные одеяла", "войлок • пряжа • шырдаки"),
+              ("Jeti suu", "jün, kiyiz, shırdak")]
+    for i, (big, small) in enumerate(frames):
+        f = b.frame("#F2C9BF")
+        for x in range(470, 728, 14):                  # woven strips
+            rect(f, (x, 0, x + 7, 89), fill=ZT_R if (x // 14) % 2 else "#D9503F")
+        for y in range(6, 90, 14):
+            rect(f, (470, y, 728, y + 5), fill="#F2C9BF")
+        logo_on(f, "Zhetysu_logo.png", (18, 45), w=190)
+        text(f, (232, 32), big, fit_font("interx", big, 228, 22), ZT_G, anchor="lm")
+        text(f, (232, 60), small, fit_font("inter", small, 228, 14), "#5a2a24", anchor="lm")
+        b.add(f, 2200)
+
+
+TD_S, TD_C = "#2E4057", "#B4BEC6"
+
+
+@ad("tcdg/homes_300x250.gif", ["current"], "Talas Commercial Development Group",
+    "Talas Commercial Development Group: new apartments in Talas, from the builders of the Silk Road Arena", "go.html#tcdg.com")
+def _(b):
+    pic = photo(S("apartments.png"), (300, 140), focus=(0.5, 0.5))
+    msgs = (("Новые квартиры", "в Таласе, сдача 2027"), ("Ипотека", "с Talasbank"),
+            ("От строителей", "Арены «Шёлковый путь»"))
+    for a, c in msgs:
+        f = b.frame("#ffffff")
+        f.paste(pic, (0, 0))
+        rect(f, (0, 140, 300, 250), fill=TD_S)
+        text(f, (18, 166), a, fit_font("interx", a, 264, 22), "#ffffff", anchor="lm")
+        text(f, (18, 192), c, fit_font("inter", c, 264, 14), "#C9D3DB", anchor="lm")
+        logo_on(f, "TCDG_logo_white.png", (18, 228), w=110)
+        b.add(f, 2500)
+
+
+AK_C, AK_R = "#2B2E31", "#D22B1E"
+
+
+@ad("akkyr/cement_728x90.gif", ["current", "local"], "Ak-Kyr Cement Works",
+    "Ak-Kyr cement M400 and M500 in 50 kg bags, delivered from the plant", "go.html#akkyr.com")
+def _(b):
+    frames = [("Цемент М400 / М500", "мешки по 50 кг и навалом"), ("С завода", "доставка по Таласу и району"),
+              ("Аккыр-цемент", "с 1967 года")]
+    for big, small in frames:
+        f = gradient(b.frame(), (0, 0, 728, 90), "#C9CDD0", "#73787D")
+        rect(f, (0, 0, 220, 89), fill="#ffffff")
+        logo_on(f, "AkKyr_logo.png", (110, 45), w=190, anchor="mm")
+        rect(f, (220, 0, 224, 89), fill=AK_R)
+        text(f, (246, 32), big, fit_font("interx", big, 380, 26), AK_C, anchor="lm")
+        text(f, (246, 62), small, fit_font("inter", small, 380, 15), "#2b2e31", anchor="lm")
+        d = ImageDraw.Draw(f)
+        for k in range(3):                              # a stack of bags
+            x = 640 + (k % 2) * 30 - 15; y = 66 - (k // 2) * 22 - (k % 2) * 0
+            d.rounded_rectangle((x - 26, y - 12, x + 26, y + 12), 5, fill="#e9e6df", outline="#8a8580")
+            rect(f, (x - 26, y - 3, x + 26, y + 1), fill=AK_R)
+        b.add(f, 2200)
+
+
+ND_A, ND_Y = "#2A2C2E", "#F5C400"
+
+
+@ad("nurzhandorstroy/roadworks_300x250.gif", ["current", "state", "local"], "Nurzhandorstroy",
+    "Nurzhandorstroy: road works on the Trans-Talas Highway, thank you for your patience", "go.html#nurzhandorstroy.com")
+def _(b):
+    msgs = (("Ремонт дороги", "Транс-Таласская трасса"), ("Объезд", "по указателям, 40 км/ч"),
+            ("Спасибо за терпение!", "Сделаем — и надолго"))
+    for k, (a, c) in enumerate(msgs):
+        f = b.frame(ND_A)
+        for x in range(-20, 300, 40):                  # hazard stripes at the top
+            ImageDraw.Draw(f).polygon([(x, 0), (x + 20, 0), (x + 40, 22), (x + 20, 22)], fill=ND_Y)
+        for x in range(0, 300, 46):                     # dashed centre line
+            rect(f, (x, 214, x + 26, 220), fill=ND_Y)
+        logo_on(f, "Nurzhandorstroy_logo_white.png", (150, 56), w=230, anchor="mm")
+        text(f, (18, 124), a, fit_font("interx", a, 264, 24), ND_Y, anchor="lm")
+        text(f, (18, 152), c, fit_font("inter", c, 264, 14), "#ffffff", anchor="lm")
+        text(f, (150, 238), "Нуржандорстрой • с 1996", font("interb", 11), "#a9acaf", anchor="mm")
+        b.add(f, 2400)
+
+
 def main(only=None):
     camp_path = os.path.join(ROOT, "campaigns.json")
     camp = json.load(open(camp_path)) if os.path.exists(camp_path) else {"ads": []}
