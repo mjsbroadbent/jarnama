@@ -15,7 +15,6 @@ Out of world, this repo holds every fake banner ad for those sites in one place,
 | `THEMES.md` | The ad themes (era looks and advertiser types) a site asks for |
 | `go.html` | Where every ad click lands: opens the advertiser's site when it is live (`sites.json`), Attelkom's restricted-resources notice when it is blocked, and "site unavailable" otherwise. `sites.json` is copied from the irad-persona skill's site registry by `python3 tools/sync_sites.py`. |
 | `serve.js` | Included by each site. Fills `<div class="jarnama" data-size="728x90"></div>` slots with a random ad of the page's (or slot's) theme |
-| `research/` | Notes on real Central Asian advertising (style, sizes, offers, languages) and the house style guide for Iradi ads |
 | `tools/` | Scripts that build the animated GIFs |
 
 ## Sizes
